@@ -21,6 +21,7 @@ const reverb = new Tone.Reverb(reverbOptions);
 
 const widener = new Tone.StereoWidener(0.6);
 
-const synthEngine = synth.chain(feedbackDelay, filter, reverb, widener, bitcrusher, Tone.Destination);
+// const synthEngine = synth.chain(feedbackDelay, filter, reverb, widener, bitcrusher, Tone.Destination);
+const synthEngine = synth.chain(Tone.Destination);
 
 export default synthEngine

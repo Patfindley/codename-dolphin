@@ -1,21 +1,24 @@
-import React, {
-  useEffect
-} from 'react';
+import React, { useEffect } from 'react';
 import * as Tone from 'tone';
-import './App.css'
-import synthEngine from './util/synthEngine'
-import keyboardSwitch from './util/keyboardSwitch'
-
-const playSynth = async (e) => {
-  await Tone.start();
-  synthEngine.triggerAttackRelease(keyboardSwitch(e), '8n');
-};
-
+import './App.css';
+import synthEngine from './util/synthEngine';
+import { keyboardSwitch } from './util/keyboardSwitch';
 
 export default function App() {
+  const playSynth = async (e) => {
+    // if (e.repeat) {
+    //   return;
+    // }
+    // if (keyCodes.includes(e.keyCode)) {
+      await Tone.start();
+      synthEngine.triggerAttackRelease(keyboardSwitch(e, 4), '8n');
+    // }
+  };
+
   useEffect(() => {
     window.addEventListener('keydown', playSynth);
-  }, []);
+  });
+
   return (
     <div>
       <label>

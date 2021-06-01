@@ -6,11 +6,10 @@ const synth = new Tone.PolySynth(Tone.Synth, {
   },
   envelope: {
     attack: 1,
-    decay: 0.1,
+    decay: 10,
     sustain: 0.3,
     release: 1,
   },
-  portamento: 4,
 });
 
 export default synth;
