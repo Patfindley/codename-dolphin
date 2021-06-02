@@ -9,6 +9,7 @@ import * as Tone from 'tone';
 import './App.css';
 import createSynth from '../SynthEngine/SynthEngine';
 import keyboardSwitch from '../../util/keyboardSwitch';
+import Scene from '../Scene/Scene';
 
 const { oscillators, delay, reverb, filter } = createSynth();
 const engine = oscillators.chain(delay, reverb, filter, Tone.Destination);
@@ -36,7 +37,7 @@ export default function App() {
   }, []);
 
   return (
-    <div>
+    <div className='App'>
       <label>
         Detune:
         <input
@@ -90,6 +91,7 @@ export default function App() {
           Set Oscillator Type
         </button>
       </form>
+      <Scene/>
     </div>
   );
 }
