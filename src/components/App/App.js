@@ -8,8 +8,9 @@ import React, {
 import * as Tone from 'tone';
 import './App.css';
 import createSynth from '../SynthEngine/SynthEngine';
-import keyboardSwitch from '../../util/keyboardSwitch';
 import Scene from '../Scene/Scene';
+import { keyboardSwitch } from '../../util/keyboardSwitch';
+import Keyboard from '../Keyboard/Keyboard';
 
 const { oscillators, delay, reverb, filter } = createSynth();
 const engine = oscillators.chain(delay, reverb, filter, Tone.Destination);
@@ -19,7 +20,7 @@ export default function App() {
   const [octave, setOctave] = useState(4);
   const [detune, setDetune] = useState(0);
   const [osc, setOsc] = useState(synth.get().oscillator.type);
-  
+
   const playSynth = async (e) => {
     await Tone.start();
     if (keyboardSwitch(e, octave)) {
@@ -30,7 +31,7 @@ export default function App() {
       console.log(synth);
     }
   };
-  
+
   useEffect(() => {
     console.log(delay);
     window.addEventListener('keydown', playSynth);
@@ -91,6 +92,7 @@ export default function App() {
           Set Oscillator Type
         </button>
       </form>
+      <Keyboard />
       <Scene/>
     </div>
   );
