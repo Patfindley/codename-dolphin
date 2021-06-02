@@ -1,0 +1,4 @@
+.keyboard {
+    display: flex;
+    flex-direction: row;
+}
