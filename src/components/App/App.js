@@ -8,6 +8,7 @@ import React, {
 import * as Tone from 'tone';
 import './App.css';
 import createSynth from '../SynthEngine/SynthEngine';
+import Scene from '../Scene/Scene';
 import { keyboardSwitch } from '../../util/keyboardSwitch';
 import Keyboard from '../Keyboard/Keyboard';
 
@@ -37,7 +38,7 @@ export default function App() {
   }, []);
 
   return (
-    <div>
+    <div className='App'>
       <label>
         Detune:
         <input
@@ -92,6 +93,7 @@ export default function App() {
         </button>
       </form>
       <Keyboard />
+      <Scene/>
     </div>
   );
 }
