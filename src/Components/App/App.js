@@ -10,13 +10,15 @@ import './App.css';
 import createSynth from '../SynthEngine/SynthEngine';
 import keyboardSwitch from '../../util/keyboardSwitch';
 
-const engine = createSynth();
+const { oscillators, delay, reverb, filter } = createSynth();
+const engine = oscillators.chain(delay, reverb, filter, Tone.Destination);
+
 export default function App() {
   const [synth, setSynth] = useState(engine);
   const [octave, setOctave] = useState(4);
   const [detune, setDetune] = useState(0);
   const [osc, setOsc] = useState(synth.get().oscillator.type);
-
+  
   const playSynth = async (e) => {
     await Tone.start();
     if (keyboardSwitch(e, octave)) {
@@ -27,10 +29,11 @@ export default function App() {
       console.log(synth);
     }
   };
-
+  
   useEffect(() => {
+    console.log(delay);
     window.addEventListener('keydown', playSynth);
-  }, [synth]);
+  }, []);
 
   return (
     <div>

@@ -32,18 +32,27 @@ const createSynth = () => {
   };
   const filter = new Tone.Filter(filterOptions);
 
-  const synthEngine = oscillators.chain(
-    feedbackDelay,
-    filter,
-    reverb,
-    Tone.Destination
-  );
+  // const synthEngine = oscillators.chain(
+  //   feedbackDelay,
+  //   filter,
+  //   reverb,
+  //   Tone.Destination
+  // );
   console.log('I made a synth');
-  return synthEngine;
+
+  const synthHardware = {
+    oscillators: oscillators,
+    delay: feedbackDelay,
+    reverb: reverb,
+    filter: filter
+  }
+  return synthHardware
+  // return synthEngine;
   // SIMPLIFIED FOR TESTING 👇
   // const synth = new Tone.Synth()
   // console.log('I made a synth');
   // return new Tone.Synth().chain(Tone.Destination);
+
 };
 
 export default createSynth;
