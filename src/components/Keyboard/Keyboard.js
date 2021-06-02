@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import Key from '../Key/Key.js'
 import './Keyboard.css'
 import '../../util/keyboardSwitch'
-import keyboardSwitch from '../../util/keyboardSwitch'
+import { noteValues } from '../../util/keyboardSwitch'
 
 const Keyboard = (props) => {
   const [pressedKeys, setPressedKeys] = useState([])
-  const notes = ['c', 'c#', 'd', 'd#', 'e', 'f', 'f#', 'g', 'g#', 'a', 'a#', 'b']
+//   const notes = ['c', 'c#', 'd', 'd#', 'e', 'f', 'f#', 'g', 'g#', 'a', 'a#', 'b']
+  const notes = Object.values(noteValues).sort((a, b) => a - b)
+  console.log(notes)
   const noteIsSharp = (note) => {
       return note.includes('#')
   }
