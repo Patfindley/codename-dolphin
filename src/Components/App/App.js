@@ -1,44 +1,92 @@
-import React, { useState, useEffect, useRef, useMemo } from 'react';
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  useMemo,
+  useCallback,
+} from 'react';
 import * as Tone from 'tone';
 import './App.css';
 import createSynth from '../SynthEngine/SynthEngine';
 import keyboardSwitch from '../../util/keyboardSwitch';
 
-const synth = createSynth();
-
+const engine = createSynth();
 export default function App() {
+  const [synth, setSynth] = useState(engine);
   const [octave, setOctave] = useState(4);
-  const [test, setTest] = useState(false);
+  const [detune, setDetune] = useState(0);
+  const [osc, setOsc] = useState(synth.get().oscillator.type);
 
   const playSynth = async (e) => {
     await Tone.start();
-    let note = keyboardSwitch(e, parseInt(octave));
-    synth.triggerAttackRelease(note, '8n');
-    // this shows the issue, first keydown logs a single node, then when input value changes keydown logs multiple nodes 👇
-    console.log(synth);
+    if (keyboardSwitch(e, octave)) {
+      let note = keyboardSwitch(e, octave);
+      synth.triggerAttackRelease(note, '8n');
+      console.log(note);
+      console.log(synth.get());
+      console.log(synth);
+    }
   };
 
   useEffect(() => {
     window.addEventListener('keydown', playSynth);
-  });
+  }, [synth]);
 
   return (
     <div>
       <label>
-        Octave Select:
-        {test && test}
+        Detune:
         <input
           type='range'
-          name='octave'
-          min='2'
-          max='5'
-          // value={octave}
+          name='detune'
+          min='-1200'
+          max='1200'
+          value={detune}
           onChange={(e) => {
-            // setOctave(e.target.value)
-            setTest(<div>hello</div>);
+            setDetune(e.target.value);
+            synth.set({ detune: detune });
           }}
         />
       </label>
+      <form onSubmit={(e) => e.preventDefault()}>
+        <label>
+          AM Sine:
+          <input
+            type='radio'
+            name='octave'
+            value='amsine'
+            onChange={(e) => {
+              setOsc(e.target.value);
+            }}
+          />
+        </label>
+        <label>
+          Square:
+          <input
+            type='radio'
+            name='octave'
+            value='square'
+            defaultChecked
+            onChange={(e) => {
+              setOsc(e.target.value);
+            }}
+          />
+        </label>
+        <label>
+          FM Triange:
+          <input
+            type='radio'
+            name='octave'
+            value='fmtriangle'
+            onChange={(e) => {
+              setOsc(e.target.value);
+            }}
+          />
+        </label>
+        <button onClick={() => synth.set({ oscillator: { type: osc } })}>
+          Set Oscillator Type
+        </button>
+      </form>
     </div>
   );
 }
