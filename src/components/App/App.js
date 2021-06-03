@@ -16,21 +16,31 @@ export default function App() {
   const [osc, setOsc] = useState(synth.get().oscillator.type);
 
   const playSynth = async (e) => {
-    if (keyboardSwitch(e, octave)) {
+    triggerKeyDownPlay(e);
+    // eventually put another function here to do click playing
+  };
+  
+  const triggerKeyDownPlay = async (e) => {
+    if (e.type === 'keydown' && keyboardSwitch(e, octave)) {
       await Tone.start();
-      let note = keyboardSwitch(e, octave);
+      const note = keyboardSwitch(e, octave);
       synth.triggerAttackRelease(note, '8n');
       console.log(note);
-      console.log(synth.get());
+      return
     }
-  };
+  }
+
+  const triggerOnClickPlay = () => {
+
+  }
 
   const activateKey = async (e) => {
     if (e.target.attributes.note) {
       await Tone.start();
       const domNote = e.target.attributes.note.value;
-      const note = splitDomNote(domNote);
-      synth.triggerAttackRelease(note, '8n');
+      // const note = splitDomNote(domNote);
+      console.log(domNote);
+      synth.triggerAttackRelease(domNote, '8n');
       toggleActive(e);
     }
   };

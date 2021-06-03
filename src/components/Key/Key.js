@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
 import './Key.css';
 
-const Key = ({ note, isSharp }) => {
-  //   const [isActive, setIsActive] = useState(false);
+const Key = ({ note, isSharp, name }) => {
   return (
-    <div 
-      className={isSharp ? 'key sharp' : 'key'} 
-      note={note}>
-      <div className='note-display'>{note.split(" ")[0].toUpperCase()}</div>
+    <div className={isSharp ? 'key sharp' : 'key'} note={note}>
+      <div className='note-display'>{name}</div>
     </div>
   );
 };
