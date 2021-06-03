@@ -32,9 +32,9 @@ const Keyboard = ({ activateKey }) => {
   const mapNotes = (notes) => {
     return notes.map((note, index) => {
       if (noteIsSharp(note)) {
-        return <Key key={index} note={note + index} isSharp={true} />;
+        return <Key key={index} note={note + " " + index} isSharp={true} />;
       } else {
-        return <Key key={index} note={note + index} />;
+        return <Key key={index} note={note + " " + index} />;
       }
     });
   };

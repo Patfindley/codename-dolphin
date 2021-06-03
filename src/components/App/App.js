@@ -33,14 +33,21 @@ export default function App() {
   };
 
   const activateKey = (e) => {
-    //if note === key.note
-    //keyClassName += " active"
-    console.log('hi');
     if (e.target.attributes.note) {
-      console.log(e.target.attributes.note.value);
+      let note;
+      if (e.target.attributes.note.value.split(" ")[1] < 12) {
+        note = e.target.attributes.note.value.split(" ")[0] + '4'
+      } else {
+        note = e.target.attributes.note.value.split(" ")[0] + '5'
+      }
+
+      console.log(e.target.attributes.note.value[0]);
+      console.log(e);
+
+      synth.triggerAttackRelease(note, '8n');
     }
   };
-
+  
   useEffect(() => {
     window.addEventListener('keydown', playSynth);
   }, []);
