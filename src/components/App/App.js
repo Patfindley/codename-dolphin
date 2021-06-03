@@ -1,7 +1,4 @@
-import React, {
-  useState,
-  useEffect
-} from 'react';
+import React, { useState, useEffect } from 'react';
 import * as Tone from 'tone';
 import './App.css';
 import createSynth from '../SynthEngine/SynthEngine';
@@ -30,21 +27,24 @@ export default function App() {
   };
 
   const activateKey = (e) => {
-    if (e.target.attributes.note) {
+    if (!e.target.className.includes('keyboard')) {
+      const domNote = e.target.attributes.note.value;
       let note;
-      if (e.target.attributes.note.value.split(" ")[1] < 12) {
-        note = e.target.attributes.note.value.split(" ")[0] + '4'
+      if (domNote.split(' ')[1] < 12) {
+        note = domNote.split(' ')[0] + '4';
       } else {
-        note = e.target.attributes.note.value.split(" ")[0] + '5'
+        note = domNote.split(' ')[0] + '5';
       }
       synth.triggerAttackRelease(note, '8n');
+      toggleActive(e);
     }
-    console.log(e.target.classList)
-    // if ()
-    e.target.className += " active";
-    console.log(e.target.classList)
   };
-  
+
+  const toggleActive = (e) => {
+    e.target.classList.toggle('active');
+    setTimeout(() => e.target.classList.toggle('active'), 100);
+  };
+
   useEffect(() => {
     window.addEventListener('keydown', playSynth);
   }, []);
