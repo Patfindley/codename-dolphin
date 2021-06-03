@@ -35,8 +35,10 @@ export default function App() {
   const activateKey = (e) => {
     //if note === key.note
     //keyClassName += " active"
-    console.log('hi')
-    console.log(e.target.attributes.note.value)
+    console.log('hi');
+    if (e.target.attributes.note) {
+      console.log(e.target.attributes.note.value);
+    }
   };
 
   useEffect(() => {
@@ -99,7 +101,7 @@ export default function App() {
         </button>
       </form>
       <Keyboard activateKey={activateKey} />
-      <Scene/>
+      <Scene />
     </div>
   );
 }
