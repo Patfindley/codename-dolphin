@@ -46,7 +46,7 @@ export default function App() {
 
   const toggleActiveClick = (e) => {
     e.target.classList.toggle('active');
-    setTimeout(() => e.target.classList.toggle('active'), 100);
+    setTimeout(() => e.target.classList.toggle('active'), 500);
   };
 
   const toggleActiveKeydown = (note) => {
@@ -54,7 +54,7 @@ export default function App() {
     const keys = Array.from(keyboard.childNodes);
     const key = keys.find((k) => note === k.attributes.note.value);
     key.classList.toggle('active');
-    setTimeout(() => key.classList.toggle('active'), 100);
+    setTimeout(() => key.classList.toggle('active'), 500);
   };
 
   useEffect(() => {
