@@ -5,7 +5,7 @@ import {
   toggleActiveClick,
   toggleActiveKeydown,
 } from '../../util/activateKeyUtil';
-import keyboardSwitch from '../../util/keyboardSwitch'
+import keyboardSwitch from '../../util/keyboardSwitch';
 import createSynth from '../SynthEngine/SynthEngine';
 
 import Scene from '../Scene/Scene';
@@ -25,6 +25,7 @@ export default function App() {
       const note = keyboardSwitch(e);
       synth.triggerAttackRelease(note, '8n');
       toggleActiveKeydown(note);
+      console.log(note);
       return;
     }
   };
@@ -35,6 +36,7 @@ export default function App() {
       const note = e.target.attributes.note.value;
       synth.triggerAttackRelease(note, '8n');
       toggleActiveClick(e);
+      console.log(note);
       return;
     }
   };
@@ -95,7 +97,9 @@ export default function App() {
             }}
           />
         </label>
-        <button onClick={() => synth.set({ oscillator: { type: osc } })}>
+        <button
+          onClick={() => setSynth(synth.set({ oscillator: { type: osc } }))}
+        >
           Set Oscillator Type
         </button>
       </form>
