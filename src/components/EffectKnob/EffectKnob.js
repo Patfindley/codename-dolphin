@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 export default function EffectKnob({
   name,
-  hardware,
   min,
   max,
   value,
-  setState,
+  handleChange,
 }) {
   return (
     <label className='effect-knob'>
@@ -17,10 +16,7 @@ export default function EffectKnob({
         min={min}
         max={max}
         value={value}
-        onChange={(e) => {
-          setState(e.target.value);
-          hardware.set({ [name]: value });
-        }}
+        onChange={handleChange}
       />
     </label>
   );
