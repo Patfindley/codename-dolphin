@@ -10,6 +10,7 @@ import createSynth from '../SynthEngine/SynthEngine';
 
 import Scene from '../Scene/Scene';
 import Keyboard from '../Keyboard/Keyboard';
+import EffectKnob from '../EffectKnob/EffectKnob';
 
 const { oscillators, delay, reverb, filter } = createSynth();
 const engine = oscillators.chain(delay, reverb, filter, Tone.Destination);
@@ -48,20 +49,14 @@ export default function App() {
 
   return (
     <div className='App'>
-      <label>
-        Detune:
-        <input
-          type='range'
-          name='detune'
-          min='-1200'
-          max='1200'
-          value={detune}
-          onChange={(e) => {
-            setDetune(e.target.value);
-            synth.set({ detune: detune });
-          }}
-        />
-      </label>
+      <EffectKnob
+        name='detune'
+        hardware={oscillators}
+        min='-1200'
+        max='1200'
+        value={detune}
+        setState={setDetune}
+      />
       <form onSubmit={(e) => e.preventDefault()}>
         <label>
           AM Sine:
