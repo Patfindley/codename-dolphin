@@ -16,27 +16,30 @@ export default function App() {
   const [osc, setOsc] = useState(synth.get().oscillator.type);
 
   const playSynth = async (e) => {
-    await Tone.start();
     if (keyboardSwitch(e, octave)) {
+      await Tone.start();
       let note = keyboardSwitch(e, octave);
       synth.triggerAttackRelease(note, '8n');
       console.log(note);
       console.log(synth.get());
-      console.log(synth);
     }
   };
 
-  const activateKey = (e) => {
-    if (!e.target.className.includes('keyboard')) {
+  const activateKey = async (e) => {
+    if (e.target.attributes.note) {
+      await Tone.start();
       const domNote = e.target.attributes.note.value;
-      let note;
-      if (domNote.split(' ')[1] < 12) {
-        note = domNote.split(' ')[0] + '4';
-      } else {
-        note = domNote.split(' ')[0] + '5';
-      }
+      const note = splitDomNote(domNote);
       synth.triggerAttackRelease(note, '8n');
       toggleActive(e);
+    }
+  };
+
+  const splitDomNote = (domNote) => {
+    if (domNote.split(' ')[1] < 12) {
+      return domNote.split(' ')[0] + '4';
+    } else {
+      return domNote.split(' ')[0] + '5';
     }
   };
 
