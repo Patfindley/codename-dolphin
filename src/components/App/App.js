@@ -39,6 +39,10 @@ export default function App() {
       }
       synth.triggerAttackRelease(note, '8n');
     }
+    console.log(e.target.classList)
+    // if ()
+    e.target.className += " active";
+    console.log(e.target.classList)
   };
   
   useEffect(() => {

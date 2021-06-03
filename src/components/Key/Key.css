@@ -30,3 +30,7 @@
     width: 30px;
     z-index: 2;
 }
+
+.active {
+  background: blue;
+}
