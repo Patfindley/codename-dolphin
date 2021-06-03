@@ -1,15 +1,12 @@
-import './Key.css'
+import React from 'react';
+import './Key.css';
 
-const Key = ({ note, index, pressedKeys }) => {
-
-    return (
-        <div className="key">
-            <div className="note-display">
-                { note.toUpperCase() }
-            </div>
-        </div>
-    )
-
-}
+const Key = ({ note, isSharp, name }) => {
+  return (
+    <div className={isSharp ? 'key sharp' : 'key'} note={note}>
+      <div className='note-display'>{name}</div>
+    </div>
+  );
+};
 
 export default Key;

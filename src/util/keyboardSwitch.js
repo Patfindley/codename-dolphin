@@ -1,34 +1,18 @@
-const octave = 4
+import notesUtil from './notesUtil';
 
-const noteValues = {
-  65: `C${octave}`,
-  87: `C#${octave}`,
-  83: `D${octave}`,
-  69: `D#${octave}`,
-  68: `E${octave}`,
-  70: `F${octave}`,
-  84: `F#${octave}`,
-  71: `G${octave}`,
-  89: `G#${octave}`,
-  72: `A${octave}`,
-  85: `A#${octave}`,
-  74: `B${octave}`,
-  75: `C${octave + 1}`,
-  79: `C#${octave + 1}`,
-  76: `D${octave + 1}`,
-  80: `D#${octave + 1}`,
-  186: `E${octave + 1}`,
-  222: `F${octave + 1}`,
-};
+const keyCodes = [
+  65, 87, 83, 69, 68, 70, 84, 71, 89, 72, 85, 74, 75, 79, 76, 80, 186, 222,
+];
 
-const keyboardSwitch = (e, octave) => {
-  const keyCodes = Object.keys(noteValues).map((c) => parseInt(c));
+const keyboardSwitch = (e) => {
   if (e.repeat) {
     return;
   }
   if (keyCodes.includes(e.keyCode)) {
-    return noteValues[e.keyCode];
+    const index = keyCodes.indexOf(e.keyCode);
+    const note = notesUtil[index];
+    return note.split(' ').join('');
   }
 };
 
-export { keyboardSwitch, noteValues };
+export default keyboardSwitch;

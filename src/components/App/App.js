@@ -1,15 +1,10 @@
-import React, {
-  useState,
-  useEffect,
-  useRef,
-  useMemo,
-  useCallback,
-} from 'react';
+import React, { useState, useEffect } from 'react';
 import * as Tone from 'tone';
 import './App.css';
 import createSynth from '../SynthEngine/SynthEngine';
+import keyboardSwitch from '../../util/keyboardSwitch';
+import notesUtil from '../../util/notesUtil';
 import Scene from '../Scene/Scene';
-import { keyboardSwitch } from '../../util/keyboardSwitch';
 import Keyboard from '../Keyboard/Keyboard';
 
 const { oscillators, delay, reverb, filter } = createSynth();
@@ -17,24 +12,54 @@ const engine = oscillators.chain(delay, reverb, filter, Tone.Destination);
 
 export default function App() {
   const [synth, setSynth] = useState(engine);
-  const [octave, setOctave] = useState(4);
   const [detune, setDetune] = useState(0);
   const [osc, setOsc] = useState(synth.get().oscillator.type);
 
   const playSynth = async (e) => {
-    await Tone.start();
-    if (keyboardSwitch(e, octave)) {
-      let note = keyboardSwitch(e, octave);
+    await triggerKeyDownPlay(e);
+    await triggerOnClickPlay(e);
+  };
+
+  const triggerKeyDownPlay = async (e) => {
+    if (e.type === 'keydown' && keyboardSwitch(e)) {
+      await Tone.start();
+      const note = keyboardSwitch(e);
       synth.triggerAttackRelease(note, '8n');
-      console.log(note);
-      console.log(synth.get());
-      console.log(synth);
+      toggleActiveKeydown(note);
+      return;
     }
   };
 
+  const triggerOnClickPlay = async (e) => {
+    if (e.target.attributes.note) {
+      await Tone.start();
+      const note = e.target.attributes.note.value;
+      synth.triggerAttackRelease(note, '8n');
+      console.log(note);
+      return;
+    }
+  };
+
+  const activateKey = (e) => {
+    toggleActiveClick(e);
+  };
+
+  const toggleActiveClick = (e) => {
+    e.target.classList.toggle('active');
+    setTimeout(() => e.target.classList.toggle('active'), 500);
+  };
+
+  const toggleActiveKeydown = (note) => {
+    const keyboard = document.querySelector('.keyboard');
+    const keys = Array.from(keyboard.childNodes);
+    const key = keys.find((k) => note === k.attributes.note.value);
+    key.classList.toggle('active');
+    setTimeout(() => key.classList.toggle('active'), 500);
+  };
+
   useEffect(() => {
-    console.log(delay);
     window.addEventListener('keydown', playSynth);
+    window.addEventListener('click', playSynth);
   }, []);
 
   return (
@@ -92,8 +117,8 @@ export default function App() {
           Set Oscillator Type
         </button>
       </form>
-      <Keyboard />
-      <Scene/>
+      <Keyboard activateKey={activateKey} />
+      <Scene />
     </div>
   );
 }

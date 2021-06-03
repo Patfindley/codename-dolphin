@@ -1,25 +1,54 @@
 .key {
-    background-color: rgb(255, 255, 255);
-    height: 300px;
-    width: 60px;
-    border: 2px solid black;
+  background-color: rgb(255, 255, 255);
+  height: 300px;
+  width: 60px;
+  border: 2px solid black;
 }
 
 .note-display {
-    text-align: center;
-    position: relative;
-    color: black;
-    font-weight: 600;
-    font-size: 36px;
-    margin-top: 240px;
+  text-align: center;
+  position: relative;
+  color: black;
+  font-weight: 600;
+  font-size: 36px;
+  margin-top: 240px;
+  pointer-events: none;
+}
+
+.sharp > .note-display {
+  bottom: 66px;
+  color: white;
+  font-size: 20px;
 }
 
 .sharp {
-    position: relative;
-    background-color: black;
-    margin-left: -17px;
-    margin-right: -17px;
-    height: 200px;
-    width: 30px;
-    z-index: 2;
+  position: relative;
+  background-color: black;
+  margin-left: -17px;
+  margin-right: -17px;
+  height: 200px;
+  width: 30px;
+  z-index: 2;
+}
+
+.active {
+  background: linear-gradient(
+    180deg,
+    #ff0000,
+    #ffac00,
+    #fff100,
+    #0bff00,
+    #00f6ff
+  );
+  background-size: 750% 750%;
+  animation: rainbow 0.5s cubic-bezier(0.62, 0.6, 0.55, 0.51) infinite;
+}
+
+@keyframes rainbow {
+  0% {
+    background-position: 88% 0%;
+  }
+  100% {
+    background-position: 13% 100%;
+  }
 }
