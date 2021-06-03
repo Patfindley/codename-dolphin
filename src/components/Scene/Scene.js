@@ -1,6 +1,6 @@
 import React from 'react'
 import { Canvas } from '@react-three/fiber';
-import { softShadows, OrbitControls } from "@react-three/drei";
+import { softShadows, OrbitControls, Stars } from "@react-three/drei";
 import Box from './Box';
 import Tetrahedron from './Tetrahedron';
 import Sphere from './Sphere';
@@ -21,21 +21,27 @@ export default function Scene(props) {
             <Lighting/>
             <Plane/>
             <OrbitControls />
-            {props.wave === 'square' && <group>
+            <Stars radius={100} depth={50} count={5000} factor={4} saturation={0} fade/>
+            {props.wave === 'square' && 
+            <group>
             {/* This mesh is the plane (The floor) */}
               <Box position={[-1.2, 2, -5]} color='pink' />
               <Box position={[1.2, -1, 0]} color='orange'/>
               <Box position={[-4.2, 0, 0.5]} color='yellow' />
               <Box position={[4.2, 0, -1]} color='brown'/>
             </group>}
-            {props.wave === 'fmtriangle' && <group>
+
+            {props.wave === 'fmtriangle' && 
+            <group>
             {/* This mesh is the plane (The floor) */}
               <Tetrahedron position={[-1.2, 2, -5]} color='pink' />
               <Tetrahedron position={[1.2, -1, 0]} color='orange'/>
               <Tetrahedron position={[-4.2, 0, 0.5]} color='yellow' />
               <Tetrahedron position={[4.2, 0, -1]} color='brown'/>
             </group>}
-            {props.wave === 'amsine' && <group>
+
+            {props.wave === 'amsine' && 
+            <group>
             {/* This mesh is the plane (The floor) */}
               <Sphere position={[-1.2, 2, -5]} color='pink' />
               <Sphere position={[1.2, -1, 0]} color='orange'/>
