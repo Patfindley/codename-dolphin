@@ -5,7 +5,7 @@ const createSynth = () => {
   oscillators.set({
     oscillator: { type: 'square' },
     envelope: {
-      attack: .5,
+      attack: 0.5,
       decay: 1,
       sustain: 0,
       release: 1,
@@ -32,27 +32,16 @@ const createSynth = () => {
   };
   const filter = new Tone.Filter(filterOptions);
 
-  // const synthEngine = oscillators.chain(
-  //   feedbackDelay,
-  //   filter,
-  //   reverb,
-  //   Tone.Destination
-  // );
-  console.log('I made a synth');
-
   const synthHardware = {
     oscillators: oscillators,
     delay: feedbackDelay,
     reverb: reverb,
-    filter: filter
-  }
-  return synthHardware
-  // return synthEngine;
-  // SIMPLIFIED FOR TESTING 👇
-  // const synth = new Tone.Synth()
-  // console.log('I made a synth');
-  // return new Tone.Synth().chain(Tone.Destination);
+    filter: filter,
+  };
 
+  console.log('I made a synth');
+  
+  return synthHardware;
 };
 
 export default createSynth;

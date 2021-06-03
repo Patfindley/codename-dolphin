@@ -6,8 +6,8 @@ import {
   toggleActiveKeydown,
 } from '../../util/activateKeyUtil';
 import keyboardSwitch from '../../util/keyboardSwitch';
-import createSynth from '../SynthEngine/SynthEngine';
 
+import createSynth from '../SynthEngine/SynthEngine';
 import Scene from '../Scene/Scene';
 import Keyboard from '../Keyboard/Keyboard';
 import EffectKnob from '../EffectKnob/EffectKnob';
@@ -19,6 +19,7 @@ const engine = oscillators.chain(delay, reverb, filter, Tone.Destination);
 export default function App() {
   const [synth] = useState(engine);
   const [detune, setDetune] = useState(0);
+  const [cutoff, setCutoff] = useState(filter.get().frequency);
   const [oscType, setOscType] = useState(synth.get().oscillator.type);
 
   useEffect(() => {
@@ -57,6 +58,10 @@ export default function App() {
     synth.set({ oscillator: { type: oscType } });
   }, [oscType]);
 
+  useEffect(() => {
+    filter.set({ frequency: cutoff });
+  }, [cutoff]);
+
   return (
     <div className='App'>
       <EffectKnob
@@ -67,6 +72,16 @@ export default function App() {
         value={detune}
         handleChange={(e) => {
           setDetune(e.target.value);
+        }}
+      />
+      <EffectKnob
+        name='lpfilter'
+        label='LP Filter Cutoff'
+        min='300'
+        max='8000'
+        value={cutoff}
+        handleChange={(e) => {
+          setCutoff(e.target.value);
         }}
       />
       <EffectToggle
