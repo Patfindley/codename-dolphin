@@ -23,9 +23,9 @@ export default function Sphere(props) {
       onPointerOut={(e) => setHover(false)}>
       <sphereBufferGeometry 
         attach='geometry' 
-        args={[1, 1, 1]} 
+        args={[1, 100, 100]} 
         color={hovered ? 'green' : props.color} />
-        {/* <meshStandardMaterial color={hovered ? 'green' : props.color} /> */}
+        <meshStandardMaterial color={hovered ? 'green' : props.color} />
       {/* <sphereBufferGeometry attach='geometry' args={[1, 1, 1]} /> */}
     </mesh>
   )

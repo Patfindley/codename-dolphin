@@ -21,7 +21,7 @@ export default function Tetrahedron(props) {
       onClick={(e) => setActive(!active)}
       onPointerOver={(e) => setHover(true)}
       onPointerOut={(e) => setHover(false)}>
-      <tetrahedronBufferGeometry attach='geometry' args={[1, 1, 1]} />
+      <tetrahedronGeometry attach='geometry' args={[1, 0, 1]} />
       <meshStandardMaterial color={hovered ? 'green' : props.color} />
     </mesh>
   )
