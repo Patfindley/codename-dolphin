@@ -3,7 +3,7 @@ import React, { useRef, useState } from 'react'
 
 export default function Sphere(props) {
   // This reference will give us direct access to the mesh
-  const mesh = useRef()
+  const mesh = useRef(null)
   // Set up state for the hovered and active states
   const [hovered, setHover] = useState(false)
   const [active, setActive] = useState(false)
@@ -21,8 +21,12 @@ export default function Sphere(props) {
       onClick={(e) => setActive(!active)}
       onPointerOver={(e) => setHover(true)}
       onPointerOut={(e) => setHover(false)}>
-      <sphereBufferGeometry attach='geometry' args={[1, 1, 1]} />
-      <meshStandardMaterial color={hovered ? 'green' : props.color} />
+      <sphereBufferGeometry 
+        attach='geometry' 
+        args={[1, 1, 1]} 
+        color={hovered ? 'green' : props.color} />
+        {/* <meshStandardMaterial color={hovered ? 'green' : props.color} /> */}
+      {/* <sphereBufferGeometry attach='geometry' args={[1, 1, 1]} /> */}
     </mesh>
   )
 }
