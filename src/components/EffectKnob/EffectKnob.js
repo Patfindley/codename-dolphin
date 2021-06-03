@@ -2,6 +2,7 @@ import React from 'react';
 
 export default function EffectKnob({
   name,
+  label,
   min,
   max,
   value,
@@ -9,7 +10,7 @@ export default function EffectKnob({
 }) {
   return (
     <label className='effect-knob'>
-      {name}
+      {label}
       <input
         type='range'
         name={name}

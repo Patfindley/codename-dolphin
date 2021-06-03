@@ -61,6 +61,7 @@ export default function App() {
     <div className='App'>
       <EffectKnob
         name='detune'
+        label='Pitchy Bender'
         min='-1200'
         max='1200'
         value={detune}
