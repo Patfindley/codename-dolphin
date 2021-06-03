@@ -23,7 +23,7 @@ const Keyboard = ({ activateKey }) => {
   };
 
   return (
-    <div className='keyboard' onClick={activateKey}>
+    <div className='keyboard' >
       {mapNotes(notes)}
     </div>
   );
