@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import * as Tone from 'tone';
 import './App.css';
-import createSynth from '../SynthEngine/SynthEngine';
+import {
+  toggleActiveClick,
+  toggleActiveKeydown,
+} from '../../util/activateKeyUtil';
 import keyboardSwitch from '../../util/keyboardSwitch';
-import notesUtil from '../../util/notesUtil';
+import createSynth from '../SynthEngine/SynthEngine';
+
 import Scene from '../Scene/Scene';
 import Keyboard from '../Keyboard/Keyboard';
 
@@ -15,17 +19,13 @@ export default function App() {
   const [detune, setDetune] = useState(0);
   const [osc, setOsc] = useState(synth.get().oscillator.type);
 
-  const playSynth = async (e) => {
-    await triggerKeyDownPlay(e);
-    await triggerOnClickPlay(e);
-  };
-
   const triggerKeyDownPlay = async (e) => {
     if (e.type === 'keydown' && keyboardSwitch(e)) {
       await Tone.start();
       const note = keyboardSwitch(e);
       synth.triggerAttackRelease(note, '8n');
       toggleActiveKeydown(note);
+      console.log(note);
       return;
     }
   };
@@ -35,31 +35,15 @@ export default function App() {
       await Tone.start();
       const note = e.target.attributes.note.value;
       synth.triggerAttackRelease(note, '8n');
+      toggleActiveClick(e);
       console.log(note);
       return;
     }
   };
 
-  const activateKey = (e) => {
-    toggleActiveClick(e);
-  };
-
-  const toggleActiveClick = (e) => {
-    e.target.classList.toggle('active');
-    setTimeout(() => e.target.classList.toggle('active'), 500);
-  };
-
-  const toggleActiveKeydown = (note) => {
-    const keyboard = document.querySelector('.keyboard');
-    const keys = Array.from(keyboard.childNodes);
-    const key = keys.find((k) => note === k.attributes.note.value);
-    key.classList.toggle('active');
-    setTimeout(() => key.classList.toggle('active'), 500);
-  };
-
   useEffect(() => {
-    window.addEventListener('keydown', playSynth);
-    window.addEventListener('click', playSynth);
+    window.addEventListener('keydown', triggerKeyDownPlay);
+    window.addEventListener('click', triggerOnClickPlay);
   }, []);
 
   return (
@@ -113,11 +97,13 @@ export default function App() {
             }}
           />
         </label>
-        <button onClick={() => synth.set({ oscillator: { type: osc } })}>
+        <button
+          onClick={() => setSynth(synth.set({ oscillator: { type: osc } }))}
+        >
           Set Oscillator Type
         </button>
       </form>
-      <Keyboard activateKey={activateKey} />
+      <Keyboard />
       <Scene />
     </div>
   );
