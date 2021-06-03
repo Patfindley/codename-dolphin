@@ -3,6 +3,7 @@ import * as Tone from 'tone';
 import './App.css';
 import createSynth from '../SynthEngine/SynthEngine';
 import keyboardSwitch from '../../util/keyboardSwitch';
+import notesUtil from '../../util/notesUtil';
 import Scene from '../Scene/Scene';
 import Keyboard from '../Keyboard/Keyboard';
 
@@ -11,54 +12,54 @@ const engine = oscillators.chain(delay, reverb, filter, Tone.Destination);
 
 export default function App() {
   const [synth, setSynth] = useState(engine);
-  const [octave, setOctave] = useState(4);
   const [detune, setDetune] = useState(0);
   const [osc, setOsc] = useState(synth.get().oscillator.type);
 
   const playSynth = async (e) => {
-    triggerKeyDownPlay(e);
-    // eventually put another function here to do click playing
+    await triggerKeyDownPlay(e);
+    await triggerOnClickPlay(e);
   };
-  
+
   const triggerKeyDownPlay = async (e) => {
     if (e.type === 'keydown' && keyboardSwitch(e)) {
       await Tone.start();
       const note = keyboardSwitch(e);
       synth.triggerAttackRelease(note, '8n');
-      console.log(note);
-      return
-    }
-  }
-
-  const triggerOnClickPlay = () => {
-
-  }
-
-  const activateKey = async (e) => {
-    if (e.target.attributes.note) {
-      await Tone.start();
-      const note = e.target.attributes.note.value;
-      console.log(note);
-      synth.triggerAttackRelease(note, '8n');
-      toggleActive(e);
+      toggleActiveKeydown(note);
+      return;
     }
   };
 
-  // const splitDomNote = (domNote) => {
-  //   if (domNote.split(' ')[1] < 12) {
-  //     return domNote.split(' ')[0] + '4';
-  //   } else {
-  //     return domNote.split(' ')[0] + '5';
-  //   }
-  // };
+  const triggerOnClickPlay = async (e) => {
+    if (e.target.attributes.note) {
+      await Tone.start();
+      const note = e.target.attributes.note.value;
+      synth.triggerAttackRelease(note, '8n');
+      console.log(note);
+      return;
+    }
+  };
 
-  const toggleActive = (e) => {
+  const activateKey = (e) => {
+    toggleActiveClick(e);
+  };
+
+  const toggleActiveClick = (e) => {
     e.target.classList.toggle('active');
     setTimeout(() => e.target.classList.toggle('active'), 100);
   };
 
+  const toggleActiveKeydown = (note) => {
+    const keyboard = document.querySelector('.keyboard');
+    const keys = Array.from(keyboard.childNodes);
+    const key = keys.find((k) => note === k.attributes.note.value);
+    key.classList.toggle('active');
+    setTimeout(() => key.classList.toggle('active'), 100);
+  };
+
   useEffect(() => {
     window.addEventListener('keydown', playSynth);
+    window.addEventListener('click', playSynth);
   }, []);
 
   return (

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Key from '../Key/Key.js';
 import './Keyboard.css';
 import '../../util/keyboardSwitch';
