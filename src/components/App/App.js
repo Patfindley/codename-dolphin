@@ -104,7 +104,9 @@ export default function App() {
         </button>
       </form>
       <Keyboard />
-      <Scene />
+      <Scene
+        wave={synth.options.oscillator.type}
+      />
     </div>
   );
 }
