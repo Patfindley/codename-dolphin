@@ -1,9 +1,6 @@
 import React, {
   useState,
-  useEffect,
-  useRef,
-  useMemo,
-  useCallback,
+  useEffect
 } from 'react';
 import * as Tone from 'tone';
 import './App.css';
@@ -40,10 +37,6 @@ export default function App() {
       } else {
         note = e.target.attributes.note.value.split(" ")[0] + '5'
       }
-
-      console.log(e.target.attributes.note.value[0]);
-      console.log(e);
-
       synth.triggerAttackRelease(note, '8n');
     }
   };

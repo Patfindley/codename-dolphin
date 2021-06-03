@@ -4,7 +4,7 @@ import './Keyboard.css';
 import '../../util/keyboardSwitch';
 
 const Keyboard = ({ activateKey }) => {
-  const [activeKeys, setActiveKeys] = useState([]);
+
   const notes = [
     'C',
     'C#',
