@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import * as Tone from 'tone';
 import './App.css';
 import createSynth from '../SynthEngine/SynthEngine';
+import keyboardSwitch from '../../util/keyboardSwitch';
 import Scene from '../Scene/Scene';
-import { keyboardSwitch } from '../../util/keyboardSwitch';
 import Keyboard from '../Keyboard/Keyboard';
 
 const { oscillators, delay, reverb, filter } = createSynth();
@@ -21,9 +21,9 @@ export default function App() {
   };
   
   const triggerKeyDownPlay = async (e) => {
-    if (e.type === 'keydown' && keyboardSwitch(e, octave)) {
+    if (e.type === 'keydown' && keyboardSwitch(e)) {
       await Tone.start();
-      const note = keyboardSwitch(e, octave);
+      const note = keyboardSwitch(e);
       synth.triggerAttackRelease(note, '8n');
       console.log(note);
       return
@@ -37,21 +37,20 @@ export default function App() {
   const activateKey = async (e) => {
     if (e.target.attributes.note) {
       await Tone.start();
-      const domNote = e.target.attributes.note.value;
-      // const note = splitDomNote(domNote);
-      console.log(domNote);
-      synth.triggerAttackRelease(domNote, '8n');
+      const note = e.target.attributes.note.value;
+      console.log(note);
+      synth.triggerAttackRelease(note, '8n');
       toggleActive(e);
     }
   };
 
-  const splitDomNote = (domNote) => {
-    if (domNote.split(' ')[1] < 12) {
-      return domNote.split(' ')[0] + '4';
-    } else {
-      return domNote.split(' ')[0] + '5';
-    }
-  };
+  // const splitDomNote = (domNote) => {
+  //   if (domNote.split(' ')[1] < 12) {
+  //     return domNote.split(' ')[0] + '4';
+  //   } else {
+  //     return domNote.split(' ')[0] + '5';
+  //   }
+  // };
 
   const toggleActive = (e) => {
     e.target.classList.toggle('active');

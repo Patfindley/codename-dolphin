@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Key from '../Key/Key.js';
 import './Keyboard.css';
 import '../../util/keyboardSwitch';
-import notesUtil from '../../util/notes';
+import notesUtil from '../../util/notesUtil';
 
 const Keyboard = ({ activateKey }) => {
   const notes = notesUtil.map((n) => n.split(' ').join(''));
