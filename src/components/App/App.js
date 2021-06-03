@@ -32,8 +32,14 @@ export default function App() {
     }
   };
 
+  const activateKey = (e) => {
+    //if note === key.note
+    //keyClassName += " active"
+    console.log('hi')
+    console.log(e.target.attributes.note.value)
+  };
+
   useEffect(() => {
-    console.log(delay);
     window.addEventListener('keydown', playSynth);
   }, []);
 
@@ -92,7 +98,7 @@ export default function App() {
           Set Oscillator Type
         </button>
       </form>
-      <Keyboard />
+      <Keyboard activateKey={activateKey} />
       <Scene/>
     </div>
   );

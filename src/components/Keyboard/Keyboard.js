@@ -3,7 +3,7 @@ import Key from '../Key/Key.js';
 import './Keyboard.css';
 import '../../util/keyboardSwitch';
 
-const Keyboard = (props) => {
+const Keyboard = ({ activateKey }) => {
   const [activeKeys, setActiveKeys] = useState([]);
   const notes = [
     'C',
@@ -29,36 +29,21 @@ const Keyboard = (props) => {
     return note.includes('#');
   };
 
-  const activateKey = (key) => {
-    //if note === key.note
-    //keyClassName += " active"
-  };
-
   const mapNotes = (notes) => {
     return notes.map((note, index) => {
       if (noteIsSharp(note)) {
-        console.log(note, 'sharp')
-        return (
-          <Key
-            key={index}
-            note={note}
-            activateKey={activateKey}
-            isSharp={true}
-          /> 
-        );
+        return <Key key={index} note={note + index} isSharp={true} />;
       } else {
-        return (
-          <Key
-            key={index}
-            note={note}
-            activateKey={activateKey}
-          />
-        );
+        return <Key key={index} note={note + index} />;
       }
     });
   };
 
-  return <div className='keyboard'>{mapNotes(notes)}</div>;
+  return (
+    <div className='keyboard' onClick={activateKey}>
+      {mapNotes(notes)}
+    </div>
+  );
 };
 
 export default Keyboard;
