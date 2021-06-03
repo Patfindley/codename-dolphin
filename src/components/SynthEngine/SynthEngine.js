@@ -29,6 +29,8 @@ const createSynth = () => {
   const filterOptions = {
     frequency: 1200,
     type: 'lowpass',
+    rolloff: -24,
+    Q: 3
   };
   const filter = new Tone.Filter(filterOptions);
 
@@ -40,7 +42,7 @@ const createSynth = () => {
   };
 
   console.log('I made a synth');
-  
+
   return synthHardware;
 };
 
