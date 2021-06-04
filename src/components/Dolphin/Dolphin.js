@@ -1,42 +1,13 @@
 import React, { useEffect } from 'react';
 import { gsap, TweenLite, TimelineMax } from 'gsap';
 import dolphinImg from '../../assets/dolphin.svg';
+import { convertRangeScale } from '../../util/rangeScaling';
 import './Dolphin.css';
 
 const Dolphin = ({ detune, cutoff, gain }) => {
-  const detuneToScale = () => {
-    const xMax = 200;
-    const xMin = -200;
-    const yMax = 1200;
-    const yMin = -1200;
-    const yInput = detune;
-    const percent = (yInput - yMin) / (yMax - yMin);
-    return percent * (xMax - xMin) + xMin;
-  };
-
-  const gainToScale = () => {
-    const xMax = 2;
-    const xMin = 0.1;
-    const yMax = -9;
-    const yMin = -30;
-    const yInput = gain;
-    const percent = (yInput - yMin) / (yMax - yMin);
-    return percent * (xMax - xMin) + xMin;
-  };
-
-  const cutoffToScale = () => {
-    const xMax = 200;
-    const xMin = -200;
-    const yMax = 8000;
-    const yMin = 500;
-    const yInput = cutoff;
-    const percent = (yInput - yMin) / (yMax - yMin);
-    return percent * (xMax - xMin) + xMin;
-  };
-
   useEffect(() => {
     gsap.to('.dolphin-container', {
-      y: -detuneToScale(),
+      y: -convertRangeScale([-1200, 1200], [-200, 200], detune),
       duration: 2,
       ease: 'elastic',
     });
@@ -44,7 +15,7 @@ const Dolphin = ({ detune, cutoff, gain }) => {
 
   useEffect(() => {
     gsap.to('.dolphin-container', {
-      x: cutoffToScale(),
+      x: convertRangeScale([-500, 8000], [-200, 200], cutoff),
       duration: 2,
       ease: 'elastic',
     });
@@ -52,7 +23,7 @@ const Dolphin = ({ detune, cutoff, gain }) => {
 
   useEffect(() => {
     gsap.to('.dolphin-container', {
-      scale: gainToScale(),
+      scale: convertRangeScale([-30, -9], [0.1, 2], gain),
       duration: 1,
       ease: 'elastic',
     });

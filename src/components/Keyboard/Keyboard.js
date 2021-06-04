@@ -4,9 +4,28 @@ import './Keyboard.css';
 import '../../util/keyboardSwitch';
 import notesUtil from '../../util/notesUtil';
 
-const computerKeys = ['A', 'W', 'S', 'E', 'D', 'F', 'T', 'G', 'Y', 'H', 'J', 'I', 'K', 'O', 'L', 'P', ';', "'"]
+const computerKeys = [
+  'A',
+  'W',
+  'S',
+  'E',
+  'D',
+  'F',
+  'T',
+  'G',
+  'Y',
+  'H',
+  'J',
+  'I',
+  'K',
+  'O',
+  'L',
+  'P',
+  ';',
+  "'",
+];
 
-const Keyboard = ({ activateKey }) => {
+const Keyboard = ({ screenWidth }) => {
   const notes = notesUtil.map((n) => n.split(' ').join(''));
 
   const noteIsSharp = (note) => {
@@ -15,8 +34,12 @@ const Keyboard = ({ activateKey }) => {
 
   const mapNotes = (notes) => {
     return notes.map((note, index) => {
-      // let name = notesUtil[index].split(' ')[0];
-      let name = computerKeys[index];
+      let name;
+      if (screenWidth < 1024) {
+        // name = '👇'; could put different symbol on mobile
+      } else {
+        name = computerKeys[index];
+      }
       if (noteIsSharp(note)) {
         return <Key key={index} note={note} name={name} isSharp={true} />;
       } else {
@@ -25,11 +48,7 @@ const Keyboard = ({ activateKey }) => {
     });
   };
 
-  return (
-    <div className='keyboard' >
-      {mapNotes(notes)}
-    </div>
-  );
+  return <div className='keyboard'>{mapNotes(notes)}</div>;
 };
 
 export default Keyboard;

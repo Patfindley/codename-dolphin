@@ -3,6 +3,11 @@ import * as Tone from 'tone';
 import './App.css';
 import toggleActive from '../../util/activateKeyUtil';
 import keyboardSwitch from '../../util/keyboardSwitch';
+import {
+  convertRangeScale,
+  convertRangeValue,
+  controlScroll,
+} from '../../util/rangeScaling';
 
 import createSynth from '../SynthEngine/SynthEngine';
 import Scene from '../Scene/Scene';
@@ -14,6 +19,7 @@ import RotateMessage from '../RotateMessage/RotateMessage';
 
 const { oscillators, delay, reverb, filter, volume, compressor, distortion } =
   createSynth();
+
 const engine = oscillators.chain(
   delay,
   distortion,
@@ -99,42 +105,12 @@ export default function App() {
     distortion.set({ wet: distortionWet });
   }, [distortionWet]);
 
-  const controlScroll = (e, power, state) => {
-    if (e.type === 'wheel') {
-      if (e.deltaY < 0) {
-        e.target.value = parseInt(state) + power;
-      } else {
-        e.target.value = parseInt(state) - power;
-      }
-    }
-  };
-
   const resetDetune = (e) => {
     e.target.value = 0;
     setDetune(e.target.value);
   };
 
-  const convertDistortionRange = (value) => {
-    const xMax = 100;
-    const xMin = 0;
-    const xInput = value;
-    const yMax = 1;
-    const yMin = 0;
-    const percent = (xInput - xMin) / (xMax - xMin);
-    return percent * (yMax - yMin) + yMin;
-  };
-
-  const convertDistortionValue = (value) => {
-    const xMax = 100;
-    const xMin = 0;
-    const yMax = 1;
-    const yMin = 0;
-    const yInput = value;
-    const percent = (yInput - yMin) / (yMax - yMin);
-    return percent * (xMax - xMin) + xMin;
-  };
-
-  const distRange = convertDistortionValue(distortionWet);
+  const distRange = convertRangeScale([0, 1], [0, 100], distortionWet);
 
   return (
     <div className='App'>
@@ -148,7 +124,9 @@ export default function App() {
           value={distRange}
           handleChange={(e) => {
             controlScroll(e, 6, distRange);
-            setDistortionWet(convertDistortionRange(e.target.value));
+            setDistortionWet(
+              convertRangeValue([0, 100], [0, 1], e.target.value)
+            );
           }}
         />
         <EffectKnob
@@ -183,19 +161,21 @@ export default function App() {
             setCutoff(e.target.value);
           }}
         />
-        <EffectKnob
-          name='volume'
-          label='Volumeyness'
-          min='-30'
-          max='-9'
-          value={gain}
-          handleChange={(e) => {
-            controlScroll(e, 1, gain);
-            setGain(e.target.value);
-          }}
-        />
+        {screenWidth > 1024 && (
+          <EffectKnob
+            name='volume'
+            label='Volumeyness'
+            min='-30'
+            max='-9'
+            value={gain}
+            handleChange={(e) => {
+              controlScroll(e, 1, gain);
+              setGain(e.target.value);
+            }}
+          />
+        )}
       </section>
-      <Keyboard />
+      <Keyboard screenWidth={screenWidth} />
       <Dolphin detune={detune} cutoff={cutoff} gain={gain} />
       <Scene wave={oscType} />
     </div>
