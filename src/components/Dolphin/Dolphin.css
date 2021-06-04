@@ -1,0 +1,14 @@
+.dolphin-container {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+
+}
+
+.dolphin {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  left:150px;
+  top: -50px;
+}
