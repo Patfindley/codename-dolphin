@@ -6,11 +6,11 @@ import './Dolphin.css';
 const Dolphin = ({ detune, cutoff }) => {
 
   useEffect(() => {
-    gsap.to('.dolphin-container', { y: -Math.min(Math.max(detune, -100), 100), duration: 1, ease: 'elastic' });
+    gsap.to('.dolphin-container', { y: -Math.min(Math.max(detune, -100), 100), duration: 2, ease: 'elastic' });
   }, [detune]);
 
   useEffect(() => {
-    gsap.to('.dolphin-container', { x: Math.min(Math.max(cutoff - 1200, -100), 100), duration: 0.5, ease: 'bounce' });
+    gsap.to('.dolphin-container', { x: Math.min(Math.max(cutoff - 1200, -200), 200), duration: 2, ease: 'elastic' });
   }, [cutoff]);
 
   return (

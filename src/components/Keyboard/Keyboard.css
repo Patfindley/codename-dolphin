@@ -25,6 +25,7 @@
   .keyboard {
     bottom: -20%;
     width: 100%;
-    min-width: auto
+    min-width: auto;
+    padding: 1em
   }
 }

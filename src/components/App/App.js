@@ -2,10 +2,7 @@ import React, { useState, useEffect } from 'react';
 import * as Tone from 'tone';
 import { gsap } from 'gsap';
 import './App.css';
-import {
-  toggleActiveClick,
-  toggleActiveKeydown,
-} from '../../util/activateKeyUtil';
+import toggleActive from '../../util/activateKeyUtil';
 import keyboardSwitch from '../../util/keyboardSwitch';
 
 import createSynth from '../SynthEngine/SynthEngine';
@@ -30,8 +27,7 @@ export default function App() {
         await Tone.start();
         const note = keyboardSwitch(e);
         synth.triggerAttackRelease(note, '8n');
-        toggleActiveKeydown(note);
-        console.log(note);
+        toggleActive(note);
         return;
       }
     };
@@ -44,8 +40,7 @@ export default function App() {
         await Tone.start();
         const note = e.target.attributes.note.value;
         synth.triggerAttackRelease(note, '8n');
-        toggleActiveClick(e, note);
-        console.log(note);
+        toggleActive(note);
         return;
       }
     };
@@ -64,6 +59,16 @@ export default function App() {
     filter.set({ frequency: cutoff });
   }, [cutoff]);
 
+  const controlScroll = (e, power, state) => {
+    if (e.type === 'wheel') {
+      if (e.deltaY < 0) {
+        e.target.value = parseInt(state) + power;
+      } else {
+        e.target.value = parseInt(state) - power;
+      }
+    }
+  };
+
   return (
     <div className='App'>
       <section className='effects-section'>
@@ -74,6 +79,7 @@ export default function App() {
           max='1200'
           value={detune}
           handleChange={(e) => {
+            controlScroll(e, 70, detune);
             setDetune(e.target.value);
           }}
         />
@@ -93,6 +99,7 @@ export default function App() {
           max='8000'
           value={cutoff}
           handleChange={(e) => {
+            controlScroll(e, 400, cutoff);
             setCutoff(e.target.value);
           }}
         />
