@@ -1,10 +1,26 @@
 .keyboard {
-  margin-left: 20px;
-  width: 100%;
+  width: 80%;
+  height: 1em;
   display: flex;
   flex-direction: row;
-  position: absolute;
-  left: 30%;
-  top: 30%;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 30%;
+  top: 0;
+  margin: auto;
   z-index: 9999;
+}
+
+@media screen and (max-width: 480px) {
+  .keyboard {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .keyboard {
+    bottom: 40%;
+    width: 100%;
+  }
 }
