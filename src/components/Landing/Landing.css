@@ -8,4 +8,23 @@
 
 .landing-title {
   font-family: 'Bungee', cursive;
+  cursor: crosshair;
+}
+
+.dolphin-arm {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: -1;
+  user-select: none;
+  pointer-events: none;
+}
+
+.dolphin-title {
+  position: relative;
+  visibility: hidden;
+  width: 300px;
+  height: 300px;
+  left:150px;
+  top: -50px;
 }
