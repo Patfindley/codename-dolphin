@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { softShadows, OrbitControls, Stars } from '@react-three/drei';
 import Box from './Box';
@@ -11,7 +11,12 @@ import Lighting from './Lighting';
 softShadows();
 
 export default function Scene(props) {
-  // if (props.wave === 'square') {
+  useEffect(() => {
+    if (props.currentNote) {
+      // animation function
+    }
+  }, [props.currentNote]);
+  
   return (
     <main className='main'>
       <Canvas

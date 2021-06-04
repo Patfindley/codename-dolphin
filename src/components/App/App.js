@@ -40,11 +40,11 @@ export default function App() {
   const [currentNote, setCurrentNote] = useState('');
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
-  useEffect(() => {
-    if (currentNote) {
-      console.log(currentNote);
-    }
-  }, [currentNote]);
+  // useEffect(() => {
+  //   if (currentNote) {
+  //     // animation function
+  //   }
+  // }, [currentNote]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -177,7 +177,7 @@ export default function App() {
       </section>
       <Keyboard screenWidth={screenWidth} />
       <Dolphin detune={detune} cutoff={cutoff} gain={gain} />
-      <Scene wave={oscType} />
+      <Scene wave={oscType} currentNote={currentNote} />
     </div>
   );
 }
