@@ -66,4 +66,8 @@
     min-width: auto;
     height: 13em;
   }
+
+  .note-display {
+    margin-top: 150px;  
+  }
 }
