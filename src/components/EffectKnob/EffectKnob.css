@@ -93,3 +93,14 @@ input[type=range]:focus::-ms-fill-lower {
 input[type=range]:focus::-ms-fill-upper {
   background: #FDF7FF;
 }
+
+@media screen and (max-width: 1024px) {
+  .effect-knob {
+    font-size: .8em;
+    width: 5.5em
+  }
+
+  .effect-knob[name="volume"] {
+    display: none
+  }
+}
