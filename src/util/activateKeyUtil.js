@@ -16,7 +16,6 @@ const toggleActive = (note) => {
 };
 
 const keyAnimation = (key) => {
-  console.log(key, 'key');
   gsap.from(
     key,
     {
