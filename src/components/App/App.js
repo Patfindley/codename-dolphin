@@ -120,7 +120,7 @@ export default function App() {
     <Switch>
       <Route exact path='/'
         render={() => (
-          <Landing />
+            <Landing />
         )} />
       <Route exact path='/synth'
         render={() => (
