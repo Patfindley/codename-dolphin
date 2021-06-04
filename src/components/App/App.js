@@ -30,6 +30,13 @@ export default function App() {
   const [oscType, setOscType] = useState(synth.get().oscillator.type);
   const [gain, setGain] = useState(volume.get().volume);
   const [distortionWet, setDistortionWet] = useState(distortion.get().wet);
+  const [currentNote, setCurrentNote] = useState('');
+
+  useEffect(() => {
+    if (currentNote) {
+      // animation function
+    }
+  }, [currentNote]);
 
   useEffect(() => {
     const triggerKeyDownPlay = async (e) => {
@@ -38,6 +45,8 @@ export default function App() {
         const note = keyboardSwitch(e);
         synth.triggerAttackRelease(note, '8n');
         toggleActive(note);
+        setCurrentNote(note);
+        setTimeout(() => setCurrentNote(''), 1000);
         return;
       }
     };
@@ -51,6 +60,8 @@ export default function App() {
         const note = e.target.attributes.note.value;
         synth.triggerAttackRelease(note, '8n');
         toggleActive(note);
+        setCurrentNote(note);
+        setTimeout(() => setCurrentNote(''), 1000);
         return;
       }
     };

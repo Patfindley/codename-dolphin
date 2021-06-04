@@ -11,7 +11,7 @@ export default function EffectKnob({
   resetDetune
 }) {
   return (
-    <label className='effect-knob'>
+    <label className='effect-knob' name={name}>
       {label}
       <input
         type='range'

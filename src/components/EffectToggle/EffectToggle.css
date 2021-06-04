@@ -1,8 +1,9 @@
 .effect-toggle {
-  min-width: 325px;
+  min-width: 147px;
 }
 
 .effect-toggle > button {
+  flex-grow: 1;
  border: none;
  margin: 0 1em;
  padding: 1em;
@@ -17,4 +18,11 @@
 
 .selected {
   background: rgb(241, 212, 164);
+}
+
+@media screen and (max-width: 1024px) {
+
+  .effect-toggle>button {
+    margin: .2em;
+  }
 }
