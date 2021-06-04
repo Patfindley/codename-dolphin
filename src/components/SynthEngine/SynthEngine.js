@@ -30,18 +30,29 @@ const createSynth = () => {
     frequency: 1200,
     type: 'lowpass',
     rolloff: -24,
-    Q: 3
+    Q: 3,
   };
   const filter = new Tone.Filter(filterOptions);
 
-  const volume = new Tone.Volume(-20)
+  const volume = new Tone.Volume(-20);
+
+  const compressorOptions = {
+    attack: .01,
+    ratio: 5,
+    release: .5,
+    threshold: -40,
+    knee: 10
+  };
+
+  const compressor = new Tone.Compressor(compressorOptions)
 
   const synthHardware = {
     oscillators: oscillators,
     delay: feedbackDelay,
     reverb: reverb,
     filter: filter,
-    volume: volume
+    volume: volume,
+    compressor: compressor
   };
 
   console.log('I made a synth');

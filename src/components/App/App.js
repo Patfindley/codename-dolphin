@@ -12,8 +12,8 @@ import EffectKnob from '../EffectKnob/EffectKnob';
 import EffectToggle from '../EffectToggle/EffectToggle';
 import Dolphin from '../Dolphin/Dolphin';
 
-const { oscillators, delay, reverb, filter, volume } = createSynth();
-const engine = oscillators.chain(delay, reverb, filter, volume, Tone.Destination);
+const { oscillators, delay, reverb, filter, volume, compressor } = createSynth();
+const engine = oscillators.chain(delay, reverb, filter, volume, compressor, Tone.Destination);
 
 export default function App() {
   const [synth] = useState(engine);
