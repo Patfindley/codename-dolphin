@@ -13,6 +13,7 @@ import Scene from '../Scene/Scene';
 import Keyboard from '../Keyboard/Keyboard';
 import EffectKnob from '../EffectKnob/EffectKnob';
 import EffectToggle from '../EffectToggle/EffectToggle';
+import Dolphin from '../Dolphin/Dolphin';
 
 const { oscillators, delay, reverb, filter } = createSynth();
 const engine = oscillators.chain(delay, reverb, filter, Tone.Destination);
@@ -97,6 +98,7 @@ export default function App() {
         />
       </section>
       <Keyboard />
+      <Dolphin detune={detune} cutoff={cutoff} />
       <Scene wave={oscType} />
     </div>
   );

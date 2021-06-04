@@ -1,21 +1,23 @@
-import {gsap, TweenLite, TimelineMax} from 'gsap';
+import React, { useEffect } from 'react';
+import { gsap, TweenLite, TimelineMax } from 'gsap';
 import dolphinImg from '../../assets/dolphin.svg';
 import './Dolphin.css';
 
-const Dolphin = () => {
+const Dolphin = ({ detune, cutoff }) => {
 
-  // TweenLite.defaultEase = Linear.easeNone;
+  useEffect(() => {
+    gsap.to('.dolphin-container', { y: -Math.min(Math.max(detune, -100), 100), duration: 1, ease: 'elastic' });
+  }, [detune]);
 
-  var tl = new TimelineMax({repeat:-1})
-
-  tl.to(".dolphin-container", 5, {rotation:-360, transformOrigin:"left"})
- .to(".dolphin", 5, {rotation:200}, 0)
+  useEffect(() => {
+    gsap.to('.dolphin-container', { x: Math.min(Math.max(cutoff - 1200, -100), 100), duration: 0.5, ease: 'bounce' });
+  }, [cutoff]);
 
   return (
-    <div className="dolphin-container">
-    <img className="dolphin" src={dolphinImg} alt="dolphin"/>
+    <div className='dolphin-container'>
+      <img className='dolphin' src={dolphinImg} alt='dolphin' />
     </div>
-  )
-}
+  );
+};
 
 export default Dolphin;

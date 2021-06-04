@@ -1,6 +1,10 @@
+.effect-knob {
+  padding-top: 1em
+}
+
 .effect-knob > input {
   margin-left: 1em;
-  background: transparent
+  background: transparent;
 }
 
 input[type=range] {
