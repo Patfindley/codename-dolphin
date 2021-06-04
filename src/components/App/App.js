@@ -116,6 +116,9 @@ export default function App() {
   const distRange = convertDistortionValue(distortionWet);
 
   return (
+    <Switch>
+      <Route exact path='/synth'
+        render={() => (
     <div className='App'>
       <section className='effects-section'>
         <EffectKnob
@@ -177,5 +180,7 @@ export default function App() {
       <Dolphin detune={detune} cutoff={cutoff} gain={gain} />
       <Scene wave={oscType} />
     </div>
+    )} />
+    </Switch>
   );
 }
