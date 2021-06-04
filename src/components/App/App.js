@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import * as Tone from 'tone';
-import { gsap } from 'gsap';
 import './App.css';
 import toggleActive from '../../util/activateKeyUtil';
 import keyboardSwitch from '../../util/keyboardSwitch';
@@ -12,15 +11,25 @@ import EffectKnob from '../EffectKnob/EffectKnob';
 import EffectToggle from '../EffectToggle/EffectToggle';
 import Dolphin from '../Dolphin/Dolphin';
 
-const { oscillators, delay, reverb, filter, volume, compressor } = createSynth();
-const engine = oscillators.chain(delay, reverb, filter, volume, compressor, Tone.Destination);
+const { oscillators, delay, reverb, filter, volume, compressor, distortion } =
+  createSynth();
+const engine = oscillators.chain(
+  delay,
+  distortion,
+  reverb,
+  filter,
+  volume,
+  compressor,
+  Tone.Destination
+);
 
 export default function App() {
   const [synth] = useState(engine);
   const [detune, setDetune] = useState(0);
   const [cutoff, setCutoff] = useState(filter.get().frequency);
   const [oscType, setOscType] = useState(synth.get().oscillator.type);
-  const [gain, setGain] = useState(volume.get().volume)
+  const [gain, setGain] = useState(volume.get().volume);
+  const [distortionWet, setDistortionWet] = useState(distortion.get().wet);
 
   useEffect(() => {
     const triggerKeyDownPlay = async (e) => {
@@ -61,8 +70,12 @@ export default function App() {
   }, [cutoff]);
 
   useEffect(() => {
-    volume.set({volume: gain})
-  }, [gain])
+    volume.set({ volume: gain });
+  }, [gain]);
+
+  useEffect(() => {
+    distortion.set({ wet: distortionWet });
+  }, [distortionWet]);
 
   const controlScroll = (e, power, state) => {
     if (e.type === 'wheel') {
@@ -76,12 +89,45 @@ export default function App() {
 
   const resetDetune = (e) => {
     e.target.value = 0;
-    setDetune(e.target.value)
-  }
+    setDetune(e.target.value);
+  };
+
+  const convertDistortionRange = (value) => {
+    const xMax = 100;
+    const xMin = 0;
+    const xInput = value;
+    const yMax = 1;
+    const yMin = 0;
+    const percent = (xInput - xMin) / (xMax - xMin);
+    return percent * (yMax - yMin) + yMin;
+  };
+
+  const convertDistortionValue = (value) => {
+    const xMax = 100;
+    const xMin = 0;
+    const yMax = 1;
+    const yMin = 0;
+    const yInput = value;
+    const percent = (yInput - yMin) / (yMax - yMin);
+    return percent * (xMax - xMin) + xMin;
+  };
+
+  const distRange = convertDistortionValue(distortionWet);
 
   return (
     <div className='App'>
       <section className='effects-section'>
+        <EffectKnob
+          name='distortion'
+          label='Angeryness'
+          min='0'
+          max='100'
+          value={distRange}
+          handleChange={(e) => {
+            controlScroll(e, 6, distRange);
+            setDistortionWet(convertDistortionRange(e.target.value));
+          }}
+        />
         <EffectKnob
           name='detune'
           label='Bendyness'
@@ -89,7 +135,7 @@ export default function App() {
           max='1200'
           value={detune}
           handleChange={(e) => {
-            controlScroll(e, 60, detune);
+            controlScroll(e, 500, detune);
             setDetune(e.target.value);
           }}
           resetDetune={resetDetune}
@@ -114,7 +160,7 @@ export default function App() {
             setCutoff(e.target.value);
           }}
         />
-        <EffectKnob 
+        <EffectKnob
           name='volume'
           label='Volume'
           min='-30'
@@ -122,12 +168,12 @@ export default function App() {
           value={gain}
           handleChange={(e) => {
             controlScroll(e, 1, gain);
-            setGain(e.target.value)
+            setGain(e.target.value);
           }}
         />
       </section>
       <Keyboard />
-      <Dolphin detune={detune} cutoff={cutoff} gain={gain}/>
+      <Dolphin detune={detune} cutoff={cutoff} gain={gain} />
       <Scene wave={oscType} />
     </div>
   );

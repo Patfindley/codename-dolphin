@@ -13,15 +13,15 @@ const createSynth = () => {
   });
 
   const delayOptions = {
-    delayTime: '4hz',
-    feedback: 0.4,
-    wet: 0.4,
+    delayTime: 0.1,
+    feedback: 0.2,
+    wet: 0.3,
   };
-  const feedbackDelay = new Tone.FeedbackDelay(delayOptions);
+  const feedbackDelay = new Tone.PingPongDelay(delayOptions);
 
   const reverbOptions = {
     decay: 5,
-    preDelay: 0.2,
+    preDelay: 0.4,
     wet: 0.2,
   };
   const reverb = new Tone.Reverb(reverbOptions);
@@ -34,17 +34,23 @@ const createSynth = () => {
   };
   const filter = new Tone.Filter(filterOptions);
 
+  const distortionOptions = {
+    distortion: 0.9,
+    wet: 0.1,
+  };
+  const distortion = new Tone.Distortion(distortionOptions);
+
   const volume = new Tone.Volume(-20);
 
   const compressorOptions = {
-    attack: .01,
+    attack: 0.01,
     ratio: 5,
-    release: .5,
+    release: 0.5,
     threshold: -40,
-    knee: 10
+    knee: 10,
   };
 
-  const compressor = new Tone.Compressor(compressorOptions)
+  const compressor = new Tone.Compressor(compressorOptions);
 
   const synthHardware = {
     oscillators: oscillators,
@@ -52,7 +58,8 @@ const createSynth = () => {
     reverb: reverb,
     filter: filter,
     volume: volume,
-    compressor: compressor
+    compressor: compressor,
+    distortion: distortion,
   };
 
   console.log('I made a synth');
