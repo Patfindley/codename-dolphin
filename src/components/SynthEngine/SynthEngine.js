@@ -34,7 +34,7 @@ const createSynth = () => {
   };
   const filter = new Tone.Filter(filterOptions);
 
-  const volume = new Tone.Volume(-12)
+  const volume = new Tone.Volume(-20)
 
   const synthHardware = {
     oscillators: oscillators,

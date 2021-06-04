@@ -1,29 +1,25 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { gsap, TweenLite, TimelineMax } from 'gsap';
 import dolphinImg from '../../assets/dolphin.svg';
 import './Dolphin.css';
 
 const Dolphin = ({ detune, cutoff, gain }) => {
-  const prevGainRef = useRef();
-  useEffect(() => {
-    prevGainRef.current = gain;
-  });
-  const prevGain = Math.abs(prevGainRef.current);
-
-  const gainToScale = () => {
-    if (prevGain) {
-      return Math.abs(gain) * prevGain * 0.3 * -0.02 + 2.4;
-    } else {
-      return Math.abs(gain) - 11;
-    }
-  };
-
   const detuneToScale = () => {
     const xMax = 200;
     const xMin = -200;
     const yMax = 1200;
     const yMin = -1200;
     const yInput = detune;
+    const percent = (yInput - yMin) / (yMax - yMin);
+    return percent * (xMax - xMin) + xMin;
+  };
+
+  const gainToScale = () => {
+    const xMax = 2;
+    const xMin = 0.1;
+    const yMax = -9;
+    const yMin = -30;
+    const yInput = gain;
     const percent = (yInput - yMin) / (yMax - yMin);
     return percent * (xMax - xMin) + xMin;
   };

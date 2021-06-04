@@ -74,6 +74,11 @@ export default function App() {
     }
   };
 
+  const resetDetune = (e) => {
+    e.target.value = 0;
+    setDetune(e.target.value)
+  }
+
   return (
     <div className='App'>
       <section className='effects-section'>
@@ -87,6 +92,7 @@ export default function App() {
             controlScroll(e, 60, detune);
             setDetune(e.target.value);
           }}
+          resetDetune={resetDetune}
         />
         <EffectToggle
           name='oscillator type'
@@ -111,8 +117,8 @@ export default function App() {
         <EffectKnob 
           name='volume'
           label='Volume'
-          min='-20'
-          max='-7'
+          min='-30'
+          max='-9'
           value={gain}
           handleChange={(e) => {
             controlScroll(e, 1, gain);
