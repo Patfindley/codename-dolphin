@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Switch, Route, Link, Redirect } from "react-router-dom";
 import * as Tone from 'tone';
 import './App.css';
 import toggleActive from '../../util/activateKeyUtil';
