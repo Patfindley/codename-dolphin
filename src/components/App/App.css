@@ -15,3 +15,28 @@
   width: 100%;
   height: 100%;
 }
+
+.effects-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 5rem;
+  background: #03d689b0;
+  z-index: 999;
+}
+
+.effects-section > * {
+  margin: 0 2em;
+}
+
+@media screen and (max-width: 1024px) {
+  .effects-section > .effect-toggle > button {
+    padding: 0.5em;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .effects-section {
+    display: none
+  }
+}

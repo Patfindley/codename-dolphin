@@ -26,7 +26,7 @@
 
 .sharp {
   position: relative;
-  background-color: darkslategray;
+  background-color: #323A9E;
   height: 15em;
   flex-grow: .5;
   margin: 0 -17px;
@@ -59,7 +59,7 @@
 
 @media screen and (max-width: 1024px) {
   .sharp {
-    flex-grow: .3;
+    flex-grow: .9;
     margin: 0
   }
   .key {

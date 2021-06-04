@@ -1,4 +1,5 @@
 import React from 'react';
+import './EffectKnob.css';
 
 export default function EffectKnob({
   name,
@@ -7,6 +8,7 @@ export default function EffectKnob({
   max,
   value,
   handleChange,
+  resetDetune
 }) {
   return (
     <label className='effect-knob'>
@@ -18,6 +20,8 @@ export default function EffectKnob({
         max={max}
         value={value}
         onChange={handleChange}
+        onWheel={handleChange}
+        onDoubleClick={resetDetune}
       />
     </label>
   );

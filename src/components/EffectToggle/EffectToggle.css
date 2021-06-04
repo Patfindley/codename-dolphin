@@ -1,6 +1,20 @@
 .effect-toggle {
-  
+  min-width: 325px;
 }
+
+.effect-toggle > button {
+ border: none;
+ margin: 0 1em;
+ padding: 1em;
+ border-radius: 2px;
+ border: 1px solid transparent;
+ transition: border 100ms ease-in-out
+}
+
+.effect-toggle > button:hover {
+  border: 1px solid rgba(0, 0, 0, 0.363);
+}
+
 .selected {
-  background: papayawhip;
+  background: rgb(241, 212, 164);
 }
