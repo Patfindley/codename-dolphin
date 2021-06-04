@@ -43,7 +43,7 @@ export default function App() {
         await Tone.start();
         const note = e.target.attributes.note.value;
         synth.triggerAttackRelease(note, '8n');
-        toggleActiveClick(e);
+        toggleActiveClick(e, note);
         console.log(note);
         return;
       }
@@ -65,39 +65,39 @@ export default function App() {
 
   return (
     <div className='App'>
-      <EffectKnob
-        name='detune'
-        label='Pitchy Bender'
-        min='-1200'
-        max='1200'
-        value={detune}
-        handleChange={(e) => {
-          setDetune(e.target.value);
-        }}
-      />
-      <EffectKnob
-        name='lpfilter'
-        label='LP Filter Cutoff'
-        min='300'
-        max='8000'
-        value={cutoff}
-        handleChange={(e) => {
-          setCutoff(e.target.value);
-        }}
-      />
-      <EffectToggle
-        name='oscillator type'
-        options={['amsine', 'square', 'fmtriangle']}
-        labels={['AM Sine', 'Square', 'FM Triangle']}
-        value={oscType}
-        handleClick={(e) => {
-          setOscType(e.target.value);
-        }}
-      />
+      <section className='effects-section'>
+        <EffectKnob
+          name='detune'
+          label='Pitchy Bender'
+          min='-1200'
+          max='1200'
+          value={detune}
+          handleChange={(e) => {
+            setDetune(e.target.value);
+          }}
+        />
+        <EffectKnob
+          name='lpfilter'
+          label='LP Filter Cutoff'
+          min='300'
+          max='8000'
+          value={cutoff}
+          handleChange={(e) => {
+            setCutoff(e.target.value);
+          }}
+        />
+        <EffectToggle
+          name='oscillator type'
+          options={['amsine', 'square', 'fmtriangle']}
+          labels={['AM Sine', 'Square', 'FM Triangle']}
+          value={oscType}
+          handleClick={(e) => {
+            setOscType(e.target.value);
+          }}
+        />
+      </section>
       <Keyboard />
-      <Scene
-        wave={synth.options.oscillator.type}
-      />
+      <Scene wave={oscType} />
     </div>
   );
 }

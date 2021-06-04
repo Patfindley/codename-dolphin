@@ -1,9 +1,11 @@
 .key {
-  background-color: rgb(255, 255, 255);
-  background-position: top;
-  height: 300px;
-  width: 60px;
-  border: 2px solid black;
+  background-color: rgba(255, 255, 255, 0.671);
+  height: 20rem;
+  flex-grow: 1;
+  min-width: 5em;
+  margin: 0 .1em;
+  border-radius: 5px;
+  /* position: absolute; */
 }
 
 .note-display {
@@ -19,16 +21,15 @@
 .sharp > .note-display {
   bottom: 66px;
   color: white;
-  font-size: 20px;
+  font-size: 1em;
 }
 
 .sharp {
   position: relative;
-  background-color: black;
-  margin-left: -17px;
-  margin-right: -17px;
-  height: 200px;
-  width: 30px;
+  background-color: darkslategray;
+  height: 15em;
+  flex-grow: .5;
+  margin: 0 -17px;
   z-index: 2;
 }
 
@@ -43,10 +44,10 @@
   );
   background-size: 1000% 1000%;
   background-position: top;
-  animation: rainbow 0.5s cubic-bezier(0.62, 0.6, 0.55, 0.51) infinite; */
+  animation: rainbow 0.5s cubic-bezier(0.62, 0.6, 0.55, 0.51) infinite;
 }
 
-/* @keyframes rainbow {
+ @keyframes rainbow {
   0% {
     background-position: 88% 0%;
   }
@@ -54,3 +55,19 @@
     background-position: 13% 100%;
   }
 } */
+}
+
+@media screen and (max-width: 1024px) {
+  .sharp {
+    flex-grow: .3;
+    margin: 0
+  }
+  .key {
+    min-width: auto;
+    height: 13em;
+  }
+
+  .note-display {
+    margin-top: 150px;  
+  }
+}
