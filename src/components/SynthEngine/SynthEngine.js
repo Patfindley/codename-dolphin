@@ -34,11 +34,14 @@ const createSynth = () => {
   };
   const filter = new Tone.Filter(filterOptions);
 
+  const volume = new Tone.Volume(-12)
+
   const synthHardware = {
     oscillators: oscillators,
     delay: feedbackDelay,
     reverb: reverb,
     filter: filter,
+    volume: volume
   };
 
   console.log('I made a synth');

@@ -12,14 +12,15 @@ import EffectKnob from '../EffectKnob/EffectKnob';
 import EffectToggle from '../EffectToggle/EffectToggle';
 import Dolphin from '../Dolphin/Dolphin';
 
-const { oscillators, delay, reverb, filter } = createSynth();
-const engine = oscillators.chain(delay, reverb, filter, Tone.Destination);
+const { oscillators, delay, reverb, filter, volume } = createSynth();
+const engine = oscillators.chain(delay, reverb, filter, volume, Tone.Destination);
 
 export default function App() {
   const [synth] = useState(engine);
   const [detune, setDetune] = useState(0);
   const [cutoff, setCutoff] = useState(filter.get().frequency);
   const [oscType, setOscType] = useState(synth.get().oscillator.type);
+  const [gain, setGain] = useState(volume.get().volume)
 
   useEffect(() => {
     const triggerKeyDownPlay = async (e) => {
@@ -59,6 +60,10 @@ export default function App() {
     filter.set({ frequency: cutoff });
   }, [cutoff]);
 
+  useEffect(() => {
+    volume.set({volume: gain})
+  }, [gain])
+
   const controlScroll = (e, power, state) => {
     if (e.type === 'wheel') {
       if (e.deltaY < 0) {
@@ -74,12 +79,12 @@ export default function App() {
       <section className='effects-section'>
         <EffectKnob
           name='detune'
-          label='Pitchy Bender'
+          label='Bendyness'
           min='-1200'
           max='1200'
           value={detune}
           handleChange={(e) => {
-            controlScroll(e, 70, detune);
+            controlScroll(e, 60, detune);
             setDetune(e.target.value);
           }}
         />
@@ -94,8 +99,8 @@ export default function App() {
         />
         <EffectKnob
           name='lpfilter'
-          label='LP Filter Cutoff'
-          min='300'
+          label='Sharpyness'
+          min='500'
           max='8000'
           value={cutoff}
           handleChange={(e) => {
@@ -103,9 +108,20 @@ export default function App() {
             setCutoff(e.target.value);
           }}
         />
+        <EffectKnob 
+          name='volume'
+          label='Volume'
+          min='-20'
+          max='-7'
+          value={gain}
+          handleChange={(e) => {
+            controlScroll(e, 1, gain);
+            setGain(e.target.value)
+          }}
+        />
       </section>
       <Keyboard />
-      <Dolphin detune={detune} cutoff={cutoff} />
+      <Dolphin detune={detune} cutoff={cutoff} gain={gain}/>
       <Scene wave={oscType} />
     </div>
   );
