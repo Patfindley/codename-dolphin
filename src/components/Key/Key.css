@@ -1,5 +1,6 @@
 .key {
   background-color: rgb(255, 255, 255);
+  background-position: top;
   height: 300px;
   width: 60px;
   border: 2px solid black;
@@ -32,23 +33,24 @@
 }
 
 .active {
-  background: linear-gradient(
-    180deg,
+  /* background: linear-gradient(
+    0deg,
     #ff0000,
     #ffac00,
     #fff100,
-    #0bff00,
+    #00bff0,
     #00f6ff
   );
-  background-size: 750% 750%;
-  animation: rainbow 0.5s cubic-bezier(0.62, 0.6, 0.55, 0.51) infinite;
+  background-size: 1000% 1000%;
+  background-position: top;
+  animation: rainbow 0.5s cubic-bezier(0.62, 0.6, 0.55, 0.51) infinite; */
 }
 
-@keyframes rainbow {
+/* @keyframes rainbow {
   0% {
     background-position: 88% 0%;
   }
   100% {
     background-position: 13% 100%;
   }
-}
+} */
