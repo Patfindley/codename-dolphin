@@ -5,6 +5,7 @@ import './App.css';
 import toggleActive from '../../util/activateKeyUtil';
 import keyboardSwitch from '../../util/keyboardSwitch';
 
+import Landing from '../Landing/Landing'
 import createSynth from '../SynthEngine/SynthEngine';
 import Scene from '../Scene/Scene';
 import Keyboard from '../Keyboard/Keyboard';
@@ -117,6 +118,10 @@ export default function App() {
 
   return (
     <Switch>
+      <Route exact path='/'
+        render={() => (
+          <Landing />
+        )} />
       <Route exact path='/synth'
         render={() => (
     <div className='App'>
