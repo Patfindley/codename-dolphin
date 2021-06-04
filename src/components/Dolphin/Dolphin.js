@@ -1,4 +1,4 @@
-import {gsap, TweenLite, TimelineMax} from 'gsap';
+import {gsap, TimelineLite} from 'gsap';
 import dolphinImg from '../../assets/dolphin.svg';
 import './Dolphin.css';
 
@@ -6,7 +6,7 @@ const Dolphin = () => {
 
   // TweenLite.defaultEase = Linear.easeNone;
 
-  var tl = new TimelineMax({repeat:-1})
+  var tl = new TimelineLite({repeat:-1})
 
   tl.to(".dolphin-container", 5, {rotation:-360, transformOrigin:"left"})
  .to(".dolphin", 5, {rotation:200}, 0)
