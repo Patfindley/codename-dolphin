@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import * as Tone from 'tone';
+import { gsap } from "gsap";
 import './App.css';
 import {
   toggleActiveClick,
@@ -42,7 +43,7 @@ export default function App() {
         await Tone.start();
         const note = e.target.attributes.note.value;
         synth.triggerAttackRelease(note, '8n');
-        toggleActiveClick(e);
+        toggleActiveClick(e, note);
         console.log(note);
         return;
       }

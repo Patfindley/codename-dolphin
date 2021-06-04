@@ -34,33 +34,36 @@
 }
 
 .active {
-  background: linear-gradient(
-    180deg,
+  /* background: linear-gradient(
+    0deg,
     #ff0000,
     #ffac00,
     #fff100,
-    #0bff00,
+    #00bff0,
     #00f6ff
   );
-  background-size: 750% 750%;
+  background-size: 1000% 1000%;
+  background-position: top;
   animation: rainbow 0.5s cubic-bezier(0.62, 0.6, 0.55, 0.51) infinite;
 }
 
-@keyframes rainbow {
+ @keyframes rainbow {
   0% {
     background-position: 88% 0%;
   }
   100% {
     background-position: 13% 100%;
   }
+} */
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1024px) {
   .sharp {
     flex-grow: .3;
+    margin: 0
   }
   .key {
-    min-width: 3em;
+    min-width: auto;
     height: 13em;
   }
 }
