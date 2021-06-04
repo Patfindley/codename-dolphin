@@ -19,34 +19,34 @@ export default function Scene(props) {
             shadowMap
             camera={{ position: [-5, 2, 10], fov: 60 }}>
             <Lighting/>
-            <Plane/>
-            <OrbitControls />
-            <Stars radius={100} depth={50} count={5000} factor={4} saturation={0} fade/>
+            {/* <Plane/> */}
+            <OrbitControls enableZoom={false} />
+            <Stars radius={100} depth={60} count={5000} factor={4} saturation={0} fade/>
             {props.wave === 'square' && 
             <group>
             {/* This mesh is the plane (The floor) */}
-              <Box position={[-1.2, 2, -5]} color='pink' />
-              <Box position={[1.2, -1, 0]} color='orange'/>
-              <Box position={[-4.2, 0, 0.5]} color='yellow' />
-              <Box position={[4.2, 0, -1]} color='brown'/>
+              <Box position={[5, 0, 5]} color='pink' />
+              <Box position={[0, 5, -5]} color='orange'/>
+              <Box position={[3, -5, -2]} color='yellow' />
+              <Box position={[-7, 0, 0]} color='brown'/>
             </group>}
 
             {props.wave === 'fmtriangle' && 
             <group>
             {/* This mesh is the plane (The floor) */}
-              <Tetrahedron position={[-1.2, 2, -5]} color='pink' />
-              <Tetrahedron position={[1.2, -1, 0]} color='orange'/>
-              <Tetrahedron position={[-4.2, 0, 0.5]} color='yellow' />
-              <Tetrahedron position={[4.2, 0, -1]} color='brown'/>
+              <Tetrahedron position={[5, 0, 5]} color='pink' />
+              <Tetrahedron position={[0, 5, -5]} color='orange'/>
+              <Tetrahedron position={[3, -5, -2]} color='yellow' />
+              <Tetrahedron position={[-7, 0, 0]} color='brown'/>
             </group>}
 
             {props.wave === 'amsine' && 
             <group>
             {/* This mesh is the plane (The floor) */}
-              <Sphere position={[-1.2, 2, -5]} color='pink' />
-              <Sphere position={[1.2, -1, 0]} color='orange'/>
-              <Sphere position={[-4.2, 0, 0.5]} color='yellow' />
-              <Sphere position={[4.2, 0, -1]} color='brown'/>
+              <Sphere position={[5, 0, 5]} color='pink' />
+              <Sphere position={[0, 5, -5]} color='orange'/>
+              <Sphere position={[3, -5, -2]} color='yellow' />
+              <Sphere position={[-7, 0, 0]} color='brown'/>
             </group>}
             {/* Allows us to move the canvas around for different prespectives */}
           </Canvas>
