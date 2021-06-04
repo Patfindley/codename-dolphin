@@ -1,4 +1,5 @@
 import React from 'react';
+import './EffectKnob.css'
 
 export default function EffectKnob({
   name,

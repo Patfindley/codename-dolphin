@@ -16,10 +16,11 @@ html, body, #root {
 
 body {
   position: fixed;
-  background: black;
+  background: #5472EB;
   color: white;
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+

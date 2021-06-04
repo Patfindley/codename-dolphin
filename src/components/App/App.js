@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import * as Tone from 'tone';
-import { gsap } from "gsap";
+import { gsap } from 'gsap';
 import './App.css';
 import {
   toggleActiveClick,
@@ -76,6 +76,15 @@ export default function App() {
             setDetune(e.target.value);
           }}
         />
+        <EffectToggle
+          name='oscillator type'
+          options={['amsine', 'square', 'fmtriangle']}
+          labels={['AM Sine', 'Square', 'FM Triangle']}
+          value={oscType}
+          handleClick={(e) => {
+            setOscType(e.target.value);
+          }}
+        />
         <EffectKnob
           name='lpfilter'
           label='LP Filter Cutoff'
@@ -84,15 +93,6 @@ export default function App() {
           value={cutoff}
           handleChange={(e) => {
             setCutoff(e.target.value);
-          }}
-        />
-        <EffectToggle
-          name='oscillator type'
-          options={['amsine', 'square', 'fmtriangle']}
-          labels={['AM Sine', 'Square', 'FM Triangle']}
-          value={oscType}
-          handleClick={(e) => {
-            setOscType(e.target.value);
           }}
         />
       </section>

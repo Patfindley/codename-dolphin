@@ -1,15 +1,18 @@
 .keyboard {
-  width: 80%;
-  height: 1em;
+  width: 100%;
+  min-width: 1045px;
+  height: 15em;
   display: flex;
   flex-direction: row;
   position: fixed;
   left: 0;
   right: 0;
-  bottom: 30%;
+  bottom: 0;
   top: 0;
   margin: auto;
   z-index: 9999;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 @media screen and (max-width: 480px) {
@@ -20,7 +23,8 @@
 
 @media screen and (max-width: 1024px) {
   .keyboard {
-    bottom: 40%;
+    bottom: -20%;
     width: 100%;
+    min-width: auto
   }
 }
