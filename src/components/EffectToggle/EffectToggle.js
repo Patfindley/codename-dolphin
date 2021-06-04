@@ -1,7 +1,13 @@
 import React, { useCallback } from 'react';
 import './EffectToggle.css';
 
-export default function EffectToggle({ name, options, labels, value, handleClick }) {
+export default function EffectToggle({
+  name,
+  options,
+  labels,
+  value,
+  handleClick,
+}) {
   const toggleSelect = useCallback(
     (node) => {
       if (node !== null && node.value === value) {
@@ -29,5 +35,5 @@ export default function EffectToggle({ name, options, labels, value, handleClick
 
   const selectors = mapOptions(options);
 
-  return <div>{selectors}</div>;
+  return <div className='effect-toggle'>{selectors}</div>;
 }

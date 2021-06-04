@@ -4,7 +4,8 @@
   flex-grow: 1;
   min-width: 5em;
   margin: 0 .1em;
-  /* border: 2px solid black; */
+  border-radius: 5px;
+  /* position: absolute; */
 }
 
 .note-display {
@@ -25,9 +26,10 @@
 
 .sharp {
   position: relative;
-  background-color: rgba(102, 51, 153, 0.507);
-  height: 15rem;
+  background-color: darkslategray;
+  height: 15em;
   flex-grow: .5;
+  margin: 0 -17px;
   z-index: 2;
 }
 

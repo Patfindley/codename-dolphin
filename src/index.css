@@ -17,6 +17,7 @@ html, body, #root {
 body {
   position: fixed;
   background: black;
+  color: white;
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
