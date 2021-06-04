@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import * as Tone from 'tone';
+import { gsap } from "gsap";
 import './App.css';
 import {
   toggleActiveClick,
