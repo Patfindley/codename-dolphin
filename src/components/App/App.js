@@ -10,6 +10,7 @@ import Keyboard from '../Keyboard/Keyboard';
 import EffectKnob from '../EffectKnob/EffectKnob';
 import EffectToggle from '../EffectToggle/EffectToggle';
 import Dolphin from '../Dolphin/Dolphin';
+import RotateMessage from '../RotateMessage/RotateMessage';
 
 const { oscillators, delay, reverb, filter, volume, compressor, distortion } =
   createSynth();
@@ -31,12 +32,20 @@ export default function App() {
   const [gain, setGain] = useState(volume.get().volume);
   const [distortionWet, setDistortionWet] = useState(distortion.get().wet);
   const [currentNote, setCurrentNote] = useState('');
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
   useEffect(() => {
     if (currentNote) {
-      // animation function
+      console.log(currentNote);
     }
   }, [currentNote]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenWidth(window.innerWidth);
+    };
+    window.addEventListener('resize', handleResize);
+  }, []);
 
   useEffect(() => {
     const triggerKeyDownPlay = async (e) => {
@@ -46,7 +55,8 @@ export default function App() {
         synth.triggerAttackRelease(note, '8n');
         toggleActive(note);
         setCurrentNote(note);
-        setTimeout(() => setCurrentNote(''), 1000);
+        console.log(currentNote, String.fromCharCode(e.keyCode));
+        setTimeout(() => setCurrentNote(''), 0);
         return;
       }
     };
@@ -61,7 +71,8 @@ export default function App() {
         synth.triggerAttackRelease(note, '8n');
         toggleActive(note);
         setCurrentNote(note);
-        setTimeout(() => setCurrentNote(''), 1000);
+        console.log(currentNote, e);
+        setTimeout(() => setCurrentNote(''), 0);
         return;
       }
     };
@@ -127,6 +138,7 @@ export default function App() {
 
   return (
     <div className='App'>
+      {screenWidth <= 480 && <RotateMessage screenWidth={screenWidth} />}
       <section className='effects-section'>
         <EffectKnob
           name='distortion'
