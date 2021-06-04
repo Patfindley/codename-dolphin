@@ -1,13 +1,15 @@
-*{
+* {
   box-sizing: border-box;
 }
 /* important to target the root below */
-html, body, #root {  
+html,
+body,
+#root {
   margin: 0;
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+    sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   width: 100%;
@@ -16,11 +18,15 @@ html, body, #root {
 
 body {
   position: fixed;
-  background: #5472EB;
+  background: #5472eb;
   color: white;
+  font-family: 'Roboto Mono', monospace;
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 
+button {
+  font-family: 'Roboto Mono', monospace;
+}

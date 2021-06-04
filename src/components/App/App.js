@@ -162,7 +162,7 @@ export default function App() {
         />
         <EffectKnob
           name='volume'
-          label='Volume'
+          label='Volumeyness'
           min='-30'
           max='-9'
           value={gain}
