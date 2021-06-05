@@ -40,19 +40,6 @@ export default function App() {
   const [currentNote, setCurrentNote] = useState('');
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
-  // useEffect(() => {
-  //   if (currentNote) {
-  //     // animation function
-  //   }
-  // }, [currentNote]);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setScreenWidth(window.innerWidth);
-    };
-    window.addEventListener('resize', handleResize);
-  }, []);
-
   useEffect(() => {
     const triggerKeyDownPlay = async (e) => {
       if (e.type === 'keydown' && keyboardSwitch(e)) {
@@ -62,7 +49,7 @@ export default function App() {
         toggleActive(note);
         setCurrentNote(note);
         console.log(currentNote, String.fromCharCode(e.keyCode));
-        setTimeout(() => setCurrentNote(''), 0);
+        setTimeout(() => setCurrentNote(''), 500);
         return;
       }
     };
@@ -78,7 +65,7 @@ export default function App() {
         toggleActive(note);
         setCurrentNote(note);
         console.log(currentNote, e);
-        setTimeout(() => setCurrentNote(''), 0);
+        setTimeout(() => setCurrentNote(''), 500);
         return;
       }
     };
@@ -177,7 +164,7 @@ export default function App() {
       </section>
       <Keyboard screenWidth={screenWidth} />
       <Dolphin detune={detune} cutoff={cutoff} gain={gain} />
-      <Scene wave={oscType} currentNote={currentNote} />
+      <Scene wave={oscType} currentNote={currentNote} distortionWet={distortionWet} synth={synth}/>
     </div>
   );
 }
