@@ -30,19 +30,27 @@
   left: 0;
 }
 
-.effects-section > * {
-  margin: 0 2em;
+.effects-section > .effect-toggle {
+  margin: 0 1em;
+}
+
+.effects-section > .effect-knob {
+  margin: 0 1em;
 }
 
 .effects-section > .effect-knob > input[type='range'] {
   margin: 15px 0;
-  width: 100%;
+  width: 80%;
 }
 
 .key-help-toggle {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.key-help-toggle > div {
+  min-width: 152px;
 }
 
 @media screen and (max-width: 1024px) {

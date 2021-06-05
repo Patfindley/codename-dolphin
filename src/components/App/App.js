@@ -42,12 +42,13 @@ export default function App() {
   const [distortionWet, setDistortionWet] = useState(distortion.get().wet);
   const [currentNote, setCurrentNote] = useState('');
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-  const [keyHelp, setKeyHelp] = useState('');
-  const [cameraX, setCameraX] = useState(Math.random() * 10)
-  const [cameraY, setCameraY] = useState(Math.random() * 10)
-  const [cameraZ, setCameraZ] = useState(Math.random() * 10)
+  const [keyHelp, setKeyHelp] = useState('on');
+  const [cameraX, setCameraX] = useState(Math.random() * 5);
+  const [cameraY, setCameraY] = useState(Math.random() * 6);
+  const [cameraZ, setCameraZ] = useState(Math.random() * 7);
+  const [ready, setReady] = useState(false);
 
-  const cameraPositions = [cameraX, cameraY, cameraZ];
+  const [cameraPositions] = useState([cameraX, cameraY, cameraZ]);
 
   useEffect(() => {
     const triggerKeyDownPlay = async (e) => {
@@ -57,8 +58,8 @@ export default function App() {
         synth.triggerAttackRelease(note, '8n');
         toggleActive(note);
         setCurrentNote(note);
-        console.log(currentNote, String.fromCharCode(e.keyCode));
-        setTimeout(() => setCurrentNote(''), 500);
+        // console.log(currentNote, String.fromCharCode(e.keyCode));
+        setTimeout(() => setCurrentNote(''), 0);
         return;
       }
     };
@@ -73,8 +74,8 @@ export default function App() {
         synth.triggerAttackRelease(note, '8n');
         toggleActive(note);
         setCurrentNote(note);
-        console.log(currentNote, e);
-        setTimeout(() => setCurrentNote(''), 500);
+        // console.log(currentNote, e);
+        setTimeout(() => setCurrentNote(''), 0);
         return;
       }
     };
@@ -107,10 +108,10 @@ export default function App() {
   };
 
   useEffect(() => {
-    setCameraX(Math.floor(Math.random() * 10));
-    setCameraY(Math.floor(Math.random() * 10));
-    setCameraZ(Math.floor(Math.random() * 10));
-  }, [oscType])
+    setCameraX(Math.floor(Math.random() * 6));
+    setCameraY(Math.floor(Math.random() * 7));
+    setCameraZ(Math.floor(Math.random() * 8));
+  }, [oscType]);
 
   const distRange = convertRangeScale([0, 1], [0, 100], distortionWet);
 
@@ -199,7 +200,16 @@ export default function App() {
             </section>
             <Keyboard screenWidth={screenWidth} keyHelp={keyHelp} />
             <Dolphin detune={detune} cutoff={cutoff} gain={gain} />
-            <Scene wave={oscType} currentNote={currentNote} distortionWet={distortionWet} cameraPositions={cameraPositions}/>
+            <Scene
+              wave={oscType}
+              currentNote={currentNote}
+              distortionWet={distortionWet}
+              cameraPositions={cameraPositions}
+              // onCompile={() => {
+              //   setReady(true)
+              // }
+            // }
+            />
           </div>
         )}
       />

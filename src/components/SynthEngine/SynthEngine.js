@@ -36,7 +36,7 @@ const createSynth = () => {
 
   const distortionOptions = {
     distortion: 0.9,
-    wet: 0.1,
+    wet: 0,
   };
   const distortion = new Tone.Distortion(distortionOptions);
 
