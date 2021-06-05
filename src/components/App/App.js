@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Switch, Route, Link, Redirect } from "react-router-dom";
 import * as Tone from 'tone';
 import './App.css';
 import toggleActive from '../../util/activateKeyUtil';
@@ -9,6 +10,7 @@ import {
   controlScroll,
 } from '../../util/rangeScaling';
 
+import Landing from '../Landing/Landing'
 import createSynth from '../SynthEngine/SynthEngine';
 import Scene from '../Scene/Scene';
 import Keyboard from '../Keyboard/Keyboard';
@@ -113,6 +115,13 @@ export default function App() {
   const distRange = convertRangeScale([0, 1], [0, 100], distortionWet);
 
   return (
+    <Switch>
+      <Route exact path='/'
+        render={() => (
+            <Landing />
+        )} />
+      <Route exact path='/synth'
+        render={() => (
     <div className='App'>
       {screenWidth <= 480 && <RotateMessage screenWidth={screenWidth} />}
       <section className='effects-section'>
@@ -179,5 +188,7 @@ export default function App() {
       <Dolphin detune={detune} cutoff={cutoff} gain={gain} />
       <Scene wave={oscType} />
     </div>
+    )} />
+    </Switch>
   );
 }
