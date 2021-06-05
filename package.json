@@ -41,6 +41,7 @@
     ]
   },
   "devDependencies": {
+    "cypress": "^7.4.0",
     "gsap": "^3.6.1",
     "tone": "^14.7.77"
   }
