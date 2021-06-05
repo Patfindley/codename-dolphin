@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 import { Switch, Route, Link, Redirect } from 'react-router-dom';
 import * as Tone from 'tone';
 import './App.css';
@@ -46,6 +46,10 @@ export default function App() {
   const [cameraX, setCameraX] = useState(Math.random() * 5);
   const [cameraY, setCameraY] = useState(Math.random() * 6);
   const [cameraZ, setCameraZ] = useState(Math.random() * 7);
+  // useLayoutEffect(() => {
+    // USE TO MAKE ROTATE PHONE GO FULL SCREEN, NEED TO GET DEPENDENCY
+  //   navigation.setOptions({headerShown: false});
+  // }, [navigation]);
   const [ready, setReady] = useState(false);
 
   const [cameraPositions] = useState([cameraX, cameraY, cameraZ]);
@@ -55,7 +59,7 @@ export default function App() {
   useEffect(() => {
     window.addEventListener('resize', handleResize);
   }, []);
-  
+
   useEffect(() => {
     const triggerKeyDownPlay = async (e) => {
       if (e.type === 'keydown' && keyboardSwitch(e)) {
