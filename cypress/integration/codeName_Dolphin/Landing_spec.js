@@ -19,5 +19,12 @@ describe('Landing', () => {
     cy.get(".landing-title").click()
   })
 
+  it('Should reveal a majestic dolphin leaping over title', () => {
+    cy.get(".dolphin-title")
+    .should("have.css", "opacity", '0')
+    .get(".landing-container")
+    .click()
+    .should("have.css", "opacity", '1')
+  }) 
 
 })
