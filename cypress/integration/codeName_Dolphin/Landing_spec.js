@@ -27,4 +27,9 @@ describe('Landing', () => {
     .should("have.css", "opacity", '1')
   }) 
 
+  it('Should redirect to /synth', () => {
+    cy.get(".landing-container")
+    .click()
+    .url().should('include', '/synth')
+  })
 })
