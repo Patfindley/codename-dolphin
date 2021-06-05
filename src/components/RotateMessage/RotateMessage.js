@@ -11,7 +11,6 @@ export default function RotateMessage({ screenWidth }) {
       { y: 250, rotation: 25, scale: 1.5}
     );
   }, [screenWidth]);
-
   return (
     <p className='rotate-text'>Rotate Me! ⤵</p>
   );

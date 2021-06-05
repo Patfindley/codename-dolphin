@@ -1,75 +1,187 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { softShadows, OrbitControls, Stars } from '@react-three/drei';
+import {
+  softShadows,
+  OrbitControls,
+  Stars,
+  CameraShake,
+} from '@react-three/drei';
 import Box from './Box';
 import Tetrahedron from './Tetrahedron';
 import Sphere from './Sphere';
 import Plane from './Plane';
+import Home from './Home';
 import Lighting from './Lighting';
+import { convertRangeScale, convertRangeValue } from '../../util/rangeScaling';
 
 // soft Shadows
 softShadows();
 
-export default function Scene(props) {
-  // if (props.wave === 'square') {
+export default function Scene({
+  currentNote,
+  wave,
+  distortionWet,
+  cameraPositions,
+}) {
+  const shakeTime = 0.7;
+  const shakeMaxIntensity = 0.2;
+  const shapeAmount = 70;
+  const spread = .5;
+  const colors = ['#4B18E9', 'yellow', '#70D9B2', '#FF62B3'];
+  const [shakeIntensity, setshakeIntensity] = useState(
+    convertRangeScale([0, 1], [0, shakeMaxIntensity], distortionWet)
+  );
+  const [shape, setShape] = useState('square');
+  const [shake, setShake] = useState(false);
+
+  const createRandomPositions = (amount, spread) => {
+    const randomPositions = [];
+    for (let i = 0; i < amount; i++) {
+      randomPositions.push(
+        cameraPositions.map((p) => Math.floor(Math.random() * (p + i * spread)))
+      );
+    }
+    const evenNegativePositions = randomPositions.map((r, i) => {
+      if (i % 2 === 0) {
+        return r.map((p) => -p);
+      } else {
+        return r;
+      }
+    });
+
+    return evenNegativePositions.map((r, i) => {
+      if (i % 3 === 0) {
+        return r.map((p, i) => {
+          if (i === 1) {
+            return (p = -p);
+          }
+        });
+      } else {
+        return r;
+      }
+    });
+  };
+
+  const [randomPositions, setRandomPositions] = useState(
+    createRandomPositions(shapeAmount, spread)
+  );
+
+  const createShapeComponents = (shape, colors) => {
+    if (shape === 'square') {
+      return randomPositions.map((r, i) => (
+        <Box
+          key={i}
+          position={randomPositions[i]}
+          color={colors[Math.floor(Math.random() * 4)]}
+        />
+      ));
+    }
+    if (shape === 'triangle') {
+      return randomPositions.map((r, i) => (
+        <Tetrahedron
+          key={i}
+          position={randomPositions[i]}
+          color={colors[Math.floor(Math.random() * 4)]}
+        />
+      ));
+    }
+    if (shape === 'sphere') {
+      return randomPositions.map((r, i) => (
+        <Sphere
+          key={i}
+          position={randomPositions[i]}
+          color={colors[Math.floor(Math.random() * 4)]}
+        />
+      ));
+    }
+  };
+
+  const [shapeComponents, setShapeComponents] = useState(
+    createShapeComponents(shape, colors)
+  );
+
+  useEffect(() => {
+    setshakeIntensity(
+      convertRangeScale([0, 1], [0, shakeMaxIntensity], distortionWet)
+    );
+  }, [distortionWet]);
+
+  useEffect(() => {
+    setRandomPositions(createRandomPositions(shapeAmount, spread));
+    if (wave === 'square') {
+      setShape('square');
+    } else if (wave === 'fmtriangle') {
+      setShape('triangle');
+    } else if (wave === 'amsine') {
+      setShape('sphere');
+    }
+  }, [wave]);
+
+  useEffect(() => {
+    if (shape === 'square') {
+      const squares = createShapeComponents(shape.toString(), colors);
+      setShapeComponents(squares);
+    }
+    if (shape === 'triangle') {
+      const triangles = createShapeComponents(shape.toString(), colors);
+      setShapeComponents(triangles);
+    }
+    if (shape === 'sphere') {
+      const spheres = createShapeComponents(shape, colors);
+      setShapeComponents(spheres);
+    }
+  }, [shape]);
+
+  const shakeConfig = {
+    maxYaw: Math.random() * 1,
+    maxPitch: Math.random() * 0.2,
+    maxRoll: Math.random() * 0.5,
+    yawFrequency: Math.random() * 3,
+    pitchFrequency: Math.random() * 3,
+    rollFrequency: Math.random() * 3,
+    intensity: shakeIntensity,
+    decay: false,
+    decayRate: shakeTime,
+    additive: true,
+  };
+
+  const triggerShake = () => {
+    return <CameraShake {...shakeConfig} />;
+  };
+
+  useEffect(() => {
+    if (currentNote) {
+      setShake(true);
+    }
+    setTimeout(() => setShake(false), shakeTime * 1000);
+  }, [currentNote]);
+
   return (
     <main className='main'>
       <Canvas
         colorManagement
         shadowMap
-        camera={{ position: [-5, 2, 10], fov: 60 }}
+        camera={{
+          // position:
+          //   randomPositions[Math.floor(Math.random() * randomPositions.length)],
+          position: [Math.random() * -5, Math.random() * 2, Math.random() * 4],
+          fov: 100,
+        }}
       >
+        {shake && triggerShake()}
         <Lighting />
-        {/* <Plane/> */}
         <OrbitControls enableZoom={false} />
         <Stars
-          radius={100}
+          radius={200}
           depth={60}
           count={5000}
           factor={4}
           saturation={0}
           fade
         />
-        {props.wave === 'square' && (
-          <group>
-            {/* This mesh is the plane (The floor) */}
-            <Box position={[5, 0, 5]} color='#FF62B3' />
-            <Box position={[0, 5, -5]} color='#4B18E9' />
-            <Box position={[3, -5, -2]} color='yellow' />
-            <Box position={[-7, 0, 0]} color='#70D9B2' />
-          </group>
-        )}
-
-        {props.wave === 'fmtriangle' && (
-          <group>
-            {/* This mesh is the plane (The floor) */}
-            <Tetrahedron position={[5, 0, 5]} color='#4B18E9' />
-            <Tetrahedron position={[0, 5, -5]} color='yellow' />
-            <Tetrahedron position={[3, -5, -2]} color='#70D9B2' />
-            <Tetrahedron position={[-7, 0, 0]} color='#FF62B3' />
-          </group>
-        )}
-
-        {props.wave === 'amsine' && (
-          <group>
-            {/* This mesh is the plane (The floor) */}
-            <Sphere position={[5, 0, 5]} color='yellow' />
-            <Sphere position={[0, 5, -5]} color='#70D9B2' />
-            <Sphere position={[3, -5, -2]} color='#FF62B3' />
-            <Sphere position={[-7, 0, 0]} color='#4B18E9' />
-          </group>
-        )}
-        {/* Allows us to move the canvas around for different prespectives */}
+        {/* <Home position={[-20, 1, -20]} color='pink'/> */}
+        <group>{[...shapeComponents]}</group>
       </Canvas>
     </main>
   );
-  // } else if (props.wave === 'fmtriangle') {
-  //   return (
-
-  //   )
-  // } else {
-  //   return (
-
-  //   )
-  // }
 }

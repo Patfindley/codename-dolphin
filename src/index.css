@@ -19,9 +19,11 @@ body,
 body {
   position: fixed;
   background: #5472eb;
+  /* background: black; */
   color: white;
   font-family: 'Roboto Mono', monospace;
 }
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

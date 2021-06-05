@@ -15,6 +15,10 @@
   box-sizing: border-box;
 }
 
+/* .keyboard * {
+  background-color: transparent;
+} */
+
 @media screen and (max-width: 480px) {
   .keyboard {
     display: none;
