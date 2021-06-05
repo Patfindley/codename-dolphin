@@ -9,5 +9,11 @@ describe('Landing', () => {
     cy.get(".landing-title")
     .contains(" Fuck It Up ")
   })
- 
+
+  it('Should have hidden Dolphin image', () => {
+    cy.get(".dolphin-title")
+    .should("have.css", "opacity", '0')
+  })
+
+  
 })
