@@ -39,11 +39,17 @@
   width: 100%;
 }
 
+.key-help-toggle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 @media screen and (max-width: 1024px) {
   .effects-section {
     justify-content: space-around;
   }
-  
+
   .effects-section > .effect-knob > input[type='range'] {
     margin-top: 15px;
     width: 100%;
@@ -51,6 +57,10 @@
   .effects-section > .effect-toggle > button {
     padding: 0.5em;
   }
+
+  /* .key-help-toggle {
+    display: none;
+  } */
 }
 
 @media screen and (max-width: 480px) {

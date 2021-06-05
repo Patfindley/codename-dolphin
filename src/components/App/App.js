@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Switch, Route, Link, Redirect } from 'react-router-dom';
 import * as Tone from 'tone';
 import './App.css';
 import toggleActive from '../../util/activateKeyUtil';
@@ -9,9 +10,11 @@ import {
   controlScroll,
 } from '../../util/rangeScaling';
 
+import Landing from '../Landing/Landing';
 import createSynth from '../SynthEngine/SynthEngine';
 import Scene from '../Scene/Scene';
 import Keyboard from '../Keyboard/Keyboard';
+import Key from '../Key/Key';
 import EffectKnob from '../EffectKnob/EffectKnob';
 import EffectToggle from '../EffectToggle/EffectToggle';
 import Dolphin from '../Dolphin/Dolphin';
@@ -39,6 +42,7 @@ export default function App() {
   const [distortionWet, setDistortionWet] = useState(distortion.get().wet);
   const [currentNote, setCurrentNote] = useState('');
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const [keyHelp, setKeyHelp] = useState('');
 
   useEffect(() => {
     const triggerKeyDownPlay = async (e) => {
@@ -100,71 +104,94 @@ export default function App() {
   const distRange = convertRangeScale([0, 1], [0, 100], distortionWet);
 
   return (
-    <div className='App'>
-      {screenWidth <= 480 && <RotateMessage screenWidth={screenWidth} />}
-      <section className='effects-section'>
-        <EffectKnob
-          name='distortion'
-          label='Angeryness'
-          min='0'
-          max='100'
-          value={distRange}
-          handleChange={(e) => {
-            controlScroll(e, 6, distRange);
-            setDistortionWet(
-              convertRangeValue([0, 100], [0, 1], e.target.value)
-            );
-          }}
-        />
-        <EffectKnob
-          name='detune'
-          label='Bendyness'
-          min='-1200'
-          max='1200'
-          value={detune}
-          handleChange={(e) => {
-            controlScroll(e, 500, detune);
-            setDetune(e.target.value);
-          }}
-          resetDetune={resetDetune}
-        />
-        <EffectToggle
-          name='oscillator type'
-          options={['amsine', 'square', 'fmtriangle']}
-          labels={['AM Sine', 'Square', 'FM Triangle']}
-          value={oscType}
-          handleClick={(e) => {
-            setOscType(e.target.value);
-          }}
-        />
-        <EffectKnob
-          name='lpfilter'
-          label='Sharpyness'
-          min='500'
-          max='8000'
-          value={cutoff}
-          handleChange={(e) => {
-            controlScroll(e, 400, cutoff);
-            setCutoff(e.target.value);
-          }}
-        />
-        {screenWidth > 1024 && (
-          <EffectKnob
-            name='volume'
-            label='Volumeyness'
-            min='-30'
-            max='-9'
-            value={gain}
-            handleChange={(e) => {
-              controlScroll(e, 1, gain);
-              setGain(e.target.value);
-            }}
-          />
+    <Switch>
+      <Route exact path='/' render={() => <Landing />} />
+      <Route
+        exact
+        path='/synth'
+        render={() => (
+          <div className='App'>
+            {screenWidth <= 480 && <RotateMessage screenWidth={screenWidth} />}
+            <section className='effects-section'>
+              <EffectKnob
+                name='distortion'
+                label='Angeryness'
+                min='0'
+                max='100'
+                value={distRange}
+                handleChange={(e) => {
+                  controlScroll(e, 6, distRange);
+                  setDistortionWet(
+                    convertRangeValue([0, 100], [0, 1], e.target.value)
+                  );
+                }}
+              />
+              <EffectKnob
+                name='detune'
+                label='Bendyness'
+                min='-1200'
+                max='1200'
+                value={detune}
+                handleChange={(e) => {
+                  controlScroll(e, 500, detune);
+                  setDetune(e.target.value);
+                }}
+                resetDetune={resetDetune}
+              />
+              <EffectToggle
+                name='oscillator type'
+                options={['amsine', 'square', 'fmtriangle']}
+                labels={['AM Sine', 'Square', 'FM Triangle']}
+                value={oscType}
+                handleClick={(e) => {
+                  setOscType(e.target.value);
+                }}
+              />
+              {screenWidth > 1024 && (
+                <div className='key-help-toggle'>
+                  <p>Key Help:</p>
+                  <EffectToggle
+                    name='keyhelp'
+                    options={['on', '']}
+                    labels={['On', 'Off']}
+                    value={keyHelp}
+                    handleClick={(e) => {
+                      setKeyHelp(e.target.value);
+                    }}
+                  />
+                </div>
+              )}
+              <EffectKnob
+                name='lpfilter'
+                label='Sharpyness'
+                min='500'
+                max='8000'
+                value={cutoff}
+                handleChange={(e) => {
+                  controlScroll(e, 400, cutoff);
+                  setCutoff(e.target.value);
+                }}
+              />
+              {screenWidth > 1024 && (
+                <EffectKnob
+                  name='volume'
+                  label='Volumeyness'
+                  min='-30'
+                  max='-9'
+                  value={gain}
+                  handleChange={(e) => {
+                    controlScroll(e, 1, gain);
+                    setGain(e.target.value);
+                  }}
+                />
+              )}
+            </section>
+            <Keyboard screenWidth={screenWidth} keyHelp={keyHelp} />
+            <Dolphin detune={detune} cutoff={cutoff} gain={gain} />
+            <Scene wave={oscType} currentNote={currentNote} distortionWet={distortionWet}/>
+          </div>
         )}
-      </section>
-      <Keyboard screenWidth={screenWidth} />
-      <Dolphin detune={detune} cutoff={cutoff} gain={gain} />
-      <Scene wave={oscType} currentNote={currentNote} distortionWet={distortionWet} synth={synth}/>
-    </div>
+      />
+    </Switch>
   );
 }

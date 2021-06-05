@@ -48,7 +48,7 @@ export default function Scene({ currentNote, wave, distortionWet, synth }) {
       <Canvas
         colorManagement
         shadowMap
-        camera={{position: [2.8939053725204245,3.0506295096530045,5.329652486790302], fov: 75 }}
+        camera={{position: [2, 3, 10], fov: 75 }}
         >
         { currentNote &&
           <CameraShake { ...config } />
