@@ -15,5 +15,9 @@ describe('Landing', () => {
     .should("have.css", "opacity", '0')
   })
 
-  
+  it('Should have clickable link in title', () => {
+    cy.get(".landing-title").click()
+  })
+
+
 })
