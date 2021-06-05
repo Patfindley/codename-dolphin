@@ -43,6 +43,11 @@ export default function App() {
   const [currentNote, setCurrentNote] = useState('');
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [keyHelp, setKeyHelp] = useState('');
+  const [cameraX, setCameraX] = useState(Math.random() * 10)
+  const [cameraY, setCameraY] = useState(Math.random() * 10)
+  const [cameraZ, setCameraZ] = useState(Math.random() * 10)
+
+  const cameraPositions = [cameraX, cameraY, cameraZ];
 
   useEffect(() => {
     const triggerKeyDownPlay = async (e) => {
@@ -100,6 +105,12 @@ export default function App() {
     e.target.value = 0;
     setDetune(e.target.value);
   };
+
+  useEffect(() => {
+    setCameraX(Math.floor(Math.random() * 10));
+    setCameraY(Math.floor(Math.random() * 10));
+    setCameraZ(Math.floor(Math.random() * 10));
+  }, [oscType])
 
   const distRange = convertRangeScale([0, 1], [0, 100], distortionWet);
 
@@ -188,7 +199,7 @@ export default function App() {
             </section>
             <Keyboard screenWidth={screenWidth} keyHelp={keyHelp} />
             <Dolphin detune={detune} cutoff={cutoff} gain={gain} />
-            <Scene wave={oscType} currentNote={currentNote} distortionWet={distortionWet}/>
+            <Scene wave={oscType} currentNote={currentNote} distortionWet={distortionWet} cameraPositions={cameraPositions}/>
           </div>
         )}
       />

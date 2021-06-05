@@ -12,10 +12,10 @@ import { convertRangeScale, convertRangeValue } from '../../util/rangeScaling'
 // soft Shadows
 softShadows();
 
-export default function Scene({ currentNote, wave, distortionWet, synth }) {
-  const [cameraX, setCameraX] = useState(Math.random() * 10)
-  const [cameraY, setCameraY] = useState(Math.random() * 10)
-  const [cameraZ, setCameraZ] = useState(Math.random() * 10)
+export default function Scene({ currentNote, wave, distortionWet, cameraPositions }) {
+  // const [cameraX, setCameraX] = useState(Math.random() * 10)
+  // const [cameraY, setCameraY] = useState(Math.random() * 10)
+  // const [cameraZ, setCameraZ] = useState(Math.random() * 10)
   // useEffect(() => {
   //   if (currentNote) {
       
@@ -23,12 +23,11 @@ export default function Scene({ currentNote, wave, distortionWet, synth }) {
   // }, [currentNote]);
   const shakeRange = convertRangeScale([0, 1], [0, .65], distortionWet);
   
-  useEffect(() => {
-    setCameraX(Math.random() * 10);
-    setCameraY(Math.random() * 10);
-    setCameraZ(Math.random() * 10);
-    console.log(cameraX)
-  }, [wave])
+  // useEffect(() => {
+  //   setCameraX(Math.floor(Math.random() * 10));
+  //   setCameraY(Math.floor(Math.random() * 10));
+  //   setCameraZ(Math.floor(Math.random() * 10));
+  // }, [wave])
 
   const config = {
     maxYaw: 2, // Max amount camera can yaw in either direction
@@ -43,12 +42,17 @@ export default function Scene({ currentNote, wave, distortionWet, synth }) {
     additive: true, // this should be used when your scene has orbit controls
   }
 
+  const randomPositions1 = cameraPositions.map(p => Math.floor(Math.random() * (p + 2)))
+  const randomPositions2 = cameraPositions.map(p => Math.floor(Math.random() * (p + 4)))
+  const randomPositions3 = cameraPositions.map(p => Math.floor(Math.random() * (p + 6)))
+  const randomPositions4 = cameraPositions.map(p => Math.floor(Math.random() * (p + 8)))
+
   return (
     <main className='main'>
       <Canvas
         colorManagement
         shadowMap
-        camera={{position: [2, 3, 10], fov: 75 }}
+        camera={{position: [...cameraPositions], fov: 75 }}
         >
         { currentNote &&
           <CameraShake { ...config } />
@@ -67,31 +71,28 @@ export default function Scene({ currentNote, wave, distortionWet, synth }) {
         {/* <Home position={[-20, 1, -20]} color='pink'/> */}
         {wave === 'square' && (
           <group>
-            {/* This mesh is the plane (The floor) */}
-            <Box position={[5, 0, 5]} color='#FF62B3' />
-            <Box position={[0, 5, -5]} color='#4B18E9' />
-            <Box position={[3, -5, -2]} color='yellow' />
-            <Box position={[-7, 0, 0]} color='#70D9B2' />
+            <Box position={[...randomPositions1]} color='#FF62B3' />
+            <Box position={[...randomPositions2]} color='#4B18E9' />
+            <Box position={[...randomPositions3]} color='yellow' />
+            <Box position={[...randomPositions4]} color='#70D9B2' />
           </group>
         )}
 
         {wave === 'fmtriangle' && (
           <group>
-            {/* This mesh is the plane (The floor) */}
-            <Tetrahedron position={[5, 0, 5]} color='#4B18E9' />
-            <Tetrahedron position={[0, 5, -5]} color='yellow' />
-            <Tetrahedron position={[3, -5, -2]} color='#70D9B2' />
-            <Tetrahedron position={[-7, 0, 0]} color='#FF62B3' />
+            <Tetrahedron position={[...randomPositions1]} color='#4B18E9' />
+            <Tetrahedron position={[...randomPositions2]} color='yellow' />
+            <Tetrahedron position={[...randomPositions3]} color='#70D9B2' />
+            <Tetrahedron position={[...randomPositions4]} color='#FF62B3' />
           </group>
         )}
 
         {wave === 'amsine' && (
           <group>
-            {/* This mesh is the plane (The floor) */}
-            <Sphere position={[5, 0, 5]} color='yellow' />
-            <Sphere position={[0, 5, -5]} color='#70D9B2' />
-            <Sphere position={[3, -5, -2]} color='#FF62B3' />
-            <Sphere position={[-7, 0, 0]} color='#4B18E9' />
+            <Sphere position={[...randomPositions1]} color='yellow' />
+            <Sphere position={[...randomPositions2]} color='#70D9B2' />
+            <Sphere position={[...randomPositions3]} color='#FF62B3' />
+            <Sphere position={[...randomPositions4]} color='#4B18E9' />
           </group>
         )}
         {/* Allows us to move the canvas around for different prespectives */}
