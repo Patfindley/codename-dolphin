@@ -50,6 +50,12 @@ export default function App() {
 
   const [cameraPositions] = useState([cameraX, cameraY, cameraZ]);
 
+  const handleResize = () => setScreenWidth(window.innerWidth);
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+  }, []);
+  
   useEffect(() => {
     const triggerKeyDownPlay = async (e) => {
       if (e.type === 'keydown' && keyboardSwitch(e)) {
@@ -208,7 +214,7 @@ export default function App() {
               // onCompile={() => {
               //   setReady(true)
               // }
-            // }
+              // }
             />
           </div>
         )}

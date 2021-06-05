@@ -25,7 +25,7 @@ export default function Scene({
 }) {
   const shakeTime = 0.7;
   const shakeMaxIntensity = 0.2;
-  const shapeAmount = 100;
+  const shapeAmount = 70;
   const spread = .5;
   const colors = ['#4B18E9', 'yellow', '#70D9B2', '#FF62B3'];
   const [shakeIntensity, setshakeIntensity] = useState(
@@ -162,10 +162,10 @@ export default function Scene({
         colorManagement
         shadowMap
         camera={{
-          position:
-            randomPositions[Math.floor(Math.random() * randomPositions.length)],
-          // position: [Math.random() * -5, Math.random() * 2, Math.random() * 4],
-          fov: 500,
+          // position:
+          //   randomPositions[Math.floor(Math.random() * randomPositions.length)],
+          position: [Math.random() * -5, Math.random() * 2, Math.random() * 4],
+          fov: 100,
         }}
       >
         {shake && triggerShake()}

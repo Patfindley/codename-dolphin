@@ -1,4 +1,10 @@
 .rotate-text {
   background: rgba(209, 90, 77, 0.452);
-  width: 100%
+  width: 100%;
 }
+
+/* @media screen and (max-width: 480px) {
+  .rotate-text {
+    display: none;
+  }
+} */
