@@ -25,14 +25,32 @@ describe('Scene Render', () => {
   });
   
   it('should render the main section', () => {
+    cy.viewport(1920, 975) 
     cy.get('main').get('.main')
       .should('have.css', 'z-index', '-100')
-    // cy.get('main').get('.main').get('div').get('canvas')
+    cy.get('main').get('.main').get('div').get('canvas')
+      .should('have.attr', 'style', 'display: block; width: 1920px; height: 975.455px;')
   });
-  // it('should  not see the home button', () => {
-  //   cy.get('.fa-home')
-  //     .should('not.be.visible') 
-  // });
+
+  const fn = () => {
+    let effect = document.getElementById('bend')
+    
+    return 
+  }
+
+  it.only('should should move the dolphin with bendyness', () => {
+    cy.get('div').get('.dolphin-container')
+      .should('have.attr', 'style', 'transform: translate(-120px, 0px) scale(1.0048, 1.0048);')
+    cy.get('section').get('.effects-section').get('[name="detune"]').within(() => {
+      cy.get('input').invoke('val', 1200).trigger('change')
+      .trigger('mousedown', { button: 0, which: 1, pageX: 100, pageY: 100 })
+      .trigger('mousemove', { button: 0, which: 1, pageX: 600, pageY: 600 })
+      .trigger('mouseup', { which:1, button: 0, force: true})
+      // cy.get('input').invoke('val', 1200).trigger('change')
+    })
+    // .get('div').get('.dolphin-container')
+    //   .should('have.attr', 'style', 'transform: translate(-120px, -200px) scale(1.0048, 1.0048);')
+  });
 
   // it('should render the list view', () => {
   //   cy.contains('h1', 'Feeture🦶🏼Films')
