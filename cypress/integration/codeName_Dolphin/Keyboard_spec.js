@@ -1,9 +1,10 @@
 
-describe('Landing', () => {
+describe('Keyboard', () => {
   beforeEach(() => {
     cy.visit('')
     .get(".landing-container")
     .click()
+    cy.viewport(1920, 975) 
   })
 
   it('Should be at /synth path', () => {
@@ -38,9 +39,10 @@ describe('Landing', () => {
   })
 
   it('Should toggle key values on and off when clicked', () => {
-    cy.viewport('macbook-15')
-    .get('.key-help-toggle')
-    .get('[value=""]').click()
+    // cy.viewport('macbook-15')
+    // cy.get('.key-help-toggle')
+    // .get('[value="off"]').click()
+    cy.get('[value=""]:button').click()
     cy.get('[note="C4"]')
     .should('have.text', '')
   })

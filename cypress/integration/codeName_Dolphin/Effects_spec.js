@@ -39,7 +39,7 @@ describe('Effects section', () => {
   it('should allow the user to toggle keyhelp', () => {
     cy.get('[value="on"]:button')
       .should('have.class', 'selected')
-    cy.get('[value="off"]:button').click()
+    cy.get('[value=""]:button').click()
       .should('have.class', 'selected')   
   });
 
