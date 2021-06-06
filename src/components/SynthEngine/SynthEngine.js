@@ -62,8 +62,6 @@ const createSynth = () => {
     distortion: distortion,
   };
 
-  console.log('I made a synth');
-
   return synthHardware;
 };
 
