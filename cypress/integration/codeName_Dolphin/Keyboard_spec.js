@@ -1,5 +1,5 @@
 
-describe('Landing', () => {
+describe('Keyboard', () => {
   beforeEach(() => {
     cy.visit('')
     .get(".landing-container")
@@ -38,9 +38,8 @@ describe('Landing', () => {
   })
 
   it('Should toggle key values on and off when clicked', () => {
-    cy.viewport('macbook-15')
-    .get('.key-help-toggle')
-    .get('[value=""]').click()
+    cy.viewport(1920, 975) 
+    cy.get('[value=""]:button').click()
     cy.get('[note="C4"]')
     .should('have.text', '')
   })
