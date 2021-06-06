@@ -26,6 +26,14 @@ const DolphinArm = styled.div`
   user-select: none;
   pointer-events: none;
 `
+const DolphinTitle = styled.img`
+  position: relative;
+  opacity: 0;
+  width: 300px;
+  height: 300px;
+  left:150px;
+  top: -50px;
+`
 
 
 const Landing = ({ audioCheck }) => {
@@ -60,7 +68,7 @@ const Landing = ({ audioCheck }) => {
         </LandingTitle>
       </DelayLink>
       <DolphinArm className='dolphin-arm'>
-        <img className='dolphin-title' src={dolphinImg} alt='dolphin' />
+        <DolphinTitle className='dolphin-title' src={dolphinImg} alt='dolphin' />
       </DolphinArm>
       <Link to='/About'>
         <h3>
