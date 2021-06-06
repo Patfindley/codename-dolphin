@@ -44,5 +44,12 @@ describe('Landing', () => {
     cy.get('[note="C4"]')
     .should('have.text', '')
   })
+
+  it("Should not respond to key presses not assigned to synth object", () => {
+    cy.get('.keyboard')
+    .trigger('keydown', {keycode: 90})
+    .trigger('keydown', {keycode: 88})
+    .trigger('keydown', {keycode: 67})
+  })
  
 })
