@@ -181,7 +181,7 @@ export default function App() {
                   <p>Key Help:</p>
                   <EffectToggle
                     name='keyhelp'
-                    options={['on', '']}
+                    options={['on', 'off']}
                     labels={['On', 'Off']}
                     value={keyHelp}
                     handleClick={(e) => {

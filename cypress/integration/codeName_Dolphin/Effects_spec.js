@@ -1,6 +1,7 @@
 describe('Effects section', () => { 
   beforeEach(() => {
-    cy.visit('/synth');
+    cy.visit('http://localhost:3000/')
+    cy.get('h1').click()
     cy.viewport(1920, 975) 
   });
 
@@ -29,9 +30,17 @@ describe('Effects section', () => {
   });
 
   it('should allow the user to change the waveform type', () => {
-    cy.get('[name="distortion"]:input').as('anger');
-    cy.get('@anger').should('have.value', 0).invoke('val', 100).trigger('change')
-    cy.get('@anger').should('have.value', 100)
+    cy.get('[value="square"]:button')
+      .should('have.class', 'selected')
+    cy.get('[value="fmtriangle"]:button').click()
+      .should('have.class', 'selected')   
+  });  
+  
+  it('should allow the user to toggle keyhelp', () => {
+    cy.get('[value="on"]:button')
+      .should('have.class', 'selected')
+    cy.get('[value="off"]:button').click()
+      .should('have.class', 'selected')   
   });
 
 });
