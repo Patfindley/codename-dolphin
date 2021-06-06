@@ -1,5 +1,11 @@
 import styled from "styled-components";
 
+const AboutContainer = styled.h1`
+display: flex;
+flex-direction: column;
+justify-content: center;
+text-align: center;
+`
 
 const About = () => {
   return (
