@@ -3,7 +3,7 @@ import { useGLTF } from '@react-three/drei'
 
 export default function HomeButton(props) {
   const group = useRef()
-  const { nodes, materials } = useGLTF('/home.gltf')
+  const { nodes } = useGLTF('/home.gltf')
   return (
     <group ref={group} {...props} dispose={null}>
       <mesh

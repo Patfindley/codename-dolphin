@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { gsap, TweenLite, TimelineMax } from 'gsap';
+import { gsap } from 'gsap';
 import dolphinImg from '../../assets/dolphin.svg';
 import { convertRangeScale } from '../../util/rangeScaling';
 import './Dolphin.css';

@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useLayoutEffect } from 'react';
-import { Switch, Route, Link, Redirect } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Switch, Route,  Redirect } from 'react-router-dom';
 import * as Tone from 'tone';
 import './App.css';
 import toggleActive from '../../util/activateKeyUtil';
@@ -14,7 +14,7 @@ import Landing from '../Landing/Landing';
 import createSynth from '../SynthEngine/SynthEngine';
 import Scene from '../Scene/Scene';
 import Keyboard from '../Keyboard/Keyboard';
-import Key from '../Key/Key';
+// import Key from '../Key/Key';
 import EffectKnob from '../EffectKnob/EffectKnob';
 import EffectToggle from '../EffectToggle/EffectToggle';
 import Dolphin from '../Dolphin/Dolphin';
@@ -51,7 +51,7 @@ export default function App() {
   // USE TO MAKE ROTATE PHONE GO FULL SCREEN, NEED TO GET DEPENDENCY
   //   navigation.setOptions({headerShown: false});
   // }, [navigation]);
-  const [ready, setReady] = useState(false);
+  // const [ready, setReady] = useState(false);
 
   const [cameraPositions] = useState([cameraX, cameraY, cameraZ]);
 
@@ -80,7 +80,7 @@ export default function App() {
       }
     };
     window.addEventListener('keydown', triggerKeyDownPlay);
-  }, []);
+  }, [synth]);
 
   useEffect(() => {
     const triggerOnClickPlay = async (e) => {
@@ -95,7 +95,7 @@ export default function App() {
       }
     };
     window.addEventListener('click', triggerOnClickPlay);
-  }, []);
+  }, [synth]);
 
   useEffect(() => {
     oscillators.set({ detune: detune });

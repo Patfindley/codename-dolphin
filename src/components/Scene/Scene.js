@@ -9,8 +9,8 @@ import {
 import Box from './Box';
 import Tetrahedron from './Tetrahedron';
 import Sphere from './Sphere';
-import Plane from './Plane';
-import Home from './Home';
+// import Plane from './Plane';
+// import Home from './Home';
 import Lighting from './Lighting';
 import { convertRangeScale } from '../../util/rangeScaling';
 
