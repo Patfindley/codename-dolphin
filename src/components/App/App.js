@@ -75,7 +75,6 @@ export default function App() {
         synth.triggerAttackRelease(note, '8n');
         toggleActive(note);
         setCurrentNote(note);
-        // console.log(currentNote, String.fromCharCode(e.keyCode));
         setTimeout(() => setCurrentNote(''), 0);
         return;
       }
@@ -91,7 +90,6 @@ export default function App() {
         synth.triggerAttackRelease(note, '8n');
         toggleActive(note);
         setCurrentNote(note);
-        // console.log(currentNote, e);
         setTimeout(() => setCurrentNote(''), 0);
         return;
       }
