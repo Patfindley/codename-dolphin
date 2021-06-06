@@ -25,6 +25,12 @@ describe('Landing', () => {
     .should('have.css', 'background-color', 'rgb(255, 0, 0)' )
   })
 
+  it('Should have a "Key Help" toggle', () => {
+    cy.viewport('macbook-15')
+    .get('p')
+    .contains('Key Help')
+  })
+
   
  
 })
