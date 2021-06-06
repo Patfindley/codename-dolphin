@@ -22,9 +22,9 @@ describe('Landing', () => {
     cy.get('[note="D#4"]')
     .should('have.css', 'background-color', 'rgb(50, 58, 158)')
     cy.get('[note="D#4"]').click()
-    .should('have.css', 'background-color', 'rgb(255, 0, 0)' )
+    .should('not.eq', 'background-color', 'rgb(50, 58, 158)' )
   })
-
+  
   it('Should have a "Key Help" toggle', () => {
     cy.viewport('macbook-15')
     .get('p')
@@ -50,6 +50,11 @@ describe('Landing', () => {
     .trigger('keydown', {keycode: 90})
     .trigger('keydown', {keycode: 88})
     .trigger('keydown', {keycode: 67})
+    cy.get('.keyboard'). within(() => {
+      cy.get('.key')
+      .should('have.css', 'background-color', 'rgba(255, 255, 255, 0.847)')
+    })
   })
- 
+
 })
+ 
