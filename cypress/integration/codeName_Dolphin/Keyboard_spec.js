@@ -31,6 +31,12 @@ describe('Landing', () => {
     .contains('Key Help')
   })
 
+  it('Should have keys with visible note values', () => {
+    cy.viewport('macbook-15')
+    .get('[note="C4"]')
+    .contains('A')
+  })
+
   
  
 })
