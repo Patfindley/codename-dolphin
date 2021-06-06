@@ -37,6 +37,12 @@ describe('Landing', () => {
     .contains('A')
   })
 
-  
+  it('Should toggle key values on and off when clicked', () => {
+    cy.viewport('macbook-15')
+    .get('.key-help-toggle')
+    .get('[value=""]').click()
+    cy.get('[note="C4"]')
+    .should('have.text', '')
+  })
  
 })
