@@ -17,7 +17,6 @@ const LandingTitle = styled.h1`
   font-family: 'Bungee', cursive;
   cursor: crosshair;
 `
-
 const DolphinArm = styled.div`
   position: absolute;
   left: 53%;
@@ -34,7 +33,6 @@ const DolphinTitle = styled.img`
   left:150px;
   top: -50px;
 `
-
 
 const Landing = ({ audioCheck }) => {
   const clickAnimation = () => {
@@ -77,26 +75,6 @@ const Landing = ({ audioCheck }) => {
       </Link>
     </LandingContainer>
   );
-
-  // return (
-  //   <div className='landing-container'>
-  //     {!audioCheck && window.alert('Sorry, this browser does not support Web Audio, which is required to use the instrument. You can still mess around but it probably won\'t be as fun. Anyways, have a great day! 🤠')}
-  //     <DelayLink delay={1150} to='/synth'>
-  //       <h1 className='landing-title' onClick={clickAnimation}>
-  //         {' '}
-  //         Fuck It Up{' '}
-  //       </h1>
-  //     </DelayLink>
-  //     <div className='dolphin-arm'>
-  //       <img className='dolphin-title' src={dolphinImg} alt='dolphin' />
-  //     </div>
-  //     <Link to='/About'>
-  //       <h3>
-  //         About
-  //       </h3>
-  //     </Link>
-  //   </div>
-  // );
 };
 
 export default Landing;
