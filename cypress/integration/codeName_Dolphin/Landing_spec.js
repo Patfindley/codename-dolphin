@@ -1,5 +1,3 @@
-import { CylinderBufferGeometry } from "three"
-
 describe('Landing', () => {
   beforeEach(() => {
     cy.visit('')
