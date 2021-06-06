@@ -12,9 +12,8 @@ import Sphere from './Sphere';
 import Plane from './Plane';
 import Home from './Home';
 import Lighting from './Lighting';
-import { convertRangeScale, convertRangeValue } from '../../util/rangeScaling';
+import { convertRangeScale } from '../../util/rangeScaling';
 
-// soft Shadows
 softShadows();
 
 export default function Scene({
@@ -162,8 +161,6 @@ export default function Scene({
         colorManagement
         shadowMap
         camera={{
-          // position:
-          //   randomPositions[Math.floor(Math.random() * randomPositions.length)],
           position: [Math.random() * -5, Math.random() * 2, Math.random() * 4],
           fov: 100,
         }}
@@ -179,7 +176,6 @@ export default function Scene({
           saturation={0}
           fade
         />
-        {/* <Home position={[-20, 1, -20]} color='pink'/> */}
         <group>{[...shapeComponents]}</group>
       </Canvas>
     </main>

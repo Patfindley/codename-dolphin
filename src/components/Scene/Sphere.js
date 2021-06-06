@@ -25,13 +25,7 @@ export default function Sphere(props) {
         attach='geometry' 
         args={[1, 100, 100]} 
         color={hovered ? 'green' : props.color} />
-      {/* <icosahedronBufferGeometry
-        // attach='geometry' 
-        args={[1, 0]} 
-        // color={hovered ? 'green' : props.color} 
-        /> */}
         <meshStandardMaterial color={hovered ? 'green' : props.color} />
-      {/* <sphereBufferGeometry attach='geometry' args={[1, 1, 1]} /> */}
     </mesh>
   )
 }

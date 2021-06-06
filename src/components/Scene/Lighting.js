@@ -16,7 +16,6 @@ function Lighting() {
           shadow-camera-top={10}
           shadow-camera-bottom={-10}
         />
-          {/* A light to help illumnate the spinning boxes */}
         <pointLight position={[10, 0, -20]} intensity={0.3} />
         <pointLight position={[0, -10, 0]} intensity={1.3} />    
     </>
