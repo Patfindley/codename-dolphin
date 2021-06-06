@@ -4,7 +4,6 @@ describe('Keyboard', () => {
     cy.visit('')
     .get(".landing-container")
     .click()
-    cy.viewport(1920, 975) 
   })
 
   it('Should be at /synth path', () => {
@@ -39,6 +38,7 @@ describe('Keyboard', () => {
   })
 
   it('Should toggle key values on and off when clicked', () => {
+    cy.viewport(1920, 975) 
     cy.get('[value=""]:button').click()
     cy.get('[note="C4"]')
     .should('have.text', '')
