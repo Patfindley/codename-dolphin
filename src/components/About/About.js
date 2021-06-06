@@ -15,14 +15,34 @@ const Heading = styled.h1`
   font-family: 'Bungee', cursive;
 `
 const HowTo = styled.ol`
-  text-align: left;
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
   font-size: .70em;
+`
+const ListItem = styled.li`
+  text-align: left;
+`
+const ContributorWrap = styled.div`
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+  @media only screen and (max-width: 950px ) {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    // justify-content: space-around;
+  }
 `
 const Contributor = styled.a`
   font-family: 'Bungee', cursive;
   text-decoration: none;
   color: white;
-  font-size: 1em;
+  font-size: .8em;
   font-weight: 300;
 `
 
@@ -48,26 +68,24 @@ const About = () => {
 
   return (
     <AboutContainer>
-      <div>
       <Heading> How To: </Heading>
       <HowTo>
-        <li>Make sure the sound is on!</li>
-        <li>Play the synth by clicking/touching the keys, or try using your computer keyboard!</li>
-        <li>Morph the sound by playing with the effects sliders (if you have a scroll wheel, this can be used to change the sliders)</li>
-        <li>Look around by clicking & dragging the space behind the keyboard (holding shift will change your position)</li>
+        <ListItem>Make sure the sound is on!</ListItem>
+        <ListItem>Play the synth by clicking/touching the keys, or try using your computer keyboard!</ListItem>
+        <ListItem>Morph the sound by playing with the effects sliders (if you have a scroll wheel, this can be used to change the sliders)</ListItem>
+        <ListItem>Look around by clicking & dragging the space behind the keyboard (holding shift will change your position)</ListItem>
       </HowTo>
-      </div>
-      <div>
       <Link to='/synth' style={{ textDecoration: 'none', color: 'white'}}>
-        <h3 className="to-synth">Get Down with The Synthness</h3>
+        <h3 className="to-synth" style={{ fontFamily: 'Bungee, cursive' }}>Get Down With The Synthness</h3>
       </Link>
       <Heading>Contributors:</Heading>
+      <ContributorWrap>
          <Contributor href="https://github.com/mistercanderson" target="_blank">Chris Anderson</Contributor>
-         <br />
+         {/* <br /> */}
          <Contributor href="https://github.com/tysnj" target="_blank">Tyson McNutt</Contributor>
-         <br />
+         {/* <br /> */}
          <Contributor href="https://github.com/Patfindley" target="_blank" >Pat Findley</Contributor>
-      </div>
+      </ContributorWrap>
     </AboutContainer>
   )
 }
