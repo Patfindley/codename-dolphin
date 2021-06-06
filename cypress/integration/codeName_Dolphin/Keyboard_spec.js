@@ -39,9 +39,6 @@ describe('Keyboard', () => {
   })
 
   it('Should toggle key values on and off when clicked', () => {
-    // cy.viewport('macbook-15')
-    // cy.get('.key-help-toggle')
-    // .get('[value="off"]').click()
     cy.get('[value=""]:button').click()
     cy.get('[note="C4"]')
     .should('have.text', '')
