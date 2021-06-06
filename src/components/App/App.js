@@ -11,6 +11,7 @@ import {
 } from '../../util/rangeScaling';
 
 import Landing from '../Landing/Landing';
+import About from '../About/About'
 import createSynth from '../SynthEngine/SynthEngine';
 import Scene from '../Scene/Scene';
 import Keyboard from '../Keyboard/Keyboard';
@@ -135,6 +136,7 @@ export default function App() {
   return (
     <Switch>
       <Route exact path='/' render={() => <Landing audioCheck={audioCheck}/>} />
+      <Route exact path='/About' render={() => <About />} />
       <Route
         exact
         path='/synth'

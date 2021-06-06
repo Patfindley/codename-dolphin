@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import DelayLink from '../DelayLink/DelayLink.js';
-import Dolphin from '../Dolphin/Dolphin';
+import { Link } from 'react-router-dom'
 import { gsap } from 'gsap';
 import dolphinImg from '../../assets/dolphin.svg';
 import './Landing.css';
@@ -39,6 +39,11 @@ const Landing = ({ audioCheck }) => {
       <div className='dolphin-arm'>
         <img className='dolphin-title' src={dolphinImg} alt='dolphin' />
       </div>
+      <Link to='/About'>
+        <h3>
+          About
+        </h3>
+      </Link>
     </div>
   );
 };
