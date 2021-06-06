@@ -19,4 +19,18 @@ describe('Effects section', () => {
     cy.get('@volume').should('have.value', -9)
   });
 
+  it('should allow the user to adjust pitch effects', () => {
+    cy.visit('/synth');
+    cy.get('[name="detune"]:input').as('pitch');
+    cy.get('@pitch').should('have.value', 0).invoke('val', 1200).trigger('change')
+    cy.get('@pitch').should('have.value', 1200)
+  });
+
+  it('should allow the user to adjust distortion effects', () => {
+    cy.visit('/synth');
+    cy.get('[name="distortion"]:input').as('anger');
+    cy.get('@anger').should('have.value', 0).invoke('val', 100).trigger('change')
+    cy.get('@anger').should('have.value', 100)
+  });
+
 });
