@@ -1,25 +1,25 @@
 
-.landing-container {
+/* .landing-container {
   height: 100%;
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
-}
+} */
 
-.landing-title {
+/* .landing-title {
   font-family: 'Bungee', cursive;
   cursor: crosshair;
-}
+} */
 
-.dolphin-arm {
+/* .dolphin-arm {
   position: absolute;
   left: 53%;
   top: 50%;
   z-index: -1;
   user-select: none;
   pointer-events: none;
-}
+} */
 
 .dolphin-title {
   position: relative;
