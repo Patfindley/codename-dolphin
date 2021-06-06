@@ -15,10 +15,10 @@
 .dolphin-arm {
   position: absolute;
   left: 53%;
-  top: 50%;
+  top: 52%;
   z-index: -1;
   user-select: none;
-  pointer-events: none;
+  /* pointer-events: none; */
 }
 
 .dolphin-title {
