@@ -9,12 +9,11 @@ import {
 import Box from './Box';
 import Tetrahedron from './Tetrahedron';
 import Sphere from './Sphere';
-import Plane from './Plane';
-import Home from './Home';
+// import Plane from './Plane';
+// import Home from './Home';
 import Lighting from './Lighting';
-import { convertRangeScale, convertRangeValue } from '../../util/rangeScaling';
+import { convertRangeScale } from '../../util/rangeScaling';
 
-// soft Shadows
 softShadows();
 
 export default function Scene({
@@ -28,7 +27,7 @@ export default function Scene({
   const shapeAmount = 70;
   const spread = .5;
   const colors = ['#4B18E9', 'yellow', '#70D9B2', '#FF62B3'];
-  const [shakeIntensity, setshakeIntensity] = useState(
+  const [shakeIntensity, setShakeIntensity] = useState(
     convertRangeScale([0, 1], [0, shakeMaxIntensity], distortionWet)
   );
   const [shape, setShape] = useState('square');
@@ -101,7 +100,7 @@ export default function Scene({
   );
 
   useEffect(() => {
-    setshakeIntensity(
+    setShakeIntensity(
       convertRangeScale([0, 1], [0, shakeMaxIntensity], distortionWet)
     );
   }, [distortionWet]);
@@ -162,8 +161,6 @@ export default function Scene({
         colorManagement
         shadowMap
         camera={{
-          // position:
-          //   randomPositions[Math.floor(Math.random() * randomPositions.length)],
           position: [Math.random() * -5, Math.random() * 2, Math.random() * 4],
           fov: 100,
         }}
@@ -179,7 +176,6 @@ export default function Scene({
           saturation={0}
           fade
         />
-        {/* <Home position={[-20, 1, -20]} color='pink'/> */}
         <group>{[...shapeComponents]}</group>
       </Canvas>
     </main>

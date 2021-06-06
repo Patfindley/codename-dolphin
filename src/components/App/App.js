@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useLayoutEffect } from 'react';
-import { Switch, Route, Link, Redirect } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Switch, Route,  Redirect } from 'react-router-dom';
 import * as Tone from 'tone';
 import './App.css';
 import toggleActive from '../../util/activateKeyUtil';
@@ -14,7 +14,7 @@ import Landing from '../Landing/Landing';
 import createSynth from '../SynthEngine/SynthEngine';
 import Scene from '../Scene/Scene';
 import Keyboard from '../Keyboard/Keyboard';
-import Key from '../Key/Key';
+// import Key from '../Key/Key';
 import EffectKnob from '../EffectKnob/EffectKnob';
 import EffectToggle from '../EffectToggle/EffectToggle';
 import Dolphin from '../Dolphin/Dolphin';
@@ -51,7 +51,7 @@ export default function App() {
   // USE TO MAKE ROTATE PHONE GO FULL SCREEN, NEED TO GET DEPENDENCY
   //   navigation.setOptions({headerShown: false});
   // }, [navigation]);
-  const [ready, setReady] = useState(false);
+  // const [ready, setReady] = useState(false);
 
   const [cameraPositions] = useState([cameraX, cameraY, cameraZ]);
 
@@ -75,13 +75,12 @@ export default function App() {
         synth.triggerAttackRelease(note, '8n');
         toggleActive(note);
         setCurrentNote(note);
-        // console.log(currentNote, String.fromCharCode(e.keyCode));
         setTimeout(() => setCurrentNote(''), 0);
         return;
       }
     };
     window.addEventListener('keydown', triggerKeyDownPlay);
-  }, []);
+  }, [synth]);
 
   useEffect(() => {
     const triggerOnClickPlay = async (e) => {
@@ -91,13 +90,12 @@ export default function App() {
         synth.triggerAttackRelease(note, '8n');
         toggleActive(note);
         setCurrentNote(note);
-        // console.log(currentNote, e);
         setTimeout(() => setCurrentNote(''), 0);
         return;
       }
     };
     window.addEventListener('click', triggerOnClickPlay);
-  }, []);
+  }, [synth]);
 
   useEffect(() => {
     oscillators.set({ detune: detune });
@@ -105,7 +103,7 @@ export default function App() {
 
   useEffect(() => {
     synth.set({ oscillator: { type: oscType } });
-  }, [oscType]);
+  }, [synth, oscType]);
 
   useEffect(() => {
     filter.set({ frequency: cutoff });
@@ -133,103 +131,102 @@ export default function App() {
   const distRange = convertRangeScale([0, 1], [0, 100], distortionWet);
 
   return (
-    <Switch>
-      <Route exact path='/' render={() => <Landing audioCheck={audioCheck}/>} />
-      <Route
-        exact
-        path='/synth'
-        render={() => (
-          <div className='App'>
-            {screenWidth <= 480 && <RotateMessage screenWidth={screenWidth} />}
-            <section className='effects-section'>
-              <EffectKnob
-                name='distortion'
-                label='Angeryness'
-                min='0'
-                max='100'
-                value={distRange}
-                handleChange={(e) => {
-                  controlScroll(e, 6, distRange);
-                  setDistortionWet(
-                    convertRangeValue([0, 100], [0, 1], e.target.value)
-                  );
-                }}
-              />
-              <EffectKnob
-                name='detune'
-                label='Bendyness'
-                min='-1200'
-                max='1200'
-                value={detune}
-                handleChange={(e) => {
-                  controlScroll(e, 500, detune);
-                  setDetune(e.target.value);
-                }}
-                resetDetune={resetDetune}
-              />
-              <EffectToggle
-                name='oscillator type'
-                options={['amsine', 'square', 'fmtriangle']}
-                labels={['AM Sine', 'Square', 'FM Triangle']}
-                value={oscType}
-                handleClick={(e) => {
-                  setOscType(e.target.value);
-                }}
-              />
-              {screenWidth > 1024 && (
-                <div className='key-help-toggle'>
-                  <p>Key Help:</p>
-                  <EffectToggle
-                    name='keyhelp'
-                    options={['on', '']}
-                    labels={['On', 'Off']}
-                    value={keyHelp}
-                    handleClick={(e) => {
-                      setKeyHelp(e.target.value);
-                    }}
-                  />
-                </div>
-              )}
-              <EffectKnob
-                name='lpfilter'
-                label='Sharpyness'
-                min='500'
-                max='8000'
-                value={cutoff}
-                handleChange={(e) => {
-                  controlScroll(e, 400, cutoff);
-                  setCutoff(e.target.value);
-                }}
-              />
-              {screenWidth > 1024 && (
+    <>  
+      <Switch>
+        <Route exact path='/' render={() => <Landing audioCheck={audioCheck}/>} />
+        <Route
+          exact
+          path='/synth'
+          render={() => (
+            <div className='App'>
+              {screenWidth <= 480 && <RotateMessage screenWidth={screenWidth} />}
+              <section className='effects-section'>
                 <EffectKnob
-                  name='volume'
-                  label='Volumeyness'
-                  min='-30'
-                  max='-9'
-                  value={gain}
+                  name='distortion'
+                  label='Angeryness'
+                  min='0'
+                  max='100'
+                  value={distRange}
                   handleChange={(e) => {
-                    controlScroll(e, 1, gain);
-                    setGain(e.target.value);
+                    controlScroll(e, 6, distRange);
+                    setDistortionWet(
+                      convertRangeValue([0, 100], [0, 1], e.target.value)
+                    );
                   }}
                 />
-              )}
-            </section>
-            <Keyboard screenWidth={screenWidth} keyHelp={keyHelp} />
-            <Dolphin detune={detune} cutoff={cutoff} gain={gain} />
-            <Scene
-              wave={oscType}
-              currentNote={currentNote}
-              distortionWet={distortionWet}
-              cameraPositions={cameraPositions}
-              // onCompile={() => {
-              //   setReady(true)
-              // }
-              // }
-            />
-          </div>
-        )}
-      />
-    </Switch>
+                <EffectKnob
+                  name='detune'
+                  label='Bendyness'
+                  min='-1200'
+                  max='1200'
+                  value={detune}
+                  handleChange={(e) => {
+                    controlScroll(e, 500, detune);
+                    setDetune(e.target.value);
+                  }}
+                  resetDetune={resetDetune}
+                />
+                <EffectToggle
+                  name='oscillator type'
+                  options={['amsine', 'square', 'fmtriangle']}
+                  labels={['AM Sine', 'Square', 'FM Triangle']}
+                  value={oscType}
+                  handleClick={(e) => {
+                    setOscType(e.target.value);
+                  }}
+                />
+                {screenWidth > 1024 && (
+                  <div className='key-help-toggle'>
+                    <p>Key Help:</p>
+                    <EffectToggle
+                      name='keyhelp'
+                      options={['on', '']}
+                      labels={['On', 'Off']}
+                      value={keyHelp}
+                      handleClick={(e) => {
+                        setKeyHelp(e.target.value);
+                      }}
+                    />
+                  </div>
+                )}
+                <EffectKnob
+                  name='lpfilter'
+                  label='Sharpyness'
+                  min='500'
+                  max='8000'
+                  value={cutoff}
+                  handleChange={(e) => {
+                    controlScroll(e, 400, cutoff);
+                    setCutoff(e.target.value);
+                  }}
+                />
+                {screenWidth > 1024 && (
+                  <EffectKnob
+                    name='volume'
+                    label='Volumeyness'
+                    min='-30'
+                    max='-9'
+                    value={gain}
+                    handleChange={(e) => {
+                      controlScroll(e, 1, gain);
+                      setGain(e.target.value);
+                    }}
+                  />
+                )}
+              </section>
+              <Keyboard screenWidth={screenWidth} keyHelp={keyHelp} />
+              <Dolphin detune={detune} cutoff={cutoff} gain={gain} />
+              <Scene
+                wave={oscType}
+                currentNote={currentNote}
+                distortionWet={distortionWet}
+                cameraPositions={cameraPositions}
+              />
+            </div>
+          )}
+        />
+      <Redirect to="/" />
+      </Switch>
+    </>
   );
 }
