@@ -7,6 +7,16 @@ justify-content: center;
 text-align: center;
 `
 
+const HowTo = styled.h1`
+    
+`
+const Contributor = styled.a`
+    text-decoration: none;
+    color: white;
+    font-size: .5em;
+    font-weight: 300;
+  `
+
 const About = () => {
   return (
     <AboutContainer>
