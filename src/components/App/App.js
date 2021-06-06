@@ -103,7 +103,7 @@ export default function App() {
 
   useEffect(() => {
     synth.set({ oscillator: { type: oscType } });
-  }, [oscType]);
+  }, [synth, oscType]);
 
   useEffect(() => {
     filter.set({ frequency: cutoff });

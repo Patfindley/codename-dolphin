@@ -27,7 +27,7 @@ export default function Scene({
   const shapeAmount = 70;
   const spread = .5;
   const colors = ['#4B18E9', 'yellow', '#70D9B2', '#FF62B3'];
-  const [shakeIntensity, setshakeIntensity] = useState(
+  const [shakeIntensity, setShakeIntensity] = useState(
     convertRangeScale([0, 1], [0, shakeMaxIntensity], distortionWet)
   );
   const [shape, setShape] = useState('square');
@@ -100,7 +100,7 @@ export default function Scene({
   );
 
   useEffect(() => {
-    setshakeIntensity(
+    setShakeIntensity(
       convertRangeScale([0, 1], [0, shakeMaxIntensity], distortionWet)
     );
   }, [distortionWet]);
