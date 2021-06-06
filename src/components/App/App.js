@@ -46,13 +46,20 @@ export default function App() {
   const [cameraX, setCameraX] = useState(Math.random() * 5);
   const [cameraY, setCameraY] = useState(Math.random() * 6);
   const [cameraZ, setCameraZ] = useState(Math.random() * 7);
+  const [audioCheck, setAudioCheck] = useState(true)
   // useLayoutEffect(() => {
-    // USE TO MAKE ROTATE PHONE GO FULL SCREEN, NEED TO GET DEPENDENCY
+  // USE TO MAKE ROTATE PHONE GO FULL SCREEN, NEED TO GET DEPENDENCY
   //   navigation.setOptions({headerShown: false});
   // }, [navigation]);
   const [ready, setReady] = useState(false);
 
   const [cameraPositions] = useState([cameraX, cameraY, cameraZ]);
+
+  useEffect(() => {
+    if (!window.BaseAudioContext) {
+      setAudioCheck(false)
+    }
+  }, [])
 
   const handleResize = () => setScreenWidth(window.innerWidth);
 
@@ -127,7 +134,7 @@ export default function App() {
 
   return (
     <Switch>
-      <Route exact path='/' render={() => <Landing />} />
+      <Route exact path='/' render={() => <Landing audioCheck={audioCheck}/>} />
       <Route
         exact
         path='/synth'
