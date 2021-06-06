@@ -225,8 +225,8 @@ export default function App() {
             </div>
           )}
         />
-      </Switch>
       <Redirect to="/" />
+      </Switch>
     </>
   );
 }
