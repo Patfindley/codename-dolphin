@@ -1,12 +1,4 @@
 import { gsap } from 'gsap';
-import { BooleanKeyframeTrack } from 'three';
-
-// const toggleActiveClick = (note, e) => {
-//   const keyboard = document.querySelector('.keyboard');
-//   const keys = Array.from(keyboard.childNodes);
-//   const key = keys.find((k) => note === k.attributes.note.value);
-//   keyAnimation(key)
-// };
 
 const toggleActive = (note) => {
   const keyboard = document.querySelector('.keyboard');
