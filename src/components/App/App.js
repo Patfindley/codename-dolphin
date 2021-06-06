@@ -222,10 +222,6 @@ export default function App() {
               currentNote={currentNote}
               distortionWet={distortionWet}
               cameraPositions={cameraPositions}
-              // onCompile={() => {
-              //   setReady(true)
-              // }
-              // }
             />
           </div>
         )}
