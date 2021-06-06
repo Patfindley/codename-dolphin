@@ -68,8 +68,8 @@ const Landing = ({ audioCheck }) => {
       <DolphinArm className='dolphin-arm'>
         <DolphinTitle className='dolphin-title' src={dolphinImg} alt='dolphin' />
       </DolphinArm>
-      <Link to='/About'>
-        <h3>
+      <Link to='/About' style={{ textDecoration: 'none' }}>
+        <h3 style={{ color: 'white' }}>
           About
         </h3>
       </Link>

@@ -3,6 +3,8 @@ import { gsap } from 'gsap';
 import React, { useEffect, useState } from 'react'
 
 const AboutContainer = styled.h1`
+height: 95%;
+overflow-y: scroll;
 display: flex;
 flex-direction: column;
 justify-content: center;
@@ -25,9 +27,21 @@ const About = () => {
     <AboutContainer>
       <div>
       <Heading> How To: </Heading>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+      <p>Mobile: Make sure your sound is on!
+        <br />
+        Play synth by touching, clicking, or typing
+        <br />
+        <em>Toggles</em>
+        <br />
+        'Angeryness' will adjust gain the Synth's gain
+        <br />
+        'Bendyness' will detune the synth
+        <br />
+        'Sharpyness' will add a lowpass filter
+        <br /> 
+
+
+      </p>
       </div>
       <div>
       <Heading>Contributors:</Heading>
