@@ -1,9 +1,7 @@
 
 describe('Keyboard', () => {
   beforeEach(() => {
-    cy.visit('')
-    .get("[data-cy='landing-container']")
-    .click()
+    cy.visit('/synth')
   })
 
   it('Should be at /synth path', () => {
@@ -15,7 +13,7 @@ describe('Keyboard', () => {
     .should('have.css', 'background-color', 'rgba(255, 255, 255, 0.847)')
     .get('[note=F4]')
     .trigger('keydown', { keyCode: 70})
-    .should('have.css', 'background-color', 'rgb(255, 0, 0)' )
+    .should('not.have.css', 'background-color', 'rgba(255, 255, 255, 0.847)' )
   })
 
   it('Should respond to a click or touch', () => {
