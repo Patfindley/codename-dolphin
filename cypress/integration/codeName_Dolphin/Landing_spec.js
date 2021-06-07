@@ -20,13 +20,13 @@ describe('Landing', () => {
   it('Should reveal a majestic dolphin leaping over title', () => {
     cy.get(".dolphin-title")
     .should("have.css", "opacity", '0')
-    .get("[data-cy='landing-container']")
+    .get("[data-cy='landing-title']")
     .click()
     .should("have.css", "opacity", '1')
   }) 
 
   it('Should redirect to /synth', () => {
-    cy.get("[data-cy='landing-container']")
+    cy.get("[data-cy='landing-title']")
     .click()
     .url().should('include', '/synth')
   })

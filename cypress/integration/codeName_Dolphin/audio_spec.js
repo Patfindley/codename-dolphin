@@ -21,25 +21,4 @@ describe('Web Audio', () => {
         "Sorry, this browser does not support Web Audio, which is required to use the instrument. You can still mess around but it probably won't be as fun. Anyways, have a great day! 🤠"
       );
   });
-
-  it.skip('Check this out', () => {
-    cy.visit('/synth');
-    cy.get('.key').first().click();
-    cy.wait(500);
-    cy.get('[note=E4]').click();
-    cy.wait(500);
-    cy.get('[note=G4]').first().click();
-    cy.wait(500);
-    cy.get('[note=C5]').first().click();
-    cy.wait(500);
-    cy.get('[note=E5]').first().click();
-    cy.wait(500);
-    cy.get('[note=C5]').first().click();
-    cy.wait(500);
-    cy.get('[note=G4]').first().click();
-    cy.wait(500);
-    cy.get('[note=E4]').click();
-    cy.wait(500);
-    cy.get('.key').first().click();
-  });
 });

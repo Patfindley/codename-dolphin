@@ -61,7 +61,7 @@ const Landing = ({ audioCheck }) => {
   });
 
   return (
-    <LandingContainer data-cy="landing-container">
+    <LandingContainer>
       {!audioCheck && window.alert('Sorry, this browser does not support Web Audio, which is required to use the instrument. You can still mess around but it probably won\'t be as fun. Anyways, have a great day! 🤠')}
       <DelayLink delay={1150} to='/synth'>
         <LandingTitle data-cy="landing-title" className='landing-title' onClick={clickAnimation}>
