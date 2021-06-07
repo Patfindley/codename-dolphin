@@ -229,10 +229,11 @@ export default function App() {
               // }
               // }
             />
-            {/* <div>
-              <Link to='/' style={{ textDecoration: 'none', color: 'white'}}>
-              Home
-            </div> */}
+            <Link to='/About' >
+              <div>
+                <h1 style={{position: 'fixed', bottom: 0, left: '1%'}}>How To</h1>
+              </div>
+            </Link>
           </div>
         )}
       />
