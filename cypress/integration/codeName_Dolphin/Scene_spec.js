@@ -30,7 +30,7 @@ describe('Scene Render', () => {
     cy.get('main').get('.main')
       .should('have.css', 'z-index', '-100')
     cy.get('main').get('.main').get('div').get('canvas')
-      .should('have.attr', 'style', 'display: block; width: 1920px; height: 975.455px;')
+      .should('have.attr', 'style', 'display: block; width: 1920px; height: 975px;')
   });
 
   it('should move the dolphin when the value changes', () => {
