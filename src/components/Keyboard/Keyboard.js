@@ -1,9 +1,35 @@
 import React from 'react';
+import styled from "styled-components";
 import Key from '../Key/Key.js';
-import './Keyboard.css';
 import '../../util/keyboardSwitch';
 import notesUtil from '../../util/notesUtil';
 import computerKeys from '../../util/computerKeys';
+
+const KeyboardDisplay = styled.div`
+  width: 100%;
+  min-width: 1045px;
+  height: 15em;
+  display: flex;
+  flex-direction: row;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  margin: auto;
+  z-index: 9999;
+  padding: 0 5em;
+  box-sizing: border-box;
+  @media screen and (max-width: 480px) {
+    display: none;
+  }
+  @media screen and (max-width: 1024px) {
+    bottom: -20%;
+    width: 100%;
+    min-width: auto;
+    padding: 1em
+  }
+`
 
 const Keyboard = ({screenWidth, keyHelp}) => {
   const notes = notesUtil.map((n) => n.split(' ').join(''));
@@ -31,7 +57,7 @@ const Keyboard = ({screenWidth, keyHelp}) => {
   
   const keys = mapNotes(notes);
 
-  return <div className='keyboard'>{keys}</div>;
+  return <KeyboardDisplay className='keyboard'>{keys}</KeyboardDisplay>;
 };
 
 export default Keyboard;
