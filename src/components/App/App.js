@@ -47,7 +47,6 @@ export default function App() {
   const [cameraY, setCameraY] = useState(Math.random() * 6);
   const [cameraZ, setCameraZ] = useState(Math.random() * 7);
   const [audioCheck, setAudioCheck] = useState(true);
-
   const [cameraPositions] = useState([cameraX, cameraY, cameraZ]);
 
   useEffect(() => {
@@ -132,7 +131,7 @@ export default function App() {
         path='/'
         render={() => <Landing audioCheck={audioCheck} />}
       />
-      <Route exact path='/About' render={() => <About />}></Route>
+      <Route exact path='/about' render={() => <About />}></Route>
       <Route
         exact
         path='/synth'
@@ -221,12 +220,13 @@ export default function App() {
               distortionWet={distortionWet}
               cameraPositions={cameraPositions}
             />
-            <Link to='/About'>
-              <div>
-                <h1 className='how-to-button' style={{ position: 'fixed', bottom: '1%', left: '1%' }}>
+            <Link to='/about'>
+                <button
+                  className='how-to-button'
+                  style={{ background: 'transparent', border: 'none', cursor: 'pointer', position: 'fixed', bottom: '4%', left: '4%', zIndex: 9999}}
+                >
                   How To Play
-                </h1>
-              </div>
+                </button>
             </Link>
           </div>
         )}

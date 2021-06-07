@@ -6,11 +6,22 @@ import React, { useEffect } from 'react';
 const AboutContainer = styled.div`
   height: 100%;
   width: 100%;
-  overflow-y: scroll;
+  overflow: scroll;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-around;
   text-align: center;
+  box-sizing: border-box;
+  padding: 7em 3em 3em 3em;
+  overflow-x: hidden;
+  @media only screen and (max-width: 1024px) {
+    padding-top: 13em;
+    padding-bottom: 3em;
+  }
+  @media only screen and (max-width: 480px) {
+    padding-top: 7em;
+    padding-bottom: 3em;
+  }
 `;
 const Heading = styled.h1`
   font-family: 'Bungee', cursive;
@@ -18,17 +29,23 @@ const Heading = styled.h1`
   font-size: 2em;
 `;
 const HowTo = styled.div`
-  width: 100%;
+  width: 50%;
+  align-self: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
   font-size: 0.7em;
+  box-sizing: border-box;
+  @media only screen and (max-width: 1024px) {
+    width: 70%
+  }
 `;
 const ListItem = styled.p`
   font-size: 1.8em;
   text-align: left;
-  margin: 1em;
+  margin: 1em 0;
+  color: lightcyan;
   @media only screen and (max-width: 1024px) {
     font-size: 1em;
   }
@@ -42,9 +59,13 @@ const ContributorWrap = styled.div`
 const Contributor = styled.a`
   font-family: 'Bungee', cursive;
   text-decoration: none;
-  color: white;
+  color: aquamarine;
   font-size: 0.8em;
   font-weight: 300;
+  margin: 1em 0;
+  &:hover {
+    color: gold
+  }
 `;
 
 const About = () => {
@@ -67,10 +88,10 @@ const About = () => {
 
   return (
     <AboutContainer>
-      <Heading> How To: </Heading>
+      <Heading> How To Play: </Heading>
       <HowTo>
         <ListItem>
-          Make sure the sound is on! (Also, rotate your phone horizontally if
+          Make sure the sound is on! (also, rotate your phone horizontally if
           you're using one)
         </ListItem>
         <ListItem>
@@ -85,14 +106,17 @@ const About = () => {
           Look around by clicking & dragging the space behind the keyboard
           (holding shift will change your position)
         </ListItem>
+        <ListItem>
+          If the keys stay red when you're playing, slow down, hot shot!
+        </ListItem>
       </HowTo>
       <Link to='/synth' style={{ textDecoration: 'none', color: 'white' }}>
         <h3
           className='to-synth'
           style={{
             fontFamily: 'Bungee, cursive',
-            fontSize: '3em',
-            margin: '2 0',
+            fontSize: '2em',
+            margin: '1em 0',
           }}
         >
           Get Down With The Synthness

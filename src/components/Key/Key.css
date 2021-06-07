@@ -48,3 +48,10 @@
     margin-top: 150px;  
   }
 }
+
+@media screen and (max-height: 360px) {
+  .key {
+    height: 40vh;
+    margin-top: 2em;
+  }
+}
