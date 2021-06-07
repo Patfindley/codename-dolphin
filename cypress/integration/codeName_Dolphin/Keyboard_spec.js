@@ -2,7 +2,7 @@
 describe('Keyboard', () => {
   beforeEach(() => {
     cy.visit('')
-    .get(".landing-container")
+    .get("[data-cy='landing-container']")
     .click()
   })
 
