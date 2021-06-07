@@ -1,7 +1,7 @@
 .rotate-text {
   height: 0;
   background: rgba(0, 0, 0, 0.486);
-  color: rgb(75, 235, 235);
+  color: rgb(0, 255, 242);
   width: 100%;
   z-index: 999;
   position: relative;

@@ -91,7 +91,7 @@ const About = () => {
       <Heading> How To Play: </Heading>
       <HowTo>
         <ListItem>
-          Make sure the sound is on! (Also, rotate your phone horizontally if
+          Make sure the sound is on! (also, rotate your phone horizontally if
           you're using one)
         </ListItem>
         <ListItem>

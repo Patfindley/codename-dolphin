@@ -221,14 +221,12 @@ export default function App() {
               cameraPositions={cameraPositions}
             />
             <Link to='/about'>
-              <div>
-                <h1
+                <button
                   className='how-to-button'
-                  style={{ position: 'fixed', bottom: '1%', left: '1%'}}
+                  style={{ background: 'transparent', border: 'none', cursor: 'pointer', position: 'fixed', bottom: '4%', left: '4%', zIndex: 9999}}
                 >
                   How To Play
-                </h1>
-              </div>
+                </button>
             </Link>
           </div>
         )}

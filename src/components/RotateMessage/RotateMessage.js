@@ -7,8 +7,8 @@ export default function RotateMessage({ screenWidth }) {
     const tl = gsap.timeline({ repeat: -1, yoyo: true });
     tl.fromTo(
       '.rotate-text',
-      { y: 325, rotation: -15, scale: 1.5},
-      { y: 325, rotation: 25, scale: 1.5}
+      { y: 325, x: 0, rotation: -15, scale: 1.5},
+      { y: 325, x: 13, rotation: 25, scale: 1.5}
     );
   }, [screenWidth]);
   return (

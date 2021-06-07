@@ -64,6 +64,7 @@
 @media screen and (max-width: 1024px) {
   .effects-section {
     justify-content: space-around;
+    height: 4em;
   }
 
   .effects-section > .effect-knob > input[type='range'] {
