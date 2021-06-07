@@ -5,9 +5,9 @@ import '../../util/keyboardSwitch';
 import notesUtil from '../../util/notesUtil';
 import computerKeys from '../../util/computerKeys';
 
-const Keyboard = ({screenWidth, keyHelp}) => {
-  const notes = notesUtil.map((n) => n.split(' ').join(''));
-  
+const Keyboard = ({ screenWidth, keyHelp }) => {
+  const notes = notesUtil;
+
   const mapNotes = (notes) => {
     const noteIsSharp = (note) => {
       return note.includes('#');
@@ -15,7 +15,7 @@ const Keyboard = ({screenWidth, keyHelp}) => {
     return notes.map((note, index) => {
       let name;
       if (screenWidth < 1024) {
-        // name = '👇'; could put different symbol on mobile
+        name = '';
       } else {
         name = computerKeys[index];
       }
@@ -28,7 +28,7 @@ const Keyboard = ({screenWidth, keyHelp}) => {
       }
     });
   };
-  
+
   const keys = mapNotes(notes);
 
   return <div className='keyboard'>{keys}</div>;

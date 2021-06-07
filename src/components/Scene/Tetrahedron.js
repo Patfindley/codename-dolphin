@@ -1,13 +1,13 @@
-import { useFrame } from '@react-three/fiber'
-import React, { useRef, useState } from 'react'
+import { useFrame } from '@react-three/fiber';
+import React, { useRef, useState } from 'react';
 
 export default function Tetrahedron(props) {
-  const mesh = useRef()
-  const [hovered, setHover] = useState(false)
-  const [active, setActive] = useState(false)
+  const mesh = useRef();
+  const [hovered, setHover] = useState(false);
+  const [active, setActive] = useState(false);
 
-  useFrame(() => (mesh.current.rotation.x += 0.03))
-  useFrame(() => (mesh.current.rotation.y += 0.01))
+  useFrame(() => (mesh.current.rotation.x += 0.03));
+  useFrame(() => (mesh.current.rotation.y += 0.01));
 
   return (
     <mesh
@@ -16,12 +16,16 @@ export default function Tetrahedron(props) {
       color={props.color}
       ref={mesh}
       scale={active ? 1.5 : 1}
-      onClick={(e) => setActive(!active)}
-      onPointerOver={(e) => setHover(true)}
-      onPointerOut={(e) => setHover(false)}>
+      onClick={() => setActive(!active)}
+      onPointerOver={() => setHover(true)}
+      onPointerOut={() => setHover(false)}
+    >
       <tetrahedronGeometry attach='geometry' args={[1, 0, 1]} />
-      <meshStandardMaterial color={hovered ? 'green' : props.color} />
+      <meshStandardMaterial
+        color={props.color}
+        opacity={hovered ? 0.6 : 1}
+        transparent={hovered ? true : false}
+      />
     </mesh>
-  )
+  );
 }
-
