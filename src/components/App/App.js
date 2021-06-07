@@ -229,6 +229,10 @@ export default function App() {
               // }
               // }
             />
+            {/* <div>
+              <Link to='/' style={{ textDecoration: 'none', color: 'white'}}>
+              Home
+            </div> */}
           </div>
         )}
       />

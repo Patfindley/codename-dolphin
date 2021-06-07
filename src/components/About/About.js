@@ -5,11 +5,19 @@ import React, { useEffect, useState } from 'react'
 
 const AboutContainer = styled.h1`
 height: 95%;
+padding-top: 40px;
 overflow-y: scroll;
 display: flex;
 flex-direction: column;
 justify-content: center;
 text-align: center;
+
+@media only screen and (max-width: 950px ) {
+  padding-top: 200px
+}
+@media only screen and (max-width: 375px ) {
+  padding-top: 200px
+}
 `
 const Heading = styled.h1`
   font-family: 'Bungee', cursive;
@@ -81,9 +89,7 @@ const About = () => {
       <Heading>Contributors:</Heading>
       <ContributorWrap>
          <Contributor href="https://github.com/mistercanderson" target="_blank">Chris Anderson</Contributor>
-         {/* <br /> */}
          <Contributor href="https://github.com/tysnj" target="_blank">Tyson McNutt</Contributor>
-         {/* <br /> */}
          <Contributor href="https://github.com/Patfindley" target="_blank" >Pat Findley</Contributor>
       </ContributorWrap>
     </AboutContainer>

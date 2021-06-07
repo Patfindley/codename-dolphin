@@ -61,8 +61,7 @@ const Landing = ({ audioCheck }) => {
       {!audioCheck && window.alert('Sorry, this browser does not support Web Audio, which is required to use the instrument. You can still mess around but it probably won\'t be as fun. Anyways, have a great day! 🤠')}
       <DelayLink delay={1150} to='/synth'>
         <LandingTitle className='landing-title' onClick={clickAnimation}>
-          {' '}
-          Fuck It Up{' '}
+          Get Down With The Synthness
         </LandingTitle>
       </DelayLink>
       <DolphinArm className='dolphin-arm'>
