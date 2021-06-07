@@ -9,8 +9,6 @@ import {
 import Box from './Box';
 import Tetrahedron from './Tetrahedron';
 import Sphere from './Sphere';
-// import Plane from './Plane';
-// import Home from './Home';
 import Lighting from './Lighting';
 import { convertRangeScale } from '../../util/rangeScaling';
 
@@ -24,8 +22,8 @@ export default function Scene({
 }) {
   const shakeTime = 0.7;
   const shakeMaxIntensity = 0.2;
-  const shapeAmount = 70;
-  const spread = .5;
+  const shapeAmount = 40;
+  const spread = 2;
   const colors = ['#4B18E9', 'yellow', '#70D9B2', '#FF62B3'];
   const [shakeIntensity, setShakeIntensity] = useState(
     convertRangeScale([0, 1], [0, shakeMaxIntensity], distortionWet)
@@ -53,6 +51,9 @@ export default function Scene({
         return r.map((p, i) => {
           if (i === 1) {
             return (p = -p);
+          } 
+          else {
+            return p
           }
         });
       } else {

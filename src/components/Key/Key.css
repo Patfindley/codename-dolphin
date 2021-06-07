@@ -33,30 +33,6 @@
   z-index: 2;
 }
 
-.active {
-  /* background: linear-gradient(
-    0deg,
-    #ff0000,
-    #ffac00,
-    #fff100,
-    #00bff0,
-    #00f6ff
-  );
-  background-size: 1000% 1000%;
-  background-position: top;
-  animation: rainbow 0.5s cubic-bezier(0.62, 0.6, 0.55, 0.51) infinite;
-}
-
- @keyframes rainbow {
-  0% {
-    background-position: 88% 0%;
-  }
-  100% {
-    background-position: 13% 100%;
-  }
-} */
-}
-
 @media screen and (max-width: 1024px) {
   .sharp {
     flex-grow: .9;
@@ -70,5 +46,12 @@
   .note-display {
     font-size: 10px;
     margin-top: 150px;  
+  }
+}
+
+@media screen and (max-height: 360px) {
+  .key {
+    height: 40vh;
+    margin-top: 2em;
   }
 }

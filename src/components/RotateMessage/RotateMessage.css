@@ -1,12 +1,9 @@
 .rotate-text {
-  background: rgba(209, 90, 77, 0.452);
+  height: 0;
+  background: rgba(0, 0, 0, 0.486);
+  color: rgb(0, 255, 242);
   width: 100%;
   z-index: 999;
   position: relative;
+  text-shadow: 0px 1px 3px rgba(0, 12, 11, 0.938);
 }
-
-/* @media screen and (max-width: 480px) {
-  .rotate-text {
-    display: none;
-  }
-} */

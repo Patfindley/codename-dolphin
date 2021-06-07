@@ -10,8 +10,7 @@ const keyboardSwitch = (e) => {
   }
   if (keyCodes.includes(e.keyCode)) {
     const index = keyCodes.indexOf(e.keyCode);
-    const note = notesUtil[index];
-    return note.split(' ').join('');
+    return notesUtil[index];
   }
 };
 

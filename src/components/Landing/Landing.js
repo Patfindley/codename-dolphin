@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react';
 import DelayLink from '../DelayLink/DelayLink.js';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import { gsap } from 'gsap';
-import styled from "styled-components";
+import styled from 'styled-components';
 import dolphinImg from '../../assets/dolphin.svg';
-import './Landing.css';
 
 const LandingContainer = styled.div`
   height: 100%;
@@ -12,11 +11,16 @@ const LandingContainer = styled.div`
   align-items: center;
   flex-direction: column;
   justify-content: center;
-`
+  box-sizing: border-box;
+  margin: 0 2em;
+`;
 const LandingTitle = styled.h1`
+  font-size: 3em;
   font-family: 'Bungee', cursive;
   cursor: crosshair;
-`
+  width: 40%
+  text-align: center
+`;
 const DolphinArm = styled.div`
   position: absolute;
   left: 53%;
@@ -24,15 +28,15 @@ const DolphinArm = styled.div`
   z-index: -1;
   user-select: none;
   pointer-events: none;
-`
+`;
 const DolphinTitle = styled.img`
   position: relative;
   opacity: 0;
   width: 300px;
   height: 300px;
-  left:150px;
+  left: 150px;
   top: -50px;
-`
+`;
 
 const Landing = ({ audioCheck }) => {
   const clickAnimation = () => {
@@ -65,11 +69,21 @@ const Landing = ({ audioCheck }) => {
         </LandingTitle>
       </DelayLink>
       <DolphinArm className='dolphin-arm'>
-        <DolphinTitle className='dolphin-title' src={dolphinImg} alt='dolphin' />
+        <DolphinTitle
+          className='dolphin-title'
+          src={dolphinImg}
+          alt='dolphin'
+        />
       </DolphinArm>
-      <Link to='/About' style={{ textDecoration: 'none' }}>
-        <h3 style={{ color: 'white' }}>
-          About
+      <Link to='/about' style={{ textDecoration: 'none' }}>
+        <h3
+          style={{
+            color: 'white',
+            marginTop: '1em',
+            fontSize: '2em',
+          }}
+        >
+          How To Play
         </h3>
       </Link>
     </LandingContainer>

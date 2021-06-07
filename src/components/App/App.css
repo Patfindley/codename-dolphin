@@ -53,9 +53,18 @@
   min-width: 152px;
 }
 
+.how-to-button {
+  color: #323A9E
+}
+
+.how-to-button:hover {
+  color: gold
+}
+
 @media screen and (max-width: 1024px) {
   .effects-section {
     justify-content: space-around;
+    height: 4em;
   }
 
   .effects-section > .effect-knob > input[type='range'] {
@@ -65,10 +74,9 @@
   .effects-section > .effect-toggle > button {
     padding: 0.5em;
   }
-
-  /* .key-help-toggle {
-    display: none;
-  } */
+  .how-to-button {
+    font-size: 1em
+  }
 }
 
 @media screen and (max-width: 480px) {

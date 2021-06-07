@@ -8,16 +8,11 @@
   left: 0;
   right: 0;
   bottom: 0;
-  top: 0;
-  margin: auto;
-  z-index: 9999;
+  top: 40%;
+  z-index: 9998;
   padding: 0 5em;
   box-sizing: border-box;
 }
-
-/* .keyboard * {
-  background-color: transparent;
-} */
 
 @media screen and (max-width: 480px) {
   .keyboard {
@@ -27,7 +22,7 @@
 
 @media screen and (max-width: 1024px) {
   .keyboard {
-    bottom: -20%;
+    top: 19%;
     width: 100%;
     min-width: auto;
     padding: 1em
