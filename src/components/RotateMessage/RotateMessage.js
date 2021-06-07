@@ -12,6 +12,6 @@ export default function RotateMessage({ screenWidth }) {
     );
   }, [screenWidth]);
   return (
-    <p className='rotate-text'>Rotate Me! ⤵</p>
+    <p className='rotate-text'>Rotate Me! 📱 ⤵</p>
   );
 }
