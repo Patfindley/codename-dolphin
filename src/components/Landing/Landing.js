@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import { gsap } from 'gsap';
 import styled from "styled-components";
 import dolphinImg from '../../assets/dolphin.svg';
-import './Landing.css';
 
 const LandingContainer = styled.div`
   height: 100%;
