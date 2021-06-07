@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Switch, Route, Redirect, Link } from 'react-router-dom';
+import { FullScreen, useFullScreenHandle } from 'react-full-screen';
 import * as Tone from 'tone';
 import './App.css';
 import toggleActive from '../../util/activateKeyUtil';
@@ -139,82 +140,84 @@ export default function App() {
         render={() => (
           <div className='App'>
             {screenWidth <= 480 && <RotateMessage screenWidth={screenWidth} />}
-            <section className='effects-section'>
-              <EffectKnob
-                name='distortion'
-                label='Angeryness'
-                min='0'
-                max='100'
-                value={distRange}
-                handleChange={(e) => {
-                  controlScroll(e, 6, distRange);
-                  setDistortionWet(
-                    convertRangeValue([0, 100], [0, 1], e.target.value)
-                  );
-                }}
-              />
-              <EffectKnob
-                name='detune'
-                label='Bendyness'
-                min='-1200'
-                max='1200'
-                value={detune}
-                handleChange={(e) => {
-                  controlScroll(e, 500, detune);
-                  setDetune(e.target.value);
-                }}
-                resetDetune={resetDetune}
-              />
-              <EffectToggle
-                name='oscillator type'
-                options={['amsine', 'square', 'fmtriangle']}
-                labels={['AM Sine', 'Square', 'FM Triangle']}
-                value={oscType}
-                handleClick={(e) => {
-                  setOscType(e.target.value);
-                }}
-              />
-              {screenWidth > 1024 && (
-                <div className='key-help-toggle'>
-                  <p>Key Help:</p>
-                  <EffectToggle
-                    name='keyhelp'
-                    options={['on', '']}
-                    labels={['On', 'Off']}
-                    value={keyHelp}
-                    handleClick={(e) => {
-                      setKeyHelp(e.target.value);
-                    }}
-                  />
-                </div>
-              )}
-              <EffectKnob
-                name='lpfilter'
-                label='Sharpyness'
-                min='500'
-                max='8000'
-                value={cutoff}
-                handleChange={(e) => {
-                  controlScroll(e, 400, cutoff);
-                  setCutoff(e.target.value);
-                }}
-              />
-              {screenWidth > 1024 && (
+            <FullScreen handle='full-screen'>
+              <section className='effects-section'>
                 <EffectKnob
-                  name='volume'
-                  label='Volumeyness'
-                  min='-30'
-                  max='-9'
-                  value={gain}
+                  name='distortion'
+                  label='Angeryness'
+                  min='0'
+                  max='100'
+                  value={distRange}
                   handleChange={(e) => {
-                    controlScroll(e, 1, gain);
-                    setGain(e.target.value);
+                    controlScroll(e, 6, distRange);
+                    setDistortionWet(
+                      convertRangeValue([0, 100], [0, 1], e.target.value)
+                    );
                   }}
                 />
-              )}
-            </section>
-            <Keyboard screenWidth={screenWidth} keyHelp={keyHelp} />
-            <Dolphin detune={detune} cutoff={cutoff} gain={gain} />
+                <EffectKnob
+                  name='detune'
+                  label='Bendyness'
+                  min='-1200'
+                  max='1200'
+                  value={detune}
+                  handleChange={(e) => {
+                    controlScroll(e, 500, detune);
+                    setDetune(e.target.value);
+                  }}
+                  resetDetune={resetDetune}
+                />
+                <EffectToggle
+                  name='oscillator type'
+                  options={['amsine', 'square', 'fmtriangle']}
+                  labels={['AM Sine', 'Square', 'FM Triangle']}
+                  value={oscType}
+                  handleClick={(e) => {
+                    setOscType(e.target.value);
+                  }}
+                />
+                {screenWidth > 1024 && (
+                  <div className='key-help-toggle'>
+                    <p>Key Help:</p>
+                    <EffectToggle
+                      name='keyhelp'
+                      options={['on', '']}
+                      labels={['On', 'Off']}
+                      value={keyHelp}
+                      handleClick={(e) => {
+                        setKeyHelp(e.target.value);
+                      }}
+                    />
+                  </div>
+                )}
+                <EffectKnob
+                  name='lpfilter'
+                  label='Sharpyness'
+                  min='500'
+                  max='8000'
+                  value={cutoff}
+                  handleChange={(e) => {
+                    controlScroll(e, 400, cutoff);
+                    setCutoff(e.target.value);
+                  }}
+                />
+                {screenWidth > 1024 && (
+                  <EffectKnob
+                    name='volume'
+                    label='Volumeyness'
+                    min='-30'
+                    max='-9'
+                    value={gain}
+                    handleChange={(e) => {
+                      controlScroll(e, 1, gain);
+                      setGain(e.target.value);
+                    }}
+                  />
+                )}
+              </section>
+              <Keyboard screenWidth={screenWidth} keyHelp={keyHelp} />
+              <Dolphin detune={detune} cutoff={cutoff} gain={gain} />
+            </FullScreen>
             <Scene
               wave={oscType}
               currentNote={currentNote}
@@ -223,7 +226,10 @@ export default function App() {
             />
             <Link to='/About'>
               <div>
-                <h1 className='how-to-button' style={{ position: 'fixed', bottom: '1%', left: '1%' }}>
+                <h1
+                  className='how-to-button'
+                  style={{ position: 'fixed', bottom: '1%', left: '1%' }}
+                >
                   How To Play
                 </h1>
               </div>

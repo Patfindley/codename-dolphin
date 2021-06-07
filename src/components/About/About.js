@@ -18,7 +18,8 @@ const Heading = styled.h1`
   font-size: 2em;
 `;
 const HowTo = styled.div`
-  width: 100%;
+  width: 50%;
+  align-self: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
