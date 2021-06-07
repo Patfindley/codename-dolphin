@@ -15,12 +15,31 @@ text-align: center;
 @media only screen and (max-width: 950px ) {
   padding-top: 200px
 }
+@media only screen and (max-width: 425px ) {
+  padding-top: 300px
+}
 @media only screen and (max-width: 375px ) {
   padding-top: 200px
 }
+@media only screen and (max-width: 320px ) {
+  padding-top: 275px
+}
+
 `
 const Heading = styled.h1`
   font-family: 'Bungee', cursive;
+  @media only screen and (max-width: 950px ) {
+    font-size: 1.2em;
+  }
+
+  @media only screen and (max-width: 375px ) {
+    font-size: 1.1em;
+  }
+
+  @media only screen and (max-width: 320px ) {
+    font-size: 1em;
+  }
+
 `
 const HowTo = styled.ol`
   margin-left: 10px;
@@ -32,6 +51,9 @@ const HowTo = styled.ol`
 `
 const ListItem = styled.li`
   text-align: left;
+  @media only screen and (max-width: 375px ) {
+    font-size: .85em;
+  }
 `
 const ContributorWrap = styled.div`
   text-align: center;
@@ -44,6 +66,10 @@ const ContributorWrap = styled.div`
     display: flex;
     flex-direction: column;
     // justify-content: space-around;
+  }
+
+  @media only screen and (max-width: 375px ) {
+    font-size: .85em;
   }
 `
 const Contributor = styled.a`
