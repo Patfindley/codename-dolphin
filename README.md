@@ -2,8 +2,9 @@
 *Paste New Deployed Site Here**
 
 #### Overview
-This interactive application is both and audio and visual experience that was created by utilizing the Web Audio API in tandem with various animation technologies. You can control your perspective within the 3D environment, and also manipulate audio by playing the in-app synthesizer with either clicks or the keyboard. Tweak the sounds to your liking by using the on-screen effects; these interactions have also been paired up with multiple visualizations for instant feedback.
+This interactive application is both and audio and visual experience that was created by utilizing the Web Audio API in tandem with various animation technologies. You can control your perspective within the 3D environment, and also manipulate audio by playing the in-app synthesizer with either clicks or the keyboard. Tweak the sounds to your liking by using the on-screen effects; these interactions have also been paired up with multiple visualizations for instant feedback. 
 
+![GIF showing the synth](assets/synth_main.gif)
 #### Contributors
 [Chris Anderson](https://github.com/mistercanderson "Chris's GitHub")
 [Tyson McNutt](https://github.com/tysnj "Tyson's GitHub")
