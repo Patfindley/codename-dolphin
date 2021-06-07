@@ -28,6 +28,7 @@ This interactive application is both and audio and visual experience that was cr
 
 ## Installation
 1. Clone down this repo with `git clone git@github.com:Patfindley/codename-dolphin.git`
+2. Change into the new directory with `cd codename-dolphin/`
 2. Run `npm i` to install dependencies
 3. Run `npm start` to run the program
 
