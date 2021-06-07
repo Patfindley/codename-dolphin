@@ -17,6 +17,11 @@ describe('About', () => {
     cy.get(".to-synth").click()
   })
 
-  
+  it('Should list contributors', () => {
+    cy.get("[data-cy='contributors']")
+    .children("[data-cy='contributor']")
+  })
+
+ 
 
 })  
