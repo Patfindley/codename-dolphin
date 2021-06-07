@@ -22,6 +22,11 @@ describe('About', () => {
     .children("[data-cy='contributor']")
   })
 
- 
+  it('Should redirect user to contributors github when clicked', () => {
+    cy.get("[data-cy='contributors']")
+    .children("[data-cy='contributor']").click()
+    .should('have.attr', 'href', 'https://github.com/Patfindley')
+    .should('have.attr', 'target', '_blank')
+  })
 
 })  
