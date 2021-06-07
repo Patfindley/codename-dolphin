@@ -1,8 +1,24 @@
 import React, { useEffect } from 'react';
 import { gsap } from 'gsap';
-import dolphinImg from '../../assets/dolphin.svg';
+import styled from "styled-components";
 import { convertRangeScale } from '../../util/rangeScaling';
-import './Dolphin.css';
+import dolphinImg from '../../assets/dolphin.svg';
+
+const DolphinContainer = styled.div`
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: -1;
+  user-select: none;
+  pointer-events: none;
+`
+const DolphinImg = styled.img`
+  position: relative;
+  width: 300px;
+  height: 300px;
+  left:150px;
+  top: -50px;
+`
 
 const Dolphin = ({ detune, cutoff, gain }) => {
   useEffect(() => {
@@ -30,9 +46,9 @@ const Dolphin = ({ detune, cutoff, gain }) => {
   }, [gain]);
 
   return (
-    <div className='dolphin-container'>
-      <img className='dolphin' src={dolphinImg} alt='dolphin' />
-    </div>
+    <DolphinContainer className='dolphin-container'>
+      <DolphinImg className='dolphin' src={dolphinImg} alt='dolphin' />
+    </DolphinContainer>
   );
 };
 
