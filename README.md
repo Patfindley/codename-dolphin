@@ -33,9 +33,9 @@ This interactive application is both and audio and visual experience that was cr
 
 
 ## Wins
-* Incorporating multiple foreign technologies in a single application
-* Building a responsive app that can be used on various devices
-* Getting Tone.js in sync with React's state management was an achievement.
+* Learning & incorporating new technologies into a single application
+* Building a responsive React app that can be used on various devices
+* Getting Tone.js in sync with GSAP + Three.js using React's state management.
 
 
 ## What's Next
@@ -43,3 +43,5 @@ This interactive application is both and audio and visual experience that was cr
 * More interactive UX
 * Chord builder
 * Arpeggiator
+* Saving user presets
+* MIDI integration
