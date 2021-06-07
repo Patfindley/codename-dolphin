@@ -1,8 +1,8 @@
 describe('Effects section', () => { 
   beforeEach(() => {
-    cy.visit('http://localhost:3000/')
-    cy.get('h1').click()
-    cy.viewport(1920, 975) 
+    cy.visit('/synth')
+    cy.viewport(1920, 975)
+    cy.wait(500)
   });
 
   it('should allow the user to adjust filter effects', () => {
