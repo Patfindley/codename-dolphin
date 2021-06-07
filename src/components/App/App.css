@@ -53,6 +53,10 @@
   min-width: 152px;
 }
 
+.how-to-button {
+  color: #323A9E
+}
+
 @media screen and (max-width: 1024px) {
   .effects-section {
     justify-content: space-around;
@@ -64,6 +68,9 @@
   }
   .effects-section > .effect-toggle > button {
     padding: 0.5em;
+  }
+  .how-to-button {
+    font-size: 1em
   }
 }
 

@@ -13,6 +13,7 @@ const LandingContainer = styled.div`
   justify-content: center;
 `
 const LandingTitle = styled.h1`
+  font-size: 3em;
   font-family: 'Bungee', cursive;
   cursor: crosshair;
 `
@@ -67,7 +68,7 @@ const Landing = ({ audioCheck }) => {
         <DolphinTitle className='dolphin-title' src={dolphinImg} alt='dolphin' />
       </DolphinArm>
       <Link to='/About' style={{ textDecoration: 'none' }}>
-        <h3 style={{ color: 'white' }}>
+        <h3 style={{ color: 'white', marginTop: '1em', fontSize: '2em'}}>
           About
         </h3>
       </Link>

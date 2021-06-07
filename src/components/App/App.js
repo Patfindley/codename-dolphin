@@ -223,8 +223,8 @@ export default function App() {
             />
             <Link to='/About'>
               <div>
-                <h1 style={{ position: 'fixed', bottom: 0, left: '1%' }}>
-                  How To
+                <h1 className='how-to-button' style={{ position: 'fixed', bottom: 0, left: '1%' }}>
+                  How To Play
                 </h1>
               </div>
             </Link>
