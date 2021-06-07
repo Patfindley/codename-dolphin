@@ -1,9 +1,9 @@
 # Codename Dolphin
-*Paste New Deployed Site Here**
+[Deployed Site](http://bright-bucket.surge.sh/ "Deployed Site")
 
 
 #### Overview
-This interactive application is both and audio and visual experience that was created by utilizing the Web Audio API in tandem with various animation technologies. You can control your perspective within the 3D environment, and also manipulate audio by playing the in-app synthesizer with either clicks or the keyboard. Tweak the sounds to your liking by using the on-screen effects; these interactions have also been paired up with multiple visualizations for instant feedback. 
+This interactive application is both an auditory and visual experience that was created by utilizing the Web Audio API in tandem with various animation technologies. You can control your perspective within the 3D environment, and also manipulate audio by playing the in-app synthesizer with either clicks or the keyboard. Tweak the sounds to your liking by using the on-screen effects; these interactions have also been paired up with multiple visualizations for instant feedback. 
 
 ![GIF showing the synth](src/assets/synth_main.gif)
 
