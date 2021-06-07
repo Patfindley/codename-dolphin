@@ -8,5 +8,11 @@ describe('About', () => {
     cy.url().should('include', '/about')
   })
 
+  it("Should display directions on how to use app", () => {
+    cy.get("[data-cy='how-to']")
+    .children("[data-cy='list-item']")
+  })
+
+
 
 })  
