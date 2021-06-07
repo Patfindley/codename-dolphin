@@ -75,7 +75,7 @@ const Landing = ({ audioCheck }) => {
           alt='dolphin'
         />
       </DolphinArm>
-      <Link to='/about' style={{ textDecoration: 'none' }}>
+      <Link to='/about' data-cy="about-link" style={{ textDecoration: 'none' }}>
         <h3
           style={{
             color: 'white',

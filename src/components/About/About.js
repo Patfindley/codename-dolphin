@@ -89,24 +89,24 @@ const About = () => {
   return (
     <AboutContainer>
       <Heading> How To Play: </Heading>
-      <HowTo>
-        <ListItem>
+      <HowTo data-cy="how-to">
+        <ListItem data-cy="list-item">
           Make sure the sound is on! (also, rotate your phone horizontally if
           you're using one)
         </ListItem>
-        <ListItem>
+        <ListItem data-cy="list-item">
           Play the synth by clicking/touching the keys, or try using your
           computer keyboard!
         </ListItem>
-        <ListItem>
+        <ListItem data-cy="list-item">
           Morph the sound by playing with the effects sliders (if you have a
           scroll wheel, this can be used to change the sliders)
         </ListItem>
-        <ListItem>
+        <ListItem data-cy="list-item">
           Look around by clicking & dragging the space behind the keyboard
           (holding shift will change your position)
         </ListItem>
-        <ListItem>
+        <ListItem data-cy="list-item">
           If the keys stay red when you're playing, slow down, hot shot!
         </ListItem>
       </HowTo>
@@ -123,14 +123,14 @@ const About = () => {
         </h3>
       </Link>
       <Heading>Contributors:</Heading>
-      <ContributorWrap>
+      <ContributorWrap data-cy="contributors">
         <Contributor href='https://github.com/mistercanderson' target='_blank'>
           Chris Anderson
         </Contributor>
         <Contributor href='https://github.com/tysnj' target='_blank'>
           Tyson McNutt
         </Contributor>
-        <Contributor href='https://github.com/Patfindley' target='_blank'>
+        <Contributor data-cy="contributor" href='https://github.com/Patfindley' target='_blank'>
           Pat Findley
         </Contributor>
       </ContributorWrap>
