@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Switch, Route,  Redirect } from 'react-router-dom';
+import { Switch, Route, Redirect, Link } from 'react-router-dom';
 import * as Tone from 'tone';
 import './App.css';
 import toggleActive from '../../util/activateKeyUtil';
@@ -19,6 +19,7 @@ import EffectKnob from '../EffectKnob/EffectKnob';
 import EffectToggle from '../EffectToggle/EffectToggle';
 import Dolphin from '../Dolphin/Dolphin';
 import RotateMessage from '../RotateMessage/RotateMessage';
+import About from '../About/About';
 
 const { oscillators, delay, reverb, filter, volume, compressor, distortion } =
   createSynth();
@@ -46,7 +47,7 @@ export default function App() {
   const [cameraX, setCameraX] = useState(Math.random() * 5);
   const [cameraY, setCameraY] = useState(Math.random() * 6);
   const [cameraZ, setCameraZ] = useState(Math.random() * 7);
-  const [audioCheck, setAudioCheck] = useState(true)
+  const [audioCheck, setAudioCheck] = useState(true);
   // useLayoutEffect(() => {
   // USE TO MAKE ROTATE PHONE GO FULL SCREEN, NEED TO GET DEPENDENCY
   //   navigation.setOptions({headerShown: false});
@@ -57,9 +58,9 @@ export default function App() {
 
   useEffect(() => {
     if (!window.BaseAudioContext) {
-      setAudioCheck(false)
+      setAudioCheck(false);
     }
-  }, [])
+  }, []);
 
   const handleResize = () => setScreenWidth(window.innerWidth);
 
@@ -131,102 +132,112 @@ export default function App() {
   const distRange = convertRangeScale([0, 1], [0, 100], distortionWet);
 
   return (
-    <>  
-      <Switch>
-        <Route exact path='/' render={() => <Landing audioCheck={audioCheck}/>} />
-        <Route
-          exact
-          path='/synth'
-          render={() => (
-            <div className='App'>
-              {screenWidth <= 480 && <RotateMessage screenWidth={screenWidth} />}
-              <section className='effects-section'>
-                <EffectKnob
-                  name='distortion'
-                  label='Angeryness'
-                  min='0'
-                  max='100'
-                  value={distRange}
-                  handleChange={(e) => {
-                    controlScroll(e, 6, distRange);
-                    setDistortionWet(
-                      convertRangeValue([0, 100], [0, 1], e.target.value)
-                    );
-                  }}
-                />
-                <EffectKnob
-                  name='detune'
-                  label='Bendyness'
-                  min='-1200'
-                  max='1200'
-                  value={detune}
-                  handleChange={(e) => {
-                    controlScroll(e, 500, detune);
-                    setDetune(e.target.value);
-                  }}
-                  resetDetune={resetDetune}
-                />
-                <EffectToggle
-                  name='oscillator type'
-                  options={['amsine', 'square', 'fmtriangle']}
-                  labels={['AM Sine', 'Square', 'FM Triangle']}
-                  value={oscType}
-                  handleClick={(e) => {
-                    setOscType(e.target.value);
-                  }}
-                />
-                {screenWidth > 1024 && (
-                  <div className='key-help-toggle'>
-                    <p>Key Help:</p>
-                    <EffectToggle
-                      name='keyhelp'
-                      options={['on', '']}
-                      labels={['On', 'Off']}
-                      value={keyHelp}
-                      handleClick={(e) => {
-                        setKeyHelp(e.target.value);
-                      }}
-                    />
-                  </div>
-                )}
-                <EffectKnob
-                  name='lpfilter'
-                  label='Sharpyness'
-                  min='500'
-                  max='8000'
-                  value={cutoff}
-                  handleChange={(e) => {
-                    controlScroll(e, 400, cutoff);
-                    setCutoff(e.target.value);
-                  }}
-                />
-                {screenWidth > 1024 && (
-                  <EffectKnob
-                    name='volume'
-                    label='Volumeyness'
-                    min='-30'
-                    max='-9'
-                    value={gain}
-                    handleChange={(e) => {
-                      controlScroll(e, 1, gain);
-                      setGain(e.target.value);
+    <Switch>
+      <Route
+        exact
+        path='/'
+        render={() => <Landing audioCheck={audioCheck} />}
+      />
+      <Route exact path='/About' render={() => <About />}></Route>
+      <Route
+        exact
+        path='/synth'
+        render={() => (
+          <div className='App'>
+            {screenWidth <= 480 && <RotateMessage screenWidth={screenWidth} />}
+            <section className='effects-section'>
+              <EffectKnob
+                name='distortion'
+                label='Angeryness'
+                min='0'
+                max='100'
+                value={distRange}
+                handleChange={(e) => {
+                  controlScroll(e, 6, distRange);
+                  setDistortionWet(
+                    convertRangeValue([0, 100], [0, 1], e.target.value)
+                  );
+                }}
+              />
+              <EffectKnob
+                name='detune'
+                label='Bendyness'
+                min='-1200'
+                max='1200'
+                value={detune}
+                handleChange={(e) => {
+                  controlScroll(e, 500, detune);
+                  setDetune(e.target.value);
+                }}
+                resetDetune={resetDetune}
+              />
+              <EffectToggle
+                name='oscillator type'
+                options={['amsine', 'square', 'fmtriangle']}
+                labels={['AM Sine', 'Square', 'FM Triangle']}
+                value={oscType}
+                handleClick={(e) => {
+                  setOscType(e.target.value);
+                }}
+              />
+              {screenWidth > 1024 && (
+                <div className='key-help-toggle'>
+                  <p>Key Help:</p>
+                  <EffectToggle
+                    name='keyhelp'
+                    options={['on', '']}
+                    labels={['On', 'Off']}
+                    value={keyHelp}
+                    handleClick={(e) => {
+                      setKeyHelp(e.target.value);
                     }}
                   />
-                )}
-              </section>
-              <Keyboard screenWidth={screenWidth} keyHelp={keyHelp} />
-              <Dolphin detune={detune} cutoff={cutoff} gain={gain} />
-              <Scene
-                wave={oscType}
-                currentNote={currentNote}
-                distortionWet={distortionWet}
-                cameraPositions={cameraPositions}
+                </div>
+              )}
+              <EffectKnob
+                name='lpfilter'
+                label='Sharpyness'
+                min='500'
+                max='8000'
+                value={cutoff}
+                handleChange={(e) => {
+                  controlScroll(e, 400, cutoff);
+                  setCutoff(e.target.value);
+                }}
               />
-            </div>
-          )}
-        />
-      <Redirect to="/" />
-      </Switch>
-    </>
+              {screenWidth > 1024 && (
+                <EffectKnob
+                  name='volume'
+                  label='Volumeyness'
+                  min='-30'
+                  max='-9'
+                  value={gain}
+                  handleChange={(e) => {
+                    controlScroll(e, 1, gain);
+                    setGain(e.target.value);
+                  }}
+                />
+              )}
+            </section>
+            <Keyboard screenWidth={screenWidth} keyHelp={keyHelp} />
+            <Dolphin detune={detune} cutoff={cutoff} gain={gain} />
+            <Scene
+              wave={oscType}
+              currentNote={currentNote}
+              distortionWet={distortionWet}
+              cameraPositions={cameraPositions}
+            />
+            <Link to='/About'>
+              <div>
+                <h1 style={{ position: 'fixed', bottom: 0, left: '1%' }}>
+                  How To
+                </h1>
+              </div>
+            </Link>
+          </div>
+        )}
+      />
+      <Redirect to='/' />
+    </Switch>
   );
 }
