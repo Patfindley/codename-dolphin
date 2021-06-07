@@ -19,7 +19,7 @@ const LandingTitle = styled.h1`
   font-family: 'Bungee', cursive;
   cursor: crosshair;
   width: 40%
-  font-align: center
+  text-align: center
 `;
 const DolphinArm = styled.div`
   position: absolute;
