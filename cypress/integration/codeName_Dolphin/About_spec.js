@@ -13,6 +13,10 @@ describe('About', () => {
     .children("[data-cy='list-item']")
   })
 
+  it('Should have clickable link to synth', () => {
+    cy.get(".to-synth").click()
+  })
 
+  
 
 })  
