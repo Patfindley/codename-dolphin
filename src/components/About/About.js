@@ -4,53 +4,33 @@ import { Link } from 'react-router-dom';
 import React, { useEffect } from 'react';
 
 const AboutContainer = styled.div`
-  height: 95%;
-  padding-top: 40px;
+  height: 100%;
+  width: 100%;
   overflow-y: scroll;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   text-align: center;
-
-  @media only screen and (max-width: 950px) {
-    padding-top: 200px;
-  }
-  @media only screen and (max-width: 425px) {
-    padding-top: 300px;
-  }
-  @media only screen and (max-width: 375px) {
-    padding-top: 200px;
-  }
-  @media only screen and (max-width: 320px) {
-    padding-top: 275px;
-  }
 `;
 const Heading = styled.h1`
   font-family: 'Bungee', cursive;
-  @media only screen and (max-width: 950px) {
-    font-size: 1.2em;
-  }
-
-  @media only screen and (max-width: 375px) {
-    font-size: 1.1em;
-  }
-
-  @media only screen and (max-width: 320px) {
-    font-size: 1em;
-  }
+  margin-bottom: 1%;
+  font-size: 2em;
 `;
-const HowTo = styled.ol`
-  margin-left: 10px;
+const HowTo = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
   font-size: 0.7em;
 `;
-const ListItem = styled.li`
+const ListItem = styled.p`
+  font-size: 1.8em;
   text-align: left;
-  @media only screen and (max-width: 375px) {
-    font-size: 0.85em;
+  margin: 1em;
+  @media only screen and (max-width: 1024px) {
+    font-size: 1em;
   }
 `;
 const ContributorWrap = styled.div`
@@ -58,17 +38,6 @@ const ContributorWrap = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-
-  @media only screen and (max-width: 950px) {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    // justify-content: space-around;
-  }
-
-  @media only screen and (max-width: 375px) {
-    font-size: 0.85em;
-  }
 `;
 const Contributor = styled.a`
   font-family: 'Bungee', cursive;
@@ -100,7 +69,10 @@ const About = () => {
     <AboutContainer>
       <Heading> How To: </Heading>
       <HowTo>
-        <ListItem>Make sure the sound is on!</ListItem>
+        <ListItem>
+          Make sure the sound is on! (Also, rotate your phone horizontally if
+          you're using one)
+        </ListItem>
         <ListItem>
           Play the synth by clicking/touching the keys, or try using your
           computer keyboard!
@@ -115,7 +87,14 @@ const About = () => {
         </ListItem>
       </HowTo>
       <Link to='/synth' style={{ textDecoration: 'none', color: 'white' }}>
-        <h3 className='to-synth' style={{ fontFamily: 'Bungee, cursive' }}>
+        <h3
+          className='to-synth'
+          style={{
+            fontFamily: 'Bungee, cursive',
+            fontSize: '3em',
+            margin: '2 0',
+          }}
+        >
           Get Down With The Synthness
         </h3>
       </Link>
