@@ -9,7 +9,6 @@ This interactive application is both an auditory and visual experience that was 
 
 We built this app to try combine our shared passion for music and creativity in Front-End development. We knew we wanted to make a synthesizer, to manipulate audio, explore graphic design, but we really wanted to reach out of our comfort zones to make it visually stimulating at the same time. Our intention was to create a music app that didn't require any prior music experience to enjoy. Learning to incorporate GSAP and WebGl animations felt critical in keeping our new musicians engaged with the application.
 
-//wanted to use animations to make a music app fun for non music makers
 
 #### Contributors
 [Chris Anderson](https://github.com/mistercanderson "Chris's GitHub")
